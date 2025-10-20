@@ -1,0 +1,23 @@
+.terms-and-conditions-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 4rem;
+    padding-left: 4rem;
+}
+
+.terms-and-conditions {
+    color: #FA3B2D;
+    text-decoration: none;
+}
+
+.terms-and-conditions:hover {
+    text-decoration: underline;
+    color: #FA3B2D;
+}
+
+@media screen and (max-width: 768px) {
+    .terms-and-conditions-container {
+        padding-bottom: 0rem;
+    }
+}
