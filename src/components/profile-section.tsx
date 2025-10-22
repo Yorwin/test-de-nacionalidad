@@ -34,7 +34,7 @@ const ProfileSection = () => {
                     // 🔹 Si ya hay usuario, cargamos sus datos
                     await setDoc(doc(db, "users", result.user.uid), {
                         isAnonymous: true,
-                        username: "Guest User Account",
+                        username: `Guest User ${result.user.uid.slice(-4)}`,
                         displayEmail: "Invitado temporal",
                         createdAt: new Date(),
                     });

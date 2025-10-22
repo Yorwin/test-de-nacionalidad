@@ -115,21 +115,23 @@ const RegisterPage = () => {
 
                         {/* Contraseña */}
 
-                        <div className={styles["password-container"]}>
+                        <div className={styles["container-input"]}>
 
                             <label htmlFor="password-register" className={styles["label-register"]}>Contraseña</label>
-                            <input id="password-register"
-                                type={showPassword}
-                                placeholder="Contraseña"
-                                className={styles["input-register"]}
-                                name="password_register"
-                                value={values.password_register}
-                                onChange={(e) => handleChange(e)}
-                                onBlur={handleBlur}
-                                required />
 
-                            <button type="button" onClick={togglePassword} className={styles["show-password"]}>{showPassword === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>}</button>
+                            <div className={styles["password-input-container"]}>
+                                <input id="password-register"
+                                    type={showPassword}
+                                    placeholder="Contraseña"
+                                    className={styles["input-register"]}
+                                    name="password_register"
+                                    value={values.password_register}
+                                    onChange={(e) => handleChange(e)}
+                                    onBlur={handleBlur}
+                                    required />
 
+                                <button type="button" onClick={togglePassword} className={styles["show-password"]}>{showPassword === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>}</button>
+                            </div>
                             {errors.password_register && errors.password_register !== "Campo obligatorio" && (
                                 <p className={styles["error-message-register-input"]}>{errors.password_register}</p>
                             )}
@@ -149,7 +151,7 @@ const RegisterPage = () => {
                     </div>
                 </div>
 
-                <p>Has estado aquí antes? <Link href="/iniciar-sesion">Inicia sesión</Link></p>
+                <p>Has estado aquí antes? <Link href="/autorizacion/iniciar-sesion">Inicia sesión</Link></p>
             </form>
         </div>
     </>

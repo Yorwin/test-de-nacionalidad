@@ -1,0 +1,31 @@
+.continue-guest-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .3rem;
+
+    i {
+        font-size: 1.8rem;
+        font-weight: 800;
+    }
+}
+
+.link {
+    text-align: center;
+    text-decoration: none;
+    color: #FA3B2D;
+
+    &:hover {
+        text-decoration: 2px #FA3B2D solid underline;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .continue-guest-user-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: .1rem;
+    }
+}

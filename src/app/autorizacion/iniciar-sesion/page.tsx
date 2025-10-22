@@ -8,6 +8,9 @@ import { auth } from "@/firebase/firebase"
 import { useRouter } from "next/navigation";
 import RecoverPassword from "@/components/recover-password";
 
+/* Component */
+import ContinueGuestUser from "@/components/pages/auth-pages/continue-guest-user";
+
 const LoginPage = () => {
 
     const [email, setEmail] = useState("");
@@ -71,13 +74,15 @@ const LoginPage = () => {
                         </div>
 
                         <div className={styles["container-input"]}>
-                            <input id="password-login"
-                                type={showPassword}
-                                placeholder="Contraseña"
-                                className={styles["login-input"]}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)} />
-                            <button type="button" onClick={togglePassword} className={styles["show-password-login"]}>{showPassword === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>}</button>
+                            <div className={styles["password-input-container"]}>
+                                <input id="password-login"
+                                    type={showPassword}
+                                    placeholder="Contraseña"
+                                    className={styles["login-input"]}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)} />
+                                <button type="button" onClick={togglePassword} className={styles["show-password"]}>{showPassword === "password" ? <i className="bi bi-eye"></i> : <i className="bi bi-eye-slash"></i>}</button>
+                            </div>
                         </div>
 
                         {/* Has olvidado tu contraseña? Enlace */}
@@ -99,9 +104,10 @@ const LoginPage = () => {
                 </div>
 
                 {/* Enlace Registro */}
-                <p>No tienes una cuenta? <Link href={"/registrarse"}>Registrate</Link></p>
+                <p>No tienes una cuenta? <Link href={"/autorizacion/registrarse"}>Registrate</Link></p>
             </form>
             {showPasswordRecover && <RecoverPassword show={handleRecoverPassword} />}
+            <ContinueGuestUser />
         </div>
     </>
 };

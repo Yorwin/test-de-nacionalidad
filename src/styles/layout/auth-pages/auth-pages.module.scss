@@ -75,41 +75,37 @@
 }
 
 .inputs input {
-    margin-bottom: 0.7rem;
     border-radius: .7rem;
     padding: 0.4rem;
-}
-
-.container-input input {
-    width: 100%;
 }
 
 .container-button-submit button {
     width: 100%;
 }
 
-.inputs input::placeholder {
-    padding-left: 0.4rem;
-    color: #322B2A;
-}
-
 /* Contenedor Input LogIn */
 
 .container-input {
     position: relative;
-}
+    margin-bottom: 1rem;
 
-.show-password-login {
-    position: absolute;
-    background-color: transparent;
-    border: none;
-    padding: 0px;
-    right: 10px;
-    bottom: 11px;
-}
+    input {
+        position: relative;
+        width: 100%;
+        background-color: transparent;
+        color: #322B2A;
+        padding-left: 0.4rem;
 
-.show-password-login i {
-    font-size: 1.7rem;
+        &:placeholder {
+            color: #322B2A;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+            background: none;
+        }
+    }
 }
 
 /* Errores */
@@ -183,16 +179,26 @@
     width: 100%;
 }
 
+.password-input-container {
+    position: relative;
+    margin-bottom: 0.3rem;
+}
+
 .show-password {
     background-color: transparent;
     border: none;
     position: absolute;
-    right: 4px;
-    top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #322B2A;
 }
 
 .show-password i {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -322,7 +328,11 @@
 .icon-container i {
     padding-left: 0rem;
     color: #322B2A;
-    ;
+    cursor: pointer;
+
+    &:hover {
+        color: #FA3B2D;
+    }
 }
 
 .form-container {
@@ -337,6 +347,7 @@
 .form-container h1 {
     margin-bottom: 2.5rem;
     color: #FA3B2D;
+    text-align: center;
 }
 
 .form-container form {
