@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import styles from "@/styles/layout/homepage/homepage.module.scss";
 
 /* Componentes */
 import Logo from "@/components/logo-cervantes"

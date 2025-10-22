@@ -1,3 +1,7 @@
+@use "../_variables/mixins" as *;
+@use "../_variables/variables" as *;
+@use 'sass:map';
+
 /* Main Section */
 
 .main-container {
@@ -20,9 +24,17 @@
     flex-direction: column;
 }
 
+.profie-image-container {
+    position: relative;
+    width: 55px;
+    height: 55px;
+}
+
 .profile-info-container {
     position: relative;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     z-index: 10;
 }
@@ -51,16 +63,13 @@
     background-color: transparent;
     border: none;
     transition: transform 0.3s ease;
-}
 
-.menu-button.rotated {
-    transform: rotate(180deg);
-}
-
-.div i {
-    font-size: 2rem;
-    padding-left: .7rem;
-    cursor: pointer;
+    i {
+        font-size: 2rem;
+        color: #000;
+        padding-left: .7rem;
+        cursor: pointer;
+    }
 }
 
 /* Menu Bar */
@@ -74,22 +83,47 @@
 }
 
 .menu-bar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
     background-color: #A55A55;
     border-radius: 1rem;
-    padding: 0.6rem 0.5rem;
+    padding: 1rem 1rem;
     list-style-type: none;
+}
+
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    @include font-style-list-menu-bar(1rem);
+
+    &:hover {
+        text-decoration: .6px underline solid #fff;
+    }
 }
 
 .button-menu {
     display: flex;
-    gap: .7rem;
+    gap: .5rem;
     align-items: center;
     background-color: transparent;
     border: none;
+
+    small {
+        @include font-style-list-menu-bar(1rem);
+    }
 }
 
 .button-menu:hover {
     text-decoration: underline 0.1rem #000 solid;
+}
+
+.log-in-register-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -104,13 +138,12 @@
     /* Profile Section */
 
     .main-container img {
-        max-width: 40px;
+        max-width: 50px;
         max-height: 50px;
     }
 
-    .div i {
+    .menu-link i {
         font-size: 1.8rem;
-        padding-left: .3rem;
     }
 
     /* Menu Desplegable */
@@ -120,10 +153,15 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: .3rem;
+    }
+
+    .log-in-register-container {
+        gap: .3rem;
     }
 
     .menu-bar ul li i {
-        font-size: 2.3rem;
+        font-size: 1.7rem;
     }
 
     .button-menu {
@@ -132,6 +170,10 @@
 
     .button-menu i {
         padding: 0rem;
+    }
+
+    .menu-link small {
+        display: none;
     }
 
     .button-menu small {

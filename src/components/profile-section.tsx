@@ -6,9 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 /* Firestore */
-import { signOut, onAuthStateChanged, User } from 'firebase/auth'
+import { signOut, onAuthStateChanged, User, signInAnonymously } from 'firebase/auth'
 import { auth, db } from '@/firebase/firebase';
-import { doc, getDoc, DocumentData } from 'firebase/firestore';
+import { doc, getDoc, setDoc, DocumentData } from 'firebase/firestore';
 
 /* No Profile Img */
 import ProfileDefaultImage from "@/resources/profile-default.png";
@@ -23,10 +23,28 @@ const ProfileSection = () => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            setUser(currentUser);
 
-            if (currentUser) {
-                // Fetch user data from Firestore when user is authenticated
+            if (!currentUser) {
+
+                // 🔹 Si no ya hay usuario, accedemos con usuario anonimo. 
+                try {
+                    const result = await signInAnonymously(auth);
+                    setUser(result.user);
+
+                    // 🔹 Si ya hay usuario, cargamos sus datos
+                    await setDoc(doc(db, "users", result.user.uid), {
+                        isAnonymous: true,
+                        username: "Guest User Account",
+                        displayEmail: "Invitado temporal",
+                        createdAt: new Date(),
+                    });
+                } catch (error) {
+                    console.error("Error creando usuario invitado:", error);
+                }
+            } else {
+                setUser(currentUser);
+
+                // 🔹 Si ya hay usuario, cargamos sus datos
                 try {
                     const userRef = doc(db, "users", currentUser.uid);
                     const docSnap = await getDoc(userRef);
@@ -40,16 +58,14 @@ const ProfileSection = () => {
                 } catch (error) {
                     console.error("Error fetching user data:", error);
                     setUserData(null);
+                } finally {
+                    setLoading(false);
                 }
-            } else {
-                setUserData(null);
             }
-
-            setLoading(false);
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [user]);
 
     if (loading) {
         return (
@@ -68,32 +84,42 @@ const ProfileSection = () => {
     const menuBar = (
         <div className={`${styles["menu-bar"]} ${styles["menu-bar-absolute"]}`}>
             <ul>
-                <li>
-                    {userData !== null &&
-                        <div className={styles["container-enlace"]}>
-                            <Link className={styles["enlace-menu"]} href="/perfil">
+                {userData?.isAnonymous ? null :
+                    <li>
+                        <div className={styles["link-container"]}>
+                            <Link className={styles["menu-link"]} href="/perfil">
                                 <i className="bi bi-person"></i>
-                                Perfil
+                                <small>Perfil</small>
+                            </Link>
+                        </div>
+                    </li>
+                }
+                <li>
+                    {userData &&
+                        <div className={styles["link-container"]}>
+                            <Link className={styles["menu-link"]} href="/ajustes">
+                                <i className="bi bi-gear"></i>
+                                <small>Configuraciones</small>
                             </Link>
                         </div>}
                 </li>
                 <li>
-                    {userData !== null &&
-                        <div className={styles["container-enlace"]}>
-                            <Link className={styles["enlace-menu"]} href="/ajustes">
-                                <i className="bi bi-person"></i>
-                                Configuraciones
-                            </Link>
-                        </div>}
-                </li>
-                <li onClick={logoutUser}>
-                    {userData !== null && <>
-
-                        <button onClick={logoutUser} className={styles["button-menu"]}>
-                            <i className="bi bi-box-arrow-right"></i>
-                            <small>Cerrar sesión</small>
-                        </button>
-                    </>
+                    {userData?.isAnonymous ? <div className={styles["log-in-register-container"]}>
+                        <Link className={styles["menu-link"]} href="/autorizacion/iniciar-sesion">
+                            <i className="bi bi-box-arrow-in-right"></i>
+                            <small>Iniciar sesión</small>
+                        </Link>
+                        <Link className={styles["menu-link"]} href="/autorizacion/registrarse">
+                            <i className="bi bi-pencil-square"></i>
+                            <small>Registrarse</small>
+                        </Link>
+                    </div>
+                        : (
+                            <button onClick={logoutUser} className={styles["button-menu"]}>
+                                <i className="bi bi-box-arrow-right"></i>
+                                <small>Cerrar sesión</small>
+                            </button>
+                        )
                     }
                 </li>
             </ul>
@@ -105,7 +131,7 @@ const ProfileSection = () => {
         setIsButtonPressed(!isButtonPressed);
     };
 
-    return user ? (
+    return (
         <div className={styles["main-container"]}>
             <div className={styles["profile"]}>
                 <div className={styles["profile-info-container"]}>
@@ -120,12 +146,12 @@ const ProfileSection = () => {
                     <div className={styles["profile-info-section"]}>
                         <ul>
                             <li className={styles["username"]}>{userData?.username}</li>
-                            <li className={styles["e-mail"]}>{userData?.email}</li>
+                            <li className={styles["e-mail"]}>{userData?.isAnonymous ? userData?.displayEmail : userData?.email}</li>
                         </ul>
                     </div>
                     <button
                         onClick={toggleMenu}
-                        className={`${styles["menu-button"]} ${isButtonPressed ? styles["rotated"] : ''}`}
+                        className={`${styles["menu-button"]}`}
                     >
                         <i className="bi bi-chevron-down"></i>
                     </button>
@@ -133,7 +159,7 @@ const ProfileSection = () => {
                 {isButtonPressed && menuBar}
             </div>
         </div>
-    ) : <h3>No hay información</h3>
+    )
 };
 
 export default ProfileSection;

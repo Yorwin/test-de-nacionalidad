@@ -1,0 +1,8 @@
+@use '../_variables/variables' as *;
+@use 'sass:map';
+
+@mixin font-style-list-menu-bar ($font-size) {
+    color: #fff;
+    text-decoration: none;
+    font-size: $font-size;
+}

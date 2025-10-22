@@ -1,0 +1,405 @@
+/* Contenedor Principal */
+
+.authorization-pages-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content-container {
+    width: 55vw;
+    height: 100%;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+/* Login */
+
+/* Contenedor Principal Login */
+
+.login-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Logo */
+
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+/* Titulo */
+
+.login-header {
+    text-align: center;
+}
+
+.login-header h2 {
+    color: #FA3B2D;
+    font-size: 3.5rem;
+}
+
+/* Formulario */
+
+/* Contenedor Formulario */
+
+.formulario-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Contenedor Inputs */
+
+.inputs {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Estilo Inputs */
+
+.container-input-login-register {
+    width: 65%;
+}
+
+.inputs input {
+    margin-bottom: 0.7rem;
+    border-radius: .7rem;
+    padding: 0.4rem;
+}
+
+.container-input input {
+    width: 100%;
+}
+
+.container-button-submit button {
+    width: 100%;
+}
+
+.inputs input::placeholder {
+    padding-left: 0.4rem;
+    color: #322B2A;
+}
+
+/* Contenedor Input LogIn */
+
+.container-input {
+    position: relative;
+}
+
+.show-password-login {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    right: 10px;
+    bottom: 11px;
+}
+
+.show-password-login i {
+    font-size: 1.7rem;
+}
+
+/* Errores */
+
+.mensaje-error-login {
+    color: #FA3B2D;
+    font-weight: 700;
+}
+
+.errors {
+    color: #CF4037;
+    font-weight: 600;
+}
+
+.error-message-register-input {
+    color: #CF4037;
+    font-weight: 600;
+}
+
+/* Boton ¿Has olvidado tu contraseña? */
+
+.formulario-login a {
+    text-align: end;
+    margin-bottom: 0.6rem;
+    color: #FA3B2D;
+    text-decoration: none;
+}
+
+.formulario-login a:hover {
+    text-decoration: #FA3B2D 0.1rem solid underline;
+}
+
+/* Boton Iniciar sesión y Crear Cuenta */
+
+.button {
+    position: relative;
+    min-height: 3rem;
+    max-height: 3rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    background-color: #CF4037;
+    border: none;
+    color: #FFFFFF;
+    transition: background-color 0.2s ease-in;
+    border-radius: 1rem;
+    padding: 0.6rem 1rem;
+}
+
+.button:hover {
+    background-color: #FA3B2D;
+}
+
+.button:disabled {
+    background-color: #A55A55;
+}
+
+/* Nota Final */
+
+.formulario-login p {
+    text-align: center;
+}
+
+/* Password Input Specific Styles */
+
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    width: 100%;
+}
+
+.show-password {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 4px;
+    top: 30px;
+}
+
+.show-password i {
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .authorization-pages-container {
+        padding: 1.2rem;
+    }
+
+    .content-container {
+        width: 100vw;
+    }
+}
+
+/* Register */
+
+/* Contenedor Principal Register */
+
+.register-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.container-recover-password-content {
+    position: relative;
+}
+
+/* Titulo */
+
+.register-header {
+    text-align: center;
+}
+
+.register-header h2 {
+    color: #FA3B2D;
+    font-size: 3.5rem;
+}
+
+/* Formulario */
+
+/* Contenedor Formulario */
+
+.formulario-register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Contenedor Inputs */
+
+.inputs {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Nota Final */
+
+.formulario-register p {
+    text-align: center;
+}
+
+.formulario-register a {
+    text-align: end;
+    margin-bottom: 0.6rem;
+    color: #FA3B2D;
+    text-decoration: none;
+}
+
+.label-register {
+    color: #FA3B2D;
+    margin-bottom: 0.3rem;
+}
+
+/* Recover Password */
+
+.container-forgotten-password {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 25px;
+}
+
+.button-forgotten-password {
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    color: #FA3B2D;
+    padding: 0rem;
+    white-space: nowrap;
+}
+
+.button-forgotten-password:hover {
+    text-decoration: underline 0.2rem solid #FA3B2D;
+}
+
+.recover-password-container {
+    position: absolute;
+    background-color: #FFFFFF;
+    border: 0.3rem solid #322B2A;
+    border-radius: 1rem;
+    width: 70%;
+    height: 50%;
+    top: 250px;
+}
+
+.recover-password-content-container {
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.icon-container {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+
+.icon-container i {
+    padding-left: 0rem;
+    color: #322B2A;
+    ;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.form-container h1 {
+    margin-bottom: 2.5rem;
+    color: #FA3B2D;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.form-container form input {
+    margin-bottom: 0.7rem;
+    border-radius: .7rem;
+    border-color: #322B2A;
+    padding: 0.4rem;
+}
+
+/* Mensaje Recuperar contraseña */
+
+.message-recover-container {
+    width: 100%;
+    padding: 1.5rem;
+}
+
+.message-recover-container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.container-parragraphs-recover-password-message p {
+    font-size: 1rem;
+}
+
+.message-recover-password {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.in-case-of-error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 1.5rem;
+}
+
+.in-case-of-error-message p {
+    margin-bottom: 0rem;
+    font-size: 1.1rem;
+}
+
+.in-case-of-error-message button {
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #FA3B2D;
+    border: none;
+}
+
+.in-case-of-error-message button:hover {
+    text-decoration: .2rem #FA3B2D underline solid;
+}
+
+@media screen and (max-width: 768px) {
+    .container-forgotten-password {
+        justify-content: center;
+    }
+}
