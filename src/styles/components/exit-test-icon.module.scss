@@ -1,0 +1,48 @@
+.container-exit-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container-exit-icon h2 {
+    margin-bottom: 0rem;
+    padding-left: 1rem;
+    font-size: 1.6rem;
+    color: #A55A55;
+}
+
+.container-exit-icon i {
+    color: #FA3B2D;
+}
+
+.button-exit-simulation {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: transparent;
+    border: none;
+}
+
+/* Exit Test */
+
+.main-container-confirm-exit {
+    position: relative;
+    width: 50%;
+    height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+    .container-exit-icon {
+        h2 {
+            font-size: 1.3rem;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container-exit-icon {
+        i {
+            font-size: 1.6rem;
+        }
+    }
+}

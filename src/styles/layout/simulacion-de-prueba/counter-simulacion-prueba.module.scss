@@ -1,0 +1,29 @@
+.counter-main-container {
+    border: 0.1rem #A55A55 solid;
+    padding: 1.4rem 2.6rem;
+    border-radius: 1.4rem;
+}
+
+.counter-main-container h2 {
+    margin-bottom: 0rem;
+}
+
+@media screen and (max-width: 768px) {
+    .counter-main-container {
+        padding: 1.2rem 2.2rem;
+    }
+
+    .counter-main-container h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .counter-main-container {
+        padding: .8rem 1.8rem;
+    }
+
+    .counter-main-container h2 {
+        font-size: 1.1rem;
+    }
+}

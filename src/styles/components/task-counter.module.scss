@@ -1,0 +1,16 @@
+.task-control-container h2 {
+    color: #A55A55;
+    margin-bottom: 0rem;
+}
+
+@media screen and (max-width: 768px) {
+    .task-control-container h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .task-control-container h2 {
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,23 @@
+.control-simuation-buttons-main-container {
+    display: flex;
+    gap: 1.7rem;
+}
+
+.button-continue-module:disabled {
+    background-color: #A55A55;
+}
+
+.control-simuation-buttons-main-container button {
+    background-color: #CF4037;
+    color: #FFF;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem .9rem;
+}
+
+@media screen and (max-width: 576px) {
+    .control-simuation-buttons-main-container button {
+        padding: 0.4rem .6rem;
+        font-size: 0.8rem;
+    }
+}

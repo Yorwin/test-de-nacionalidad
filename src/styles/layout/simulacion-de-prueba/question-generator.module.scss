@@ -1,0 +1,122 @@
+.container-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.container-header i {
+    padding-left: 0rem;
+    font-size: 1.6rem;
+    color: #A55A55;
+}
+
+.container-header h3 {
+    font-size: 1.2rem;
+    padding-left: .4rem;
+    margin-bottom: 0rem;
+}
+
+.question-container {
+    margin-bottom: 1rem;
+}
+
+.container-answers {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.question-generator-main-container {
+    width: 60%;
+}
+
+.container-answers div {
+    border: .1rem solid #322B2A;
+    border-radius: .6rem;
+    margin-bottom: 1rem;
+    padding: 0.2rem .7rem;
+
+    label {
+        padding-left: 30px;
+    }
+}
+
+/* Estilos Icono Check */
+
+/* Ocultar el radio button original */
+.radio-style {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Crear el cuadro personalizado */
+.radio-style+label {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    user-select: none;
+}
+
+/* Crear el cuadro personalizado (no seleccionado) */
+.radio-style+label::before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    width: 20px;
+    margin-top: -10px;
+    /* Mitad de la altura para ajustar el centro */
+    height: 20px;
+    border: 2px solid #FA3B2D;
+    background-color: white;
+    border-radius: 3px;
+    /* Bordes ligeramente redondeados */
+}
+
+/* Crear el símbolo de check cuando está seleccionado */
+.radio-style:checked+label::after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    margin-top: -7px;
+    /* Mitad de la altura para ajustar el centro */
+    width: 6px;
+    height: 12px;
+    border: solid #FA3B2D;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Cambiar el fondo del cuadro cuando está seleccionado */
+.radio-style:checked+label::before {
+    background-color: white;
+}
+
+/* Estilo para el foco */
+.radio-style:focus+label::before {
+    box-shadow: 0 0 0 3px rgba(250, 59, 45, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Contenedor Preguntas */
+    .question-generator-main-container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container-header h3 {
+        font-size: 1rem;
+    }
+
+    .container-answers div label {
+        font-size: 0.9rem;
+    }
+}
