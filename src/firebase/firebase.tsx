@@ -12,8 +12,7 @@ import {
   getDoc
 } from "firebase/firestore";
 import { getFullDate, getCurrentSecondsSinceMidNight } from "@/functions/functions";
-import { SaveResults } from "@/types/types";
-import { getAnalytics } from "firebase/analytics";
+import { SaveResults, SaveResultsModulePractice } from "@/types/types";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -54,6 +53,35 @@ export const saveResultsTest = async ({ testId, score, answers, duration, questi
       answers,
       duration,
       questions: JSON.stringify(questions),
+    }
+
+    //Guardar en FireStore
+    const docRef = await addDoc(collection(db, 'users', user.uid, 'resultados'), result);
+    return docRef.id;
+
+  } catch (error) {
+    console.error('Error al guardar resultado:', error)
+    throw error;
+  }
+};
+
+//Función para guardar prácticas del modulo.
+
+export const saveModulePractice: SaveResultsModulePractice = async (testId, score, answers, module_number) => {
+  try {
+    const user = auth.currentUser;
+    if (!user) {
+      throw new Error('Usuario no autenticado');
+    }
+
+    const result = {
+      userId: user.uid,
+      testId,
+      Date: getFullDate(),
+      secondsSinceMidNight: getCurrentSecondsSinceMidNight(),
+      score,
+      answers,
+      module_number,
     }
 
     //Guardar en FireStore

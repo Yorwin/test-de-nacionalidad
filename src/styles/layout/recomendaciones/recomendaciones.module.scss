@@ -1,0 +1,80 @@
+.main-container {
+    margin: 2rem 3rem;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+}
+
+.header-container h1 {
+    margin: 0 auto;
+}
+
+.container-content h2 {
+    color: #CF4037;
+    margin-bottom: 2rem;
+}
+
+.list-recommendations {
+    list-style-type: none;
+    padding-left: 0rem;
+}
+
+.list-recommendations li {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin-bottom: 1rem;
+    gap: 10px;
+    width: 80%;
+}
+
+.list-recommendations li a {
+    text-decoration: none;
+    color: #322B2A;
+}
+
+.list-recommendations li i {
+    font-size: 1.5rem;
+    color: #FA3B2D;
+    padding-left: 0rem;
+}
+
+.informacion-manual {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 3rem;
+    width: 80%;
+}
+
+.informacion-manual i {
+    font-size: 1.5rem;
+    color: #FA3B2D;
+    padding-left: 0rem;
+}
+
+@media screen and (max-width: 768px) {
+    .container-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .header-container h1 {
+        font-size: 1.3rem;
+    }
+
+    .header-container div i {
+        font-size: 2rem;
+    }
+
+    .informacion-manual {
+        font-size: 0.9rem;
+    }
+
+    .list-recommendations li {
+        font-size: 0.9rem;
+    }
+}
