@@ -1,6 +1,6 @@
-import ExitTestIcon from "../../../components/exit-test-icon";
-import QuestionsCounter from "@/components/pages/module-practice/questions-counter";
-import styles from "../styles/test-page.module.css"
+import ExitTestIcon from "../../../exit-test-icon";
+import QuestionsCounter from "@/components/pages/module-practice/test-page/questions-counter";
+import styles from "@/styles/layout/practica-por-modulo/test-page.module.scss";
 
 interface HeaderTestProps {
     totalAmountOfQuestions : number,

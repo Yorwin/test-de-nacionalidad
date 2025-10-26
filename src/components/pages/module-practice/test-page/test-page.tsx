@@ -1,9 +1,11 @@
+"use client"
+
 import React, { useEffect, useState } from "react";
-import styles from "./styles/test-page.module.css"
-import Header from "@/components/pages/module-practice/header-test";
-import LeaveTest from "@/components/pages/module-practice/leave-test-confirmation"
-import TestResultsPage from "@/components/pages/module-practice/test-result-page";
-import CurrentQuestion from "@/components/pages/module-practice/current-question";
+import styles from "@/styles/layout/practica-por-modulo/test-page.module.scss";
+import Header from "@/components/pages/module-practice/test-page/header-test";
+import LeaveTest from "@/components/pages/module-practice/test-page/leave-test-confirmation"
+import TestResultsPage from "@/components/pages/module-practice/test-page/test-result-page";
+import CurrentQuestion from "@/components/pages/module-practice/test-page/current-question";
 import { saveModulePractice } from "@/firebase/firebase";
 import { auth, db } from "@/firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";

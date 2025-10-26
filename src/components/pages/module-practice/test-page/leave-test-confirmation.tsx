@@ -1,4 +1,4 @@
-import styles from "../styles/leave-test-confirmation.module.css"
+import styles from "@/styles/layout/practica-por-modulo/leave-test-confirmation.module.scss"
 
 interface leaveTestConfirmationProps {
     leaveTest: () => void;

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import styles from "../styles/test-results-page.module.css"
+import styles from "@/styles/layout/practica-por-modulo/test-results-page.module.scss";
 import { auth, db } from "@/firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import LoadingScreen from "@/components/loading-screen";

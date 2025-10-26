@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../styles-pages/module-practice.module.css"
+import styles from "@/styles/layout/practica-por-modulo/practica-por-modulo.module.scss";
 
 interface ModuleContent {
     setModuleToBePracticed: (param: number) => void;

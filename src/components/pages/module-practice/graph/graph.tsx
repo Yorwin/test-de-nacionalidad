@@ -1,5 +1,5 @@
-import ColumnChart from "@/components/pages/module-practice/column-chart";
-import styles from "../../../styles-pages/module-practice.module.css"
+import ColumnChart from "@/components/pages/module-practice/graph/column-chart";
+import styles from "@/styles/layout/practica-por-modulo/practica-por-modulo.module.scss";
 
 const Graph = () => {
     return (

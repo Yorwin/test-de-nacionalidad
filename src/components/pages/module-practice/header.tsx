@@ -2,7 +2,7 @@
 
 import ArrowGoBack from "../../../components/arrow-go-back"
 import { useRouter } from "next/navigation"
-import styles from "../../../styles-pages/module-practice.module.css"
+import styles from "@/styles/layout/practica-por-modulo/practica-por-modulo.module.scss";
 
 const Header = () => {
     

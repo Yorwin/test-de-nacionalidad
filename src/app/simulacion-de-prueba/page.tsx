@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import ExitTestIcon from "@/components/exit-test-icon";
 import Counter from "@/components/pages/test-simulation/counter-test-simulation";
-import { CounterProvider } from "@/context/counter-simulacion-prueba";
 import TaskControl from "@/components/task-counter";
 import ProgressBar from "@/components/pages/test-simulation/progress-bar";
 import ArrowGoBack from "@/components/arrow-go-back";
@@ -18,6 +17,9 @@ import { saveResultsTest } from "@/firebase/firebase";
 import styles from "@/styles/layout/simulacion-de-prueba/test-simulation.module.scss";
 import ControlSimulationButtons from "@/components/pages/test-simulation/control-simulation-buttons";
 import LoadingScreen from "@/components/loading-screen";
+
+/* Context */
+import { CounterProvider } from "@/context/counter-simulacion-prueba";
 
 type Pregunta = {
     id: string;

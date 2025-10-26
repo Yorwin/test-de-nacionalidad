@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged, User, signInAnonymously } from "firebase/auth";
 import { auth, db } from "@/firebase/firebase";
-import { doc, getDoc, DocumentData } from "firebase/firestore";
+import { doc, getDoc, setDoc, DocumentData } from "firebase/firestore";
 
 interface AuthContextType {
     user: User | null;
@@ -22,10 +22,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            setUser(currentUser);
-
             if (currentUser) {
-                // Fetch user data from Firestore when user is authenticated
+                setUser(currentUser);
+
+                // Fetch or create user data from Firestore
                 try {
                     const userRef = doc(db, "users", currentUser.uid);
                     const docSnap = await getDoc(userRef);
@@ -33,15 +33,34 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                     if (docSnap.exists()) {
                         setUserData(docSnap.data());
                     } else {
-                        console.log("No user data found in Firestore");
-                        setUserData(null);
+                        if (currentUser.isAnonymous) {
+                            // Create data for anonymous user
+                            const guestData = {
+                                uid: currentUser.uid,
+                                isAnonymous: true,
+                                username: `Guest User ${currentUser.uid.slice(-4)}`,
+                                displayEmail: "Invitado temporal",
+                                createdAt: new Date(),
+                            };
+                            await setDoc(userRef, guestData);
+                            setUserData(guestData);
+                        } else {
+                            console.log("No user data found in Firestore for authenticated user");
+                            setUserData(null);
+                        }
                     }
                 } catch (error) {
-                    console.error("Error fetching user data:", error);
+                    console.error("Error fetching/creating user data:", error);
                     setUserData(null);
                 }
             } else {
-                setUserData(null);
+                // No user authenticated, sign in anonymously
+                try {
+                    await signInAnonymously(auth);
+                    // The callback will be triggered again with the new user
+                } catch (error) {
+                    console.error("Error signing in anonymously:", error);
+                }
             }
 
             setLoading(false);

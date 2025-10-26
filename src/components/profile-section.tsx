@@ -13,7 +13,6 @@ import { doc, getDoc, setDoc, DocumentData } from 'firebase/firestore';
 /* No Profile Img */
 import ProfileDefaultImage from "@/resources/profile-default.png";
 
-
 const ProfileSection = () => {
 
     const [isButtonPressed, setIsButtonPressed] = useState<boolean>(false);

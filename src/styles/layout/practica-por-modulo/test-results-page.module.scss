@@ -1,0 +1,67 @@
+.main-container-test-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+    z-index: 2;
+}
+
+.title-results {
+    margin-bottom: .7rem;
+}
+
+.test-results {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.test-results p {
+    margin-bottom: 0.3rem;
+}
+
+.test-results button {
+    background-color: transparent;
+    border: none;
+    color: #FA3B2D;
+}
+
+.test-results button:hover {
+    text-decoration: underline 0.2rem #FA3B2D solid;
+}
+
+.go-back-home-button button {
+    border-radius: 1.4rem;
+    width: 200px;
+    height: 50px;
+}
+
+.go-back-home-button button {
+    background-color: #CF4037;
+    border: none;
+    font-weight: 600;
+    color: #fff;
+}
+
+.go-back-home-button button:hover {
+    text-decoration: underline .1rem #fff solid;
+    animation-name: animacion-seleccion-boton;
+    animation-fill-mode: forwards;
+}
+
+@keyframes animacion-seleccion-boton {
+    from {
+        font-weight: 600;
+    }
+
+    to {
+        font-weight: 800;
+    }
+}

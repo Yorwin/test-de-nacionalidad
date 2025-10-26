@@ -1,4 +1,4 @@
-import styles from "../styles/test-page.module.css"
+import styles from "@/styles/layout/practica-por-modulo/test-page.module.scss";
 
 const QuestionsCounter = ({ totalQuestions, currentQuestion }: { totalQuestions: number, currentQuestion: number }) => {
     return <>

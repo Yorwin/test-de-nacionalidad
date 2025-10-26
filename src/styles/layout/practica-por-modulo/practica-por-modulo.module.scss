@@ -1,0 +1,252 @@
+/* MAIN CONTAINERS */
+
+.main-container-module-practice {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem 2rem 0rem 2rem;
+    overflow: hidden;
+}
+
+@media screen and (max-width:568px) {
+    .main-container-module-practice {
+        padding: 2rem 0.5rem 0rem 0.5rem;
+    }
+}
+
+.main-container-module-practice-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem 2rem 0rem 2rem;
+    overflow: hidden;
+}
+
+/* HEADER CONTAINER */
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ESTILO FLECHA */
+
+.header-container div i {
+    color: #322B2A;
+    font-size: 2.5rem;
+}
+
+.arrow-container {
+    background-color: transparent;
+    border: none;
+}
+
+/* ESTILO TITULO */
+
+.module-practice-title h2 {
+    color: #CF4037;
+    font-size: 2.4rem;
+}
+
+/* MODULOS A PRACTICAR BOTONES*/
+
+/* Contenedores */
+
+.module-content-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.module-clickable-content {
+    width: 100%;
+}
+
+.button-module {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+}
+
+.module-practice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .3rem;
+    width: 100%;
+    height: 200px;
+    border: .1rem #322B2A solid;
+    border-radius: 1.5rem;
+    padding: 2rem .5rem;
+}
+
+/* Icono */
+
+.module-practice i {
+    font-size: 1.8rem;
+    color: #CF4037;
+}
+
+/* Descripcion */
+
+.module-desc {
+    width: 80%;
+    text-align: center;
+    font-size: 1rem;
+    color: #000;
+}
+
+/* LINEA DIVISORA */
+
+.divisor-line {
+    width: 80vw;
+    height: 12px;
+    background-color: #322B2A;
+}
+
+.divisor-line-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* ESTILOS ESTADISTICAS DE PREPARACION */
+
+/* Titulos */
+
+.title-container {
+    text-align: center;
+    color: #FA3B2D;
+}
+
+.title-container h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+/* Estilos Graficos */
+
+.graph-container {
+    width: 100%;
+}
+
+.column-chart {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 0rem;
+}
+
+.charts-border {
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.text-chart {
+    font-size: .8rem;
+}
+
+.text-percentage {
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+@media screen and (max-width: 1500px) {
+    .module-desc {
+        font-size: .9rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .module-desc {
+        font-size: .7rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .module-desc {
+        font-size: .5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .main-container-module-practice-home {
+        overflow-y: visible;
+    }
+
+    .module-practice-title h2 {
+        font-size: 2rem;
+    }
+
+    .header-container div i {
+        color: #322B2A;
+        font-size: 2.2rem;
+    }
+
+    .module-content-container {
+        margin-top: 2rem;
+        align-items: center;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    .module-clickable-content {
+        margin-bottom: 1rem;
+    }
+
+    .module-practice {
+        width: 90vw;
+        height: 200px;
+    }
+
+    .module-desc {
+        font-size: 1rem;
+    }
+
+    .title-container h2 {
+        font-size: 1.2rem;
+    }
+
+    .text-percentage {
+        font-size: 1.4rem;
+    }
+
+    .text-chart {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .module-practice-title h2 {
+        width: 100%;
+        font-size: 1.5rem;
+    }
+
+    .text-percentage {
+        font-size: 1.9rem;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .module-practice-title h2 {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    .header-container div i {
+        color: #322B2A;
+        font-size: 1.8rem;
+    }
+}
