@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "@/styles/layout/practica-por-modulo/practica-por-modulo.module.scss";
 
-interface ModuleContent {
+interface ModuleContentProps {
     setModuleToBePracticed: (param: number) => void;
     toggleModulePractice: () => void;
 }
 
-const ModuleContent = ({ toggleModulePractice, setModuleToBePracticed }: ModuleContent) => {
+const ModuleContent = ({ toggleModulePractice, setModuleToBePracticed }: ModuleContentProps) => {
 
     const arrayModulePractice = [{
         desc: "Gobierno, legislación y participación ciudadana.",

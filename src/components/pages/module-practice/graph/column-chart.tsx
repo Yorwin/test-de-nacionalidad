@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "@/styles/layout/practica-por-modulo/practica-por-modulo.module.scss";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
-import LoadingScreen from "@/components/loading-screen";
 import { useAuth } from "@/context/auth-context";
+import SkeletonColumnChart from "./skeleton-column-chart";
 
 interface testValue {
     id: string,
@@ -186,10 +186,10 @@ const ColumnChart = () => {
     }, []);
 
     if (authLoading || !userData) {
-        return <LoadingScreen />;
+        return (
+            <SkeletonColumnChart />
+        );
     }
-
-
 
     const svgWidth = 1100;
     const padding = { top: 40, right: 40, bottom: 60, left: 60 };

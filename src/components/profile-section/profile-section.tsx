@@ -13,6 +13,9 @@ import { doc, getDoc, setDoc, DocumentData } from 'firebase/firestore';
 /* No Profile Img */
 import ProfileDefaultImage from "@/resources/profile-default.png";
 
+/* Loading Component */
+import ProfileSectionSkeletonLoader from "./profile-section-skeleton-loader";
+
 const ProfileSection = () => {
 
     const [isButtonPressed, setIsButtonPressed] = useState<boolean>(false);
@@ -68,7 +71,7 @@ const ProfileSection = () => {
 
     if (loading) {
         return (
-            <h3>Loading...</h3>
+            <ProfileSectionSkeletonLoader />
         );
     }
 
@@ -131,32 +134,28 @@ const ProfileSection = () => {
     };
 
     return (
-        <div className={styles["main-container"]}>
-            <div className={styles["profile"]}>
-                <div className={styles["profile-info-container"]}>
-                    <div className={styles["profie-image-container"]}>
-                        <Image
-                            src={ProfileDefaultImage}
-                            alt="Imagen por defecto perfil"
-                            className={styles["profile-image"]}
-                            fill
-                        />
-                    </div>
-                    <div className={styles["profile-info-section"]}>
-                        <ul>
-                            <li className={styles["username"]}>{userData?.username}</li>
-                            <li className={styles["e-mail"]}>{userData?.isAnonymous ? userData?.displayEmail : userData?.email}</li>
-                        </ul>
-                    </div>
-                    <button
-                        onClick={toggleMenu}
-                        className={`${styles["menu-button"]}`}
-                    >
-                        <i className="bi bi-chevron-down"></i>
-                    </button>
-                </div>
-                {isButtonPressed && menuBar}
+        <div className={styles["profile-info-container"]}>
+            <div className={styles["profie-image-container"]}>
+                <Image
+                    src={ProfileDefaultImage}
+                    alt="Imagen por defecto perfil"
+                    className={styles["profile-image"]}
+                    fill
+                />
             </div>
+            <div className={styles["profile-info-section"]}>
+                <ul>
+                    <li className={styles["username"]}>{userData?.username}</li>
+                    <li className={styles["e-mail"]}>{userData?.isAnonymous ? userData?.displayEmail : userData?.email}</li>
+                </ul>
+            </div>
+            <button
+                onClick={toggleMenu}
+                className={`${styles["menu-button"]}`}
+            >
+                <i className="bi bi-chevron-down"></i>
+            </button>
+            {isButtonPressed && menuBar}
         </div>
     )
 };

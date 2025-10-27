@@ -2,7 +2,7 @@ import styles from "@/styles/layout/homepage/homepage.module.scss";
 
 /* Componentes */
 import Logo from "@/components/logo-cervantes"
-import ProfileSection from "@/components/profile-section";
+import ProfileSection from "@/components/profile-section/profile-section";
 import HomePageOptionElement from "@/components/pages/homepage/homepage-option-element";
 import TermsAndConditions from "@/components/terms-and-conditions";
 

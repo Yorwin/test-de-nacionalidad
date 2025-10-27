@@ -150,6 +150,12 @@
     padding: 0rem;
 }
 
+.chart-skeleton {
+    width: 80%;
+    height: 450px;
+    border-radius: 1rem 1rem 0rem 0rem;
+}
+
 .charts-border {
     border-radius: 1rem 1rem 0rem 0rem;
 }
@@ -169,15 +175,31 @@
     }
 }
 
+@media screen and (max-width: 1200px) {
+    .chart-skeleton {
+        width: 80%;
+        height: 400px;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .module-desc {
         font-size: .7rem;
+    }
+
+    .chart-skeleton {
+        width: 100%;
+        height: 380px;
     }
 }
 
 @media screen and (max-width: 900px) {
     .module-desc {
         font-size: .5rem;
+    }
+
+    .chart-skeleton {
+        height: 325px;
     }
 }
 
@@ -219,6 +241,10 @@
         font-size: 1.2rem;
     }
 
+    .chart-skeleton {
+        height: 275px;
+    }
+
     .text-percentage {
         font-size: 1.4rem;
     }
@@ -232,6 +258,10 @@
     .module-practice-title h2 {
         width: 100%;
         font-size: 1.5rem;
+    }
+
+    .chart-skeleton {
+        height: 220px;
     }
 
     .text-percentage {
