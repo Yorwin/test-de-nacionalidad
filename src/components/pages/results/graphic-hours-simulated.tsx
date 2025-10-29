@@ -14,6 +14,7 @@ const GraphicHoursSimulated = () => {
     const { user, loading: authLoading } = useAuth();
 
     const [simulatedHours, setSimulatedHours] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getHoursData = async () => {
@@ -22,42 +23,45 @@ const GraphicHoursSimulated = () => {
                 return null;
             }
 
-            console.log(user);
+            try {
+                const hoursSimulated: number[] = [];
+                const resultsRef = collection(db, "users", user.uid, "resultados");
+                const querySnapshot = await getDocs(resultsRef);
+                const testTime = 1500;
 
-            const hoursSimulated: number[] = [];
-            const resultsRef = collection(db, "users", user.uid, "resultados");
-            const querySnapshot = await getDocs(resultsRef);
-            const testTime = 1500;
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
 
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
+                    if (data.testId === "test_simulation") {
+                        const duration = data.duration;
+                        const timeUsed = testTime - duration;
 
-                if (data.testId === "test_simulation") {
-                    const duration = data.duration;
-                    const timeUsed = testTime - duration;
+                        hoursSimulated.push(timeUsed);
+                    }
+                })
 
-                    hoursSimulated.push(timeUsed);
+                let totalHours;
+
+                if (hoursSimulated.length > 0) {
+                    totalHours = secondstoDecimalHours(hoursSimulated.reduce((acc, currentValue) => acc + currentValue));
+                } else {
+                    return 0;
                 }
-            })
 
-            let totalHours;
-
-            if (hoursSimulated.length > 0) {
-                totalHours = secondstoDecimalHours(hoursSimulated.reduce((acc, currentValue) => acc + currentValue));
-            } else {
-                return 0;
+                setSimulatedHours(totalHours);
+            } catch (error) {
+                console.error(`Error al intentar obtener horas simuladas`);
+            } finally {
+                setLoading(false);
             }
-
-            console.log(totalHours);
-            setSimulatedHours(totalHours);
         }
 
         getHoursData();
     }, [user]);
 
-    if (!user && authLoading) {
+    if ((!user && authLoading) || loading) {
         return (
-            <h3>Cargando...</h3>
+            <h3>Cargando resultados...</h3>
         )
     }
 

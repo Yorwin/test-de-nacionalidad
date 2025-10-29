@@ -1,10 +1,22 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "@/styles/layout/results/graphic-test-made.module.scss";
+import { isTestValid } from "@/functions/functions";
+
+/* Context */
 import { useAuth } from "@/context/auth-context";
 
-const GraphRightTestsPercentage = ({ totalTests, correctTests }: { totalTests: number, correctTests: number }) => {
+/* Firebase */
+import { db } from "@/firebase/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-    const { userData, loading: authLoading } = useAuth();
+const GraphRightTestsPercentage = () => {
+
+    const { user, loading: authLoading } = useAuth();
+
+    const [totalTests, setTestsTotal] = useState(0);
+    const [correctTests, setCorrectTests] = useState(0);
+
+    const [loading, setLoading] = useState(true);
 
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -64,9 +76,47 @@ const GraphRightTestsPercentage = ({ totalTests, correctTests }: { totalTests: n
         }
     }, [totalTests, correctTests]);
 
-    if(!userData && authLoading) {
+    useEffect(() => {
+
+        /* Obtener simulaciones de Firestore */
+        const getTestsResults = async () => {
+            if (!user) {
+                return null;
+            }
+
+            try {
+                const totalTestsResults: number[] = [];
+                const resultsRef = collection(db, "users", user.uid, "resultados");
+                const querySnapshot = await getDocs(resultsRef);
+
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+
+                    if (data.testId === "test_simulation") {
+                        const score = data.score;
+                        totalTestsResults.push(score);
+                    }
+                })
+
+                /* Total de Simulaciones */
+                setTestsTotal(totalTestsResults.length);
+
+                /* Simulaciones aprobadas */
+                const approvedTests = isTestValid(totalTestsResults);
+                setCorrectTests(approvedTests);
+            } catch (error) {
+                console.error(`Error al intentar obtener los resultados de las simulaciones ${error}`);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getTestsResults();
+    }, [user]);
+
+    if ((!user && authLoading) || loading) {
         return (
-            <h3>Cargando...</h3>
+            <h3>Cargando resultados...</h3>
         )
     }
 

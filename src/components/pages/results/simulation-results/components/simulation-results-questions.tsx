@@ -31,7 +31,7 @@ const SimulationResultQuestions = ({ questionData, currentModule, answers }: Sim
     const renderQuestionList = (moduleQuestions: Questions[]) => {
 
         //Recibimos las respuestas y las sacamos del array para manejarlas más facilmente. 
-        const answeredQuestions = answers[0] || {};
+        const answeredQuestions = answers[currentModule] || {};
 
         //Devolvemos un nuevo array con los elementos JSX aplicando la lógica correspondiente.
         return moduleQuestions.map((question: Questions, index: number) => {
@@ -48,7 +48,7 @@ const SimulationResultQuestions = ({ questionData, currentModule, answers }: Sim
             let respondida: boolean = false;
             let userAnswer: number | null = null;
 
-            if (questionId in answeredQuestions) {
+            if (questionId in answeredQuestions) {  
                 respondida = true;
                 userAnswer = answeredQuestions[questionId];
             }

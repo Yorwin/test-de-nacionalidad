@@ -1,19 +1,68 @@
 "use client"
 
+import { useState, useEffect } from "react";
 import styles from "@/styles/layout/results/graphic-test-made.module.scss";
 import { useAuth } from "@/context/auth-context";
+import { isTestValid } from "@/functions/functions";
 
-interface testsInfo {
-    correctTests: number,
-    incorrectTests: number,
-    totalTests: number,
-}
+/* Firebase */
+import { db } from "@/firebase/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-const GraphicTestsMade = ({ correctTests, incorrectTests, totalTests }: testsInfo) => {
+const GraphicTestsMade = () => {
 
-    const { userData, loading: authLoading } = useAuth();
+    const { user, loading: authLoading } = useAuth();
 
-    if(!userData && authLoading) {
+    const [totalTests, setTestsTotal] = useState(0);
+    const [correctTests, setCorrectTests] = useState(0);
+    const [incorrectTests, setIncorrectTests] = useState(0);
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+
+        /* Obtener simulaciones de Firestore */
+        const getTestsResults = async () => {
+            if (!user) {
+                return null;
+            }
+
+            try {
+                const totalTestsResults: number[] = [];
+                const resultsRef = collection(db, "users", user.uid, "resultados");
+                const querySnapshot = await getDocs(resultsRef);
+
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+
+                    if (data.testId === "test_simulation") {
+                        const score = data.score;
+                        totalTestsResults.push(score);
+                    }
+                })
+
+                /* Total de Simulaciones */
+                setTestsTotal(totalTestsResults.length);
+
+                /* Simulaciones aprobadas */
+                const approvedTests = isTestValid(totalTestsResults);
+                setCorrectTests(approvedTests);
+
+                /* Simulaciones fallidas */
+                const incorrectTests = totalTestsResults.length - approvedTests;
+                setIncorrectTests(incorrectTests);
+
+            } catch (error) {
+                console.error(`Error al intentar obtener los resultados de las simulaciones ${error}`);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getTestsResults();
+    }, [user]);
+
+    if ((!user && authLoading) || loading) {
         return (
             <h3>Cargando resultados...</h3>
         )

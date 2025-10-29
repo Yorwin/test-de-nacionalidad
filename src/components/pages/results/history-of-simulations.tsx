@@ -2,10 +2,15 @@
 
 import React, { ReactNode, useEffect, useState } from "react";
 import noInfoImage from "../../../resources/undraw_page-eaten_b2rt.svg"
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db, auth } from "@/firebase/firebase";
 import { getFullDate } from "@/functions/functions";
 import styles from "@/styles/layout/results/graphic-test-made.module.scss";
+
+/* Firebase */
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "@/firebase/firebase";
+
+/* Context */
+import { useAuth } from "@/context/auth-context";
 
 interface historyProps {
     showSimulationResult: (e: any) => void;
@@ -13,28 +18,33 @@ interface historyProps {
 
 const HistoryOfSimulations = ({ showSimulationResult }: historyProps) => {
 
-    const user = auth.currentUser;
-
-    if (!user) {
-        throw new Error('Usuario no autenticado');
-    }
+    const { user, loading: authLoading } = useAuth();
 
     const [testResults, setTestResults] = useState<ReactNode[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [displayLimit, setDisplayLimit] = useState(5);
 
     const getResults = async () => {
-        const resultsRef = collection(db, "users", user.uid, "resultados");
 
-        const q = query(resultsRef, where("testId", "==", "test_simulation"));
-        const snapshot = await getDocs(q);
+        if (!user) {
+            return null;
+        }
 
-        const data = snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        }));
+        try {
+            const resultsRef = collection(db, "users", user.uid, "resultados");
 
-        return data;
+            const q = query(resultsRef, where("testId", "==", "test_simulation"));
+            const snapshot = await getDocs(q);
+
+            const data = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
+            return data;
+        } catch (error) {
+            console.error(`Error al intentar cargar historial de resultados`);
+        }
     };
 
     const calculateApproved = (e: number) => {
@@ -61,9 +71,12 @@ const HistoryOfSimulations = ({ showSimulationResult }: historyProps) => {
     };
 
     const processedResults = async () => {
-
         try {
             const getResultsUser = await getResults();
+
+            if (!getResultsUser) {
+                return null;
+            }
 
             const processedArray = getResultsUser.map((e: any) => ({
                 id: e.id,
@@ -126,7 +139,9 @@ const HistoryOfSimulations = ({ showSimulationResult }: historyProps) => {
                     </div>
                 )
             })
+
             setTestResults(showSimulations);
+
         } catch (error) {
             console.error(`Hemos presentado un error, ${error}`)
         } finally {
@@ -140,9 +155,9 @@ const HistoryOfSimulations = ({ showSimulationResult }: historyProps) => {
 
     useEffect(() => {
         processedResults();
-    }, [displayLimit]);
+    }, [displayLimit, user]);
 
-    if (isLoading) {
+    if (isLoading || authLoading) {
         return (
             <div className={styles["loading-container"]}>
                 <p>Cargando resultados...</p>

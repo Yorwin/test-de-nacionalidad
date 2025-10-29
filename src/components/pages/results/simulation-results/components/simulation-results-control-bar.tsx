@@ -40,7 +40,7 @@ const ControlBar = ({ answers, questionData, currentModule }: ControlBarProps) =
             return false;
         }
 
-        const answeredQuestions = answers[0] || {};
+        const answeredQuestions = answers[currentModule] || {};
 
         // Buscar directamente la respuesta del usuario para esta pregunta
         const userAnswer = answeredQuestions[question.id];
