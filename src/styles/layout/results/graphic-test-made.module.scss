@@ -1,0 +1,443 @@
+.main-container-tests {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: .7rem 2rem;
+    border-radius: 1.2rem;
+    width: 20vw;
+    height: 200px;
+    background-color: #A55A55;
+    position: relative;
+}
+
+.main-container-tests h2 {
+    font-size: 1.2rem
+}
+
+.main-container-tests small {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.data-container {
+    text-align: center;
+    width: 100%;
+    margin-bottom: .7rem;
+}
+
+.shared-data-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.shared-data-container div {
+    text-align: center;
+}
+
+.container-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 3rem;
+    height: 3rem;
+}
+
+.container-icon i {
+    background-color: #FA3B2D;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 1.6rem;
+    cursor: default;
+}
+
+.total-hours {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.amount-hours {
+    font-size: 2.4rem;
+}
+
+.parragraph-simulated-hours {
+    position: absolute;
+    width: 70%;
+    line-height: 1.5rem;
+    bottom: 15px;
+    left: 15px;
+    font-size: 1.4rem;
+    margin-bottom: 0rem;
+}
+
+.main-container-weeklygraphic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 1.2rem;
+    width: 30vw;
+    height: 300px;
+    background-color: #A55A55;
+    position: relative;
+}
+
+.weekly-graph-title {
+    position: absolute;
+    left: 30px;
+    top: 60px;
+}
+
+.weekly-graph-title h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0rem;
+}
+
+.graph-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.candle-graph {
+    width: 40px;
+    background-color: #322B2A;
+    border-radius: .5rem .5rem 0rem 0rem;
+}
+
+.graph-text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.base-line-graph {
+    position: absolute;
+    width: 90%;
+    height: 4px;
+    background-color: #322B2A;
+    z-index: 1;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.graph-text {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+@media screen and (min-width:1450px) {
+    .main-container-tests {
+        padding: .7rem 5rem;
+    }
+
+    .candle-graph {
+        width: 3vw;
+    }
+}
+
+@media screen and (max-width:1100px) {
+    .candle-graph {
+        width: 30px;
+    }
+
+    .main-container-tests {
+        padding: .7rem 1.4rem;
+    }
+
+    .main-container-tests h2 {
+        font-size: 1rem
+    }
+
+    .main-container-tests small {
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .parragraph-simulated-hours {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width:850px) {
+    .candle-graph {
+        width: 25px;
+    }
+
+    .parragraph-simulated-hours {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+@media screen and (width: 768px) {
+    .candle-graph {
+        width: 20px;
+    }
+}
+
+@media screen and (max-width: 767.8px) {
+
+    /* Hours Simulated */
+
+    .main-container-tests {
+        width: 100%;
+        padding: .7rem 3rem;
+    }
+
+    .main-container-tests h2 {
+        font-size: 1.2rem
+    }
+
+    .main-container-tests small {
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    .parragraph-simulated-hours {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    /* Week History */
+    .main-container-weeklygraphic {
+        width: 100%;
+    }
+
+    .candle-graph {
+        width: 70px;
+        background-color: #322B2A;
+        border-radius: .5rem .5rem 0rem 0rem;
+    }
+
+    .graph-container {
+        padding: 1rem 1rem .5rem 1rem;
+    }
+
+    .base-line-graph {
+        position: absolute;
+        width: 95%;
+        bottom: 37px;
+    }
+}
+
+@media screen and (max-width:630px) {
+    .candle-graph {
+        width: 55px;
+    }
+}
+
+@media screen and (max-width:575px) {
+
+    /* Hours Simulated */
+
+    .main-container-tests {
+        width: 90%;
+        margin-bottom: 2.5rem;
+        padding: .7rem 3.8rem;
+    }
+
+    .main-container-tests small {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .parragraph-simulated-hours {
+        font-size: 1.3rem;
+    }
+
+    /* Approved Tests */
+
+    .main-container-tests h2 {
+        font-size: 1rem
+    }
+
+    /* Week History */
+    .main-container-weeklygraphic {
+        width: 90%;
+        margin-bottom: 6rem;
+    }
+
+    .candle-graph {
+        width: 30px;
+    }
+}
+
+/* History of Simulation */
+
+.title {
+    font-size: 1.6rem;
+    margin-bottom: 1.8rem;
+    color: #CF4037;
+}
+
+.container-simulations {
+    position: relative;
+}
+
+.simulation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 700px;
+    width: 60%;
+    border: 0.15rem #322B2A solid;
+    border-radius: 0.9rem;
+    padding: 0.5rem 0.5rem;
+    margin-bottom: 1.7rem;
+}
+
+.simulation p {
+    margin-bottom: 0rem;
+    font-size: 1.2rem;
+}
+
+.simulation p a {
+    color: #FA3B2D;
+    font-weight: 600;
+}
+
+.notation {
+    position: absolute;
+    font-weight: 650;
+    bottom: -30px;
+}
+
+.button-see-more {
+    background-color: transparent;
+    text-decoration: 0.2rem underline #FA3B2D;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    border: none;
+    color: #FA3B2D;
+    padding: 0rem;
+}
+
+.button-simulation-result {
+    background-color: transparent;
+    border: none;
+    color: #FA3B2D;
+}
+
+.button-simulation-result:hover {
+    text-decoration: .2rem underline #FA3B2D solid;
+}
+
+.container-no-data {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.container-no-data p {
+    width: 35%;
+}
+
+.img-no-data {
+    width: 135px;
+    height: 135px;
+}
+
+@media screen and (max-width: 767.9px) {
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .simulation {
+        width: 100%;
+    }
+
+    .simulation p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .simulation p {
+        font-size: .9rem;
+    }
+
+    .notation {
+        font-size: .7rem;
+        bottom: -25px;
+    }
+
+    .button-see-more {
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        padding: 0rem;
+    }
+
+    .optional-value {
+        display: none;
+    }
+}
+
+@media screen and (min-height: 1650px) {
+    .main-container-tests h2 {
+        font-size: 2vh
+    }
+
+    .main-container-tests {
+        height: 20vh;
+    }
+
+    .main-container-weeklygraphic {
+        height: 25vh;
+    }
+
+    .data-container small {
+        font-size: 2vh;
+    }
+
+    .shared-data-container div small {
+        font-size: 2vh;
+    }
+
+    /* Amount of Hours */
+
+    .amount-hours {
+        font-size: 5vh;
+    }
+
+    .amount-hours small {
+        font-size: 2vh;
+    }
+
+    .parragraph-simulated-hours {
+        font-size: 2.3vh;
+        line-height: 2.5vh;
+    }
+
+    /* Icon Styles */
+
+    .container-icon {
+        left: 1vh;
+        top: 1vh;
+        width: 5vh;
+        height: 5vh;
+    }
+
+    .container-icon i {
+        background-color: #FA3B2D;
+        border-radius: 50%;
+        padding: 0.2rem 0.5rem;
+        font-size: 3.5vh;
+    }
+}

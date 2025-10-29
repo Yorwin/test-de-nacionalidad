@@ -27,7 +27,6 @@ const ColumnChart = () => {
 
     const [chartData, setChartData] = useState<number[]>([0, 0, 0, 0, 0]);
     const [svgHeight, setSvgHeight] = useState(450);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -158,8 +157,6 @@ const ColumnChart = () => {
 
         const fetchAllModules = async () => {
             try {
-                setLoading(true);
-
                 const modulePromises = [1, 2, 3, 4, 5].map((modNumber) => {
                     const modulePractices = getModulePracticesByNumber(modNumber)
                     return modulePractices;
@@ -171,10 +168,8 @@ const ColumnChart = () => {
                 const preparationData = calculateModulePreparations(allModuleResults, modulesLength ?? []);
 
                 updateModulePreparationPercentage(preparationData);
-                setLoading(false);
             } catch (error) {
                 console.error("Error al intentar obtener los datos de los módulos:", error);
-                setLoading(false);
             }
         };
 

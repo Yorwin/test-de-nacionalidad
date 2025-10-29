@@ -1,16 +1,29 @@
+"use client"
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from '../../styles-pages/results.module.css'
+import styles from '@/styles/layout/results/results.module.scss';
+
+/* Componentes Genericos */
+
 import TituloGenerico from "@/components/generic-title";
 import ArrowGoBack from "@/components/arrow-go-back";
+
+/* Componentes de Página */
+
 import GraphicTestsMade from "@/components/pages/results/graphic-tests-made";
 import GraphicHoursSimulated from "@/components/pages/results/graphic-hours-simulated";
-import GraphRightTestsPercentage from "./components/graph-percentage-right-answers";
-import GraphicWeekSummary from "./components/graphic-week-summary";
-import HistoryOfSimulations from "./components/history-of-simulations";
-import SimulationResults from "./components/simulation-results/simulation-results";
+import GraphRightTestsPercentage from "@/components/pages/results/graphic-percentage-right-answers";
+import GraphicWeekSummary from "@/components/pages/results/graphic-week-summary";
+import HistoryOfSimulations from "@/components/pages/results/history-of-simulations";
+import SimulationResults from "@/components/pages/results/simulation-results/simulation-results";
+
+/* Firebase */
 import { db, auth } from "@/firebase/firebase"
 import { getDocs, collection } from "firebase/firestore";
+
+/* Context */
+import { AuthProvider } from "@/context/auth-context";
 
 const Results = () => {
 
@@ -106,34 +119,36 @@ const Results = () => {
                         </div>
 
                         {/* Graphs */}
-                        <div className={styles["graphics-main-container"]}>
-                            <div className="container-fluid">
-                                <div className="row">
-                                    <div className="col-md-2 col-sm-12 d-flex justify-content-center mb-sm-3">
-                                        <div>
-                                            <GraphRightTestsPercentage totalTests={totalTests} correctTests={correctTests} />
+                        <AuthProvider>
+                            <div className={styles["graphics-main-container"]}>
+                                <div className="container-fluid">
+                                    <div className="row">
+                                        <div className="col-md-2 col-sm-12 d-flex justify-content-center mb-sm-3">
+                                            <div>
+                                                <GraphRightTestsPercentage totalTests={totalTests} correctTests={correctTests} />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
+                                            <GraphicHoursSimulated /> {/* Ya funciona independientemente */}
+                                        </div>
+                                        <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
+                                            <GraphicTestsMade correctTests={correctTests} incorrectTests={incorrectTests} totalTests={totalTests} />
+                                        </div>
+                                        <div className="col-md-4 col-sm-12 mb-sm-5 d-flex justify-content-center">
+                                            <GraphicWeekSummary />
                                         </div>
                                     </div>
-                                    <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
-                                        <GraphicHoursSimulated />
-                                    </div>
-                                    <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
-                                        <GraphicTestsMade correctTests={correctTests} incorrectTests={incorrectTests} totalTests={totalTests} />
-                                    </div>
-                                    <div className="col-md-4 col-sm-12 mb-sm-5 d-flex justify-content-center">
-                                        <GraphicWeekSummary />
-                                    </div>
-                                </div>
 
-                                {/* History of Simulations*/}
+                                    {/* History of Simulations*/}
 
-                                <div className="row">
-                                    <div className={styles["container-history-simulations"]}>
-                                        <HistoryOfSimulations showSimulationResult={toggleShowSimulationResult} />
+                                    <div className="row">
+                                        <div className={styles["container-history-simulations"]}>
+                                            <HistoryOfSimulations showSimulationResult={toggleShowSimulationResult} />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </AuthProvider>
                     </>
                 )}
             </div>

@@ -1,0 +1,51 @@
+.arrow-back {
+    position: absolute;
+    bottom: -60px;
+    left: -25px;
+}
+
+.arrow-next {
+    position: absolute;
+    bottom: -60px;
+    right: -25px;
+}
+
+.arrow-back i {
+    padding-left: 0rem;
+    color: #CF4037;
+}
+
+.arrow-next i {
+    padding-left: 0rem;
+    color: #CF4037;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    gap: 1rem;
+    bottom: -45px;
+    left: 50%;
+    /* Mover el borde izquierdo al centro */
+    transform: translateX(-50%);
+    /* Desplazar hacia la izquierda la mitad de su propio ancho */
+}
+
+.progress-circle {
+    width: 20px;
+    height: 20px;
+    border: .1rem #322B2A solid;
+    border-radius: 1rem;
+    background-color: #fff;
+}
+
+.progress-circle .active {
+    background-color: #FA3B2D;
+}
+
+.arrow-results {
+    background-color: transparent;
+    border: none;
+    padding: 0rem;
+}

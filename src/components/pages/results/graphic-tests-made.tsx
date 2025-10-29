@@ -1,4 +1,7 @@
-import styles from "../styles/graphic-test-made.module.css"
+"use client"
+
+import styles from "@/styles/layout/results/graphic-test-made.module.scss";
+import { useAuth } from "@/context/auth-context";
 
 interface testsInfo {
     correctTests: number,
@@ -7,6 +10,14 @@ interface testsInfo {
 }
 
 const GraphicTestsMade = ({ correctTests, incorrectTests, totalTests }: testsInfo) => {
+
+    const { userData, loading: authLoading } = useAuth();
+
+    if(!userData && authLoading) {
+        return (
+            <h3>Cargando resultados...</h3>
+        )
+    }
 
     return <>
         <div className={styles["main-container-tests"]}>
