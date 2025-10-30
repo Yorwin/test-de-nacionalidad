@@ -1,0 +1,159 @@
+.main-container-settings {
+    position: relative;
+    height: 100vh;
+}
+
+.main-content {
+    padding: 2rem;
+    height: 97%;
+    position: relative;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.4rem;
+}
+
+.header-container button {
+    background-color: transparent;
+    border: none;
+}
+
+.title {
+    color: #FA3B2D;
+    margin-bottom: 0rem;
+    font-weight: 400;
+    font-size: 2.3rem;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.block {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 40vw;
+    background-color: #A55A55;
+    padding: 1.3rem;
+    border-radius: 1.2rem;
+}
+
+.block h3 {
+    color: #fff;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.block button {
+    padding: 0rem;
+    border: none;
+    background-color: transparent;
+    font-weight: 700;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.buttons-container button:hover {
+    text-decoration: underline 0.1rem #000 solid;
+}
+
+.key-value-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.button-key-container {
+    color: #000;
+    text-align: left;
+}
+
+.key {
+    font-weight: 700;
+    color: #000;
+    font-size: 1rem;
+    text-align: start;
+}
+
+.value {
+    color: #000;
+    font-weight: 400;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+    padding-left: 0rem;
+}
+
+.terms-and-conditions {
+    color: #FA3B2D;
+    text-decoration: none;
+}
+
+.terms-and-conditions:hover {
+    text-decoration: underline;
+    color: #FA3B2D;
+}
+
+@media screen and (max-width: 768px) {
+
+    .header-container {
+        gap: .5rem;
+    }
+
+    .header-container button i {
+        font-size: 2.1rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .block h3 {
+        font-size: 1.2rem;
+    }
+
+    .key {
+        font-size: .9rem;
+    }
+
+    .value {
+        font-size: .8rem;
+    }
+
+    .block {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .header-container {
+        gap: .5rem;
+    }
+
+    .header-container button i {
+        font-size: 2rem;
+    }
+
+    .title {
+        font-size: 1.7rem;
+    }
+
+    .block {
+        width: 80vw;
+    }
+}
