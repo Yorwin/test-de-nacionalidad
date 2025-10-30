@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useEffect, useState } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { auth } from '@/firebase/firebase'
 import { verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
 import SpinningElement from "@/components/pages/recover-password/spinning";
