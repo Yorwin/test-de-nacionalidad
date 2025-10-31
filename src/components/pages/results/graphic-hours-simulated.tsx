@@ -13,7 +13,7 @@ const GraphicHoursSimulated = () => {
 
     const { user, loading: authLoading } = useAuth();
 
-    const [simulatedHours, setSimulatedHours] = useState('');
+    const [simulatedHours, setSimulatedHours] = useState<number>(0);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -35,17 +35,15 @@ const GraphicHoursSimulated = () => {
                     if (data.testId === "test_simulation") {
                         const duration = data.duration;
                         const timeUsed = testTime - duration;
-
                         hoursSimulated.push(timeUsed);
                     }
                 })
 
-                let totalHours;
+                let totalHours = 0;
 
                 if (hoursSimulated.length > 0) {
-                    totalHours = secondstoDecimalHours(hoursSimulated.reduce((acc, currentValue) => acc + currentValue));
-                } else {
-                    return 0;
+                    const totalSeconds = hoursSimulated.reduce((acc, currentValue) => acc + currentValue, 0);
+                    totalHours = Number(secondstoDecimalHours(totalSeconds));
                 }
 
                 setSimulatedHours(totalHours);
@@ -61,7 +59,9 @@ const GraphicHoursSimulated = () => {
 
     if ((!user && authLoading) || loading) {
         return (
-            <h3>Cargando resultados...</h3>
+            <div className={styles["skeleton-standard-container"]}>
+                <div className={`skeleton-rect ${styles["skeleton-standard"]}`}></div>
+            </div>
         )
     }
 

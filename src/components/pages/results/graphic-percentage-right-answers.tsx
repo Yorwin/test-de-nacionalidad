@@ -26,55 +26,51 @@ const GraphRightTestsPercentage = () => {
     //Datos de Pruebas
     const total = totalTests;
     const passedTests = correctTests;
-    const passPercentage = passedTests / total;
+    const passPercentage = total > 0 ? passedTests / total : 0;
 
     useEffect(() => {
-        if (canvasRef.current && totalTests) {
+        if (canvasRef.current) {
             const ctx = canvasRef.current.getContext('2d');
 
             if (ctx) {
+                // Clear the canvas before drawing
+                ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
                 const beginningY = 14;
                 const centerX = canvasWidth / 2;
                 const centerY = canvasHeight / 2;
                 const radius = 55;
 
-                const arcAngle = passPercentage * 2 * Math.PI;
-
-                const startAngle = -Math.PI / 2;
-                const endAngle = startAngle + arcAngle;
-
+                // Always draw the title
                 ctx.font = 'bold 24px Arial';
                 ctx.fillStyle = '#CF4037';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText('Aciertos', centerX, beginningY);
 
-                ctx.beginPath();
+                // Only draw the arc if there are tests
+                if (passPercentage > 0) {
+                    const arcAngle = passPercentage * 2 * Math.PI;
+                    const startAngle = -Math.PI / 2;
+                    const endAngle = startAngle + arcAngle;
 
-                ctx.strokeStyle = '#CF4037'
-                ctx.lineWidth = 15;
-                ctx.arc(centerX, centerY, radius, startAngle, endAngle)
-                ctx.stroke()
-
-                ctx.closePath();
-
-                if (totalTests && correctTests) {
-                    ctx.font = 'bold 28px Arial';
-                    ctx.fillStyle = '#322B2A';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(`${passedTests != 0 ? Math.round(passPercentage * 100) : 0}%`, centerX, centerY);
-                } else {
-                    ctx.font = 'bold 28px Arial';
-                    ctx.fillStyle = '#322B2A';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(`${0}%`, centerX, centerY);
+                    ctx.beginPath();
+                    ctx.strokeStyle = '#CF4037';
+                    ctx.lineWidth = 15;
+                    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                    ctx.stroke();
+                    ctx.closePath();
                 }
+
+                // Always draw the percentage text
+                ctx.font = 'bold 28px Arial';
+                ctx.fillStyle = '#322B2A';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(`${Math.round(passPercentage * 100)}%`, centerX, centerY);
             }
         }
-    }, [totalTests, correctTests]);
+    });
 
     useEffect(() => {
 
@@ -116,13 +112,19 @@ const GraphRightTestsPercentage = () => {
 
     if ((!user && authLoading) || loading) {
         return (
-            <h3>Cargando resultados...</h3>
+            <div className={styles["test-percentage-skeleton"]}>
+                <div className={styles["skeleton-test-percentage-container"]}>
+                    <div className={`skeleton-circle ${styles["skeleton-standard"]}`}></div>
+                </div>
+            </div>
         )
     }
 
-    return <>
-        <canvas width={canvasWidth} height={canvasHeight} className={styles["canva-styles"]} ref={canvasRef}>Tu navegador no acepta canvas</canvas>
-    </>
+    return (
+        <div>
+            <canvas width={canvasWidth} height={canvasHeight} className={styles["canva-styles"]} ref={canvasRef}>Tu navegador no acepta canvas</canvas>
+        </div>
+    )
 };
 
 export default GraphRightTestsPercentage;

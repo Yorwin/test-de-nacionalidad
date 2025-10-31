@@ -44,8 +44,12 @@
 }
 
 .login-header h2 {
-    color: #FA3B2D;
+    color: var(--accent-color);
     font-size: 3.5rem;
+}
+
+.login-header p {
+    color: var(--text-primary);
 }
 
 /* Formulario */
@@ -93,11 +97,11 @@
         position: relative;
         width: 100%;
         background-color: transparent;
-        color: #322B2A;
+        color: var(--text-color);
         padding-left: 0.4rem;
 
         &:placeholder {
-            color: #322B2A;
+            color: var(--text-muted);
         }
 
         &:focus {
@@ -111,17 +115,17 @@
 /* Errores */
 
 .mensaje-error-login {
-    color: #FA3B2D;
+    color: var(--accent-color);
     font-weight: 700;
 }
 
 .errors {
-    color: #CF4037;
+    color: var(--accent-color);
     font-weight: 600;
 }
 
 .error-message-register-input {
-    color: #CF4037;
+    color: var(--accent-color);
     font-weight: 600;
 }
 
@@ -130,12 +134,12 @@
 .formulario-login a {
     text-align: end;
     margin-bottom: 0.6rem;
-    color: #FA3B2D;
+    color: var(--accent-color);
     text-decoration: none;
 }
 
 .formulario-login a:hover {
-    text-decoration: #FA3B2D 0.1rem solid underline;
+    text-decoration: var(--accent-color) 0.1rem solid underline;
 }
 
 /* Boton Iniciar sesión y Crear Cuenta */
@@ -147,26 +151,27 @@
     width: 100%;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
-    background-color: #CF4037;
+    background-color: var(--accent-color);
     border: none;
-    color: #FFFFFF;
+    color: var(--bg-color);
     transition: background-color 0.2s ease-in;
     border-radius: 1rem;
     padding: 0.6rem 1rem;
 }
 
 .button:hover {
-    background-color: #FA3B2D;
+    background-color: var(--accent-hover);
 }
 
 .button:disabled {
-    background-color: #A55A55;
+    background-color: var(--secondary-accent);
 }
 
 /* Nota Final */
 
 .formulario-login p {
     text-align: center;
+    color: var(--text-primary);
 }
 
 /* Password Input Specific Styles */
@@ -194,7 +199,7 @@
     right: 14px;
     top: 50%;
     transform: translateY(-50%);
-    color: #322B2A;
+    color: var(--text-color);
 }
 
 .show-password i {
@@ -235,8 +240,12 @@
 }
 
 .register-header h2 {
-    color: #FA3B2D;
+    color: var(--accent-color);
     font-size: 3.5rem;
+}
+
+.register-header p {
+    color: var(--text-primary);
 }
 
 /* Formulario */
@@ -263,17 +272,18 @@
 
 .formulario-register p {
     text-align: center;
+    color: var(--text-primary);
 }
 
 .formulario-register a {
     text-align: end;
     margin-bottom: 0.6rem;
-    color: #FA3B2D;
+    color: var(--accent-color);
     text-decoration: none;
 }
 
 .label-register {
-    color: #FA3B2D;
+    color: var(--accent-color);
     margin-bottom: 0.3rem;
 }
 
@@ -290,19 +300,19 @@
     background-color: transparent;
     border: none;
     text-decoration: none;
-    color: #FA3B2D;
+    color: var(--accent-color);
     padding: 0rem;
     white-space: nowrap;
 }
 
 .button-forgotten-password:hover {
-    text-decoration: underline 0.2rem solid #FA3B2D;
+    text-decoration: underline 0.2rem solid var(--accent-color);
 }
 
 .recover-password-container {
     position: absolute;
-    background-color: #FFFFFF;
-    border: 0.3rem solid #322B2A;
+    background-color: var(--card-bg);
+    border: 0.3rem solid var(--text-color);
     border-radius: 1rem;
     width: 70%;
     height: 50%;
@@ -327,11 +337,11 @@
 
 .icon-container i {
     padding-left: 0rem;
-    color: #322B2A;
+    color: var(--text-color);
     cursor: pointer;
 
     &:hover {
-        color: #FA3B2D;
+        color: var(--accent-color);
     }
 }
 
@@ -346,7 +356,7 @@
 
 .form-container h1 {
     margin-bottom: 2.5rem;
-    color: #FA3B2D;
+    color: var(--accent-color);
     text-align: center;
 }
 
@@ -359,7 +369,7 @@
 .form-container form input {
     margin-bottom: 0.7rem;
     border-radius: .7rem;
-    border-color: #322B2A;
+    border-color: var(--text-color);
     padding: 0.4rem;
 }
 
@@ -401,12 +411,12 @@
     background-color: transparent;
     text-decoration: none;
     font-size: 1.1rem;
-    color: #FA3B2D;
+    color: var(--accent-color);
     border: none;
 }
 
 .in-case-of-error-message button:hover {
-    text-decoration: .2rem #FA3B2D underline solid;
+    text-decoration: .2rem var(--accent-color) underline solid;
 }
 
 @media screen and (max-width: 768px) {

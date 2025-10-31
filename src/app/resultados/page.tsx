@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import styles from '@/styles/layout/results/results.module.scss';
 
@@ -40,7 +40,7 @@ const Results = () => {
         return questionId;
     }
 
-    return <>
+    return (
         <div className={styles["main-container-results"]}>
             <div className={styles["content-container"]}>
                 {simulationResult ? <SimulationResults showSimulationResult={toggleShowSimulationResult} questionId={idResult} /> : (
@@ -61,37 +61,30 @@ const Results = () => {
                             <div className={styles["graphics-main-container"]}>
                                 <div className="container-fluid">
                                     <div className="row">
-                                        <div className="col-md-2 col-sm-12 d-flex justify-content-center mb-sm-3">
-                                            <div>
-                                                <GraphRightTestsPercentage /> {/* Ya funciona independientemente */}
-                                            </div>
+                                        <div className="col-md-2 col-sm-12 mb-sm-3 d-flex justify-content-center">
+                                            <GraphRightTestsPercentage />
                                         </div>
                                         <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
-                                            <GraphicHoursSimulated /> {/* Ya funciona independientemente */}
+                                            <GraphicHoursSimulated />
                                         </div>
                                         <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
-                                            <GraphicTestsMade /> {/* Ya funciona independientemente */}
+                                            <GraphicTestsMade />
                                         </div>
                                         <div className="col-md-4 col-sm-12 mb-sm-5 d-flex justify-content-center">
-                                            <GraphicWeekSummary /> {/* Ya funciona independientemente */}
-                                        </div>
-                                    </div>
-
-                                    {/* History of Simulations*/}
-
-                                    <div className="row">
-                                        <div className={styles["container-history-simulations"]}>
-                                            <HistoryOfSimulations showSimulationResult={toggleShowSimulationResult} />
+                                            <GraphicWeekSummary />
                                         </div>
                                     </div>
                                 </div>
+
+                                {/* History of Simulations*/}
+                                <HistoryOfSimulations showSimulationResult={toggleShowSimulationResult} />
                             </div>
                         </AuthProvider>
                     </>
                 )}
             </div>
         </div>
-    </>
+    )
 };
 
 export default Results;

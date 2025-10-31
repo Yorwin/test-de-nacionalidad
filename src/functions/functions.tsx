@@ -49,7 +49,7 @@ export const getWeekDay = (dayNumberParam: number) => {
 };
 
 export function secondstoDecimalHours(seconds: number) {
-    return (seconds / 3600).toFixed(1); // redondea a 2 decimales
+    return (seconds / 3600).toFixed(2); // redondea a 2 decimales
 }
 
 export const getCurrentSecondsSinceMidNight = () => {

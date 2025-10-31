@@ -138,7 +138,9 @@ const GraphicWeekSummary = () => {
 
     if (authLoading) {
         return (
-            <h3>Cargando...</h3>
+            <div className={styles["skeleton-weekly-graphic-container"]}>
+                <div className={`skeleton-rect ${styles["skeleton-standard"]}`}></div>
+            </div>
         )
     }
 

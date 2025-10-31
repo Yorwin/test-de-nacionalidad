@@ -39,7 +39,7 @@
     align-items: start;
     flex-direction: column;
     width: 40vw;
-    background-color: #A55A55;
+    background-color: var(--secondary-accent);
     padding: 1.3rem;
     border-radius: 1.2rem;
 }
@@ -77,13 +77,13 @@
 }
 
 .button-key-container {
-    color: #000;
+    color: var(--text-color);
     text-align: left;
 }
 
 .key {
     font-weight: 700;
-    color: #000;
+    color: var(--text-color);
     font-size: 1rem;
     text-align: start;
 }
@@ -100,13 +100,13 @@
 }
 
 .terms-and-conditions {
-    color: #FA3B2D;
+    color: var(--accent-color);
     text-decoration: none;
 }
 
 .terms-and-conditions:hover {
     text-decoration: underline;
-    color: #FA3B2D;
+    color: var(--accent-color);
 }
 
 @media screen and (max-width: 768px) {

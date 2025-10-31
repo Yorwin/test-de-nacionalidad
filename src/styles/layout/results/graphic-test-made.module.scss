@@ -5,9 +5,9 @@
     flex-direction: column;
     padding: .7rem 2rem;
     border-radius: 1.2rem;
-    width: 20vw;
+    width: 100%;
     height: 200px;
-    background-color: #A55A55;
+    background-color: var(--secondary-accent);
     position: relative;
 }
 
@@ -18,6 +18,47 @@
 .main-container-tests small {
     font-size: 1.4rem;
     font-weight: 600;
+}
+
+.test-percentage-skeleton {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.skeleton-test-percentage-container {
+    width: 125px;
+    height: 125px;
+    margin-bottom: 2rem;
+}
+
+.skeleton-standard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+}
+
+.history-result-container-skeleton {
+    width: 60%;
+    height: 50px;
+    margin-bottom: 24px;
+}
+
+.skeleton-standard {
+    width: 100%;
+    height: 100%;
+}
+
+.skeleton-percentage {
+    width: 130px;
+    height: 130px;
+}
+
+.skeleton-weekly-graphic-container {
+    width: 100%;
+    height: 300px;
 }
 
 .data-container {
@@ -46,7 +87,7 @@
 }
 
 .container-icon i {
-    background-color: #FA3B2D;
+    background-color: var(--accent-color);
     border-radius: 50%;
     padding: 0.2rem 0.5rem;
     font-size: 1.6rem;
@@ -84,7 +125,7 @@
     border-radius: 1.2rem;
     width: 30vw;
     height: 300px;
-    background-color: #A55A55;
+    background-color: var(--secondary-accent);
     position: relative;
 }
 
@@ -111,7 +152,7 @@
 
 .candle-graph {
     width: 40px;
-    background-color: #322B2A;
+    background-color: var(--text-color);
     border-radius: .5rem .5rem 0rem 0rem;
 }
 
@@ -126,7 +167,7 @@
     position: absolute;
     width: 90%;
     height: 4px;
-    background-color: #322B2A;
+    background-color: var(--text-color);
     z-index: 1;
     bottom: 45px;
     left: 50%;
@@ -136,6 +177,11 @@
 .graph-text {
     display: block;
     margin-top: 0.5rem;
+}
+
+.container-history-simulations {
+    margin-bottom: 2rem;
+    padding-left: 1rem;
 }
 
 @media screen and (min-width:1450px) {
@@ -190,6 +236,10 @@
 
 @media screen and (max-width: 767.8px) {
 
+    .history-result-container-skeleton {
+        width: 100%;
+    }
+
     /* Hours Simulated */
 
     .main-container-tests {
@@ -218,7 +268,7 @@
 
     .candle-graph {
         width: 70px;
-        background-color: #322B2A;
+        background-color: var(--text-color);
         border-radius: .5rem .5rem 0rem 0rem;
     }
 
@@ -244,7 +294,6 @@
     /* Hours Simulated */
 
     .main-container-tests {
-        width: 90%;
         margin-bottom: 2.5rem;
         padding: .7rem 3.8rem;
     }
@@ -266,8 +315,7 @@
 
     /* Week History */
     .main-container-weeklygraphic {
-        width: 90%;
-        margin-bottom: 6rem;
+        margin-bottom: 3rem;
     }
 
     .candle-graph {
@@ -280,7 +328,7 @@
 .title {
     font-size: 1.6rem;
     margin-bottom: 1.8rem;
-    color: #CF4037;
+    color: var(--accent-color);
 }
 
 .container-simulations {
@@ -305,7 +353,7 @@
 }
 
 .simulation p a {
-    color: #FA3B2D;
+    color: var(--accent-color);
     font-weight: 600;
 }
 
@@ -321,14 +369,14 @@
     margin-top: 1rem;
     font-size: 1.2rem;
     border: none;
-    color: #FA3B2D;
+    color: var(--accent-color);
     padding: 0rem;
 }
 
 .button-simulation-result {
     background-color: transparent;
     border: none;
-    color: #FA3B2D;
+    color: var(--accent-color);
 }
 
 .button-simulation-result:hover {
@@ -342,10 +390,12 @@
 }
 
 .container-no-data p {
-    width: 35%;
+    padding-left: 1rem;
+    width: 50%;
 }
 
-.img-no-data {
+.container-image {
+    position: relative;
     width: 135px;
     height: 135px;
 }
@@ -362,9 +412,22 @@
     .simulation p {
         font-size: 1.1rem;
     }
+
+    .container-no-data p {
+        width: 75%;
+    }
 }
 
 @media screen and (max-width: 576px) {
+
+    .skeleton-standard-container {
+        margin-bottom: 26px;
+    }
+
+    .skeleton-weekly-graphic-container {
+        margin-bottom: 26px;
+    }
+
     .title {
         font-size: 1.2rem;
     }
@@ -386,6 +449,15 @@
 
     .optional-value {
         display: none;
+    }
+
+    .container-image {
+        width: 110px;
+        height: 110px;
+    }
+
+    .container-no-data p {
+        font-size: .8rem;
     }
 }
 
@@ -435,7 +507,7 @@
     }
 
     .container-icon i {
-        background-color: #FA3B2D;
+        background-color: var(--accent-color);
         border-radius: 50%;
         padding: 0.2rem 0.5rem;
         font-size: 3.5vh;

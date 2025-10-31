@@ -1,9 +1,10 @@
 "use client"
 
 import React, { ReactNode, useEffect, useState } from "react";
-import noInfoImage from "../../../resources/undraw_page-eaten_b2rt.svg"
+import noInfoImage from "@/resources/undraw_page-eaten_b2rt.svg"
 import { getFullDate } from "@/functions/functions";
 import styles from "@/styles/layout/results/graphic-test-made.module.scss";
+import Image from "next/image";
 
 /* Firebase */
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -23,6 +24,7 @@ const HistoryOfSimulations = ({ showSimulationResult }: historyProps) => {
     const [testResults, setTestResults] = useState<ReactNode[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [displayLimit, setDisplayLimit] = useState(5);
+
 
     const getResults = async () => {
 
@@ -157,36 +159,46 @@ const HistoryOfSimulations = ({ showSimulationResult }: historyProps) => {
         processedResults();
     }, [displayLimit, user]);
 
-    if (isLoading || authLoading) {
-        return (
-            <div className={styles["loading-container"]}>
-                <p>Cargando resultados...</p>
-            </div>
-        );
-    } else if (testResults.length > 0) {
-        return (
-            <>
-                <h2 className={styles["title"]}>Historial de Simulaciones</h2>
+    return (
+        <div className={styles["container-history-simulations"]}>
+            <h2 className={styles["title"]}>Historial de Simulaciones</h2>
+            {isLoading || authLoading ? (
                 <div className={styles["container-simulations"]}>
-                    {testResults}
-                    <small className={styles["notation"]}>Datos de una prueba aleatoria sin valor legal</small>
+                    <div className={styles["history-result-container-skeleton"]}>
+                        <div className={`skeleton-rect ${styles["skeleton-standard"]}`}></div>
+                    </div>
+                    <div className={styles["history-result-container-skeleton"]}>
+                        <div className={`skeleton-rect ${styles["skeleton-standard"]}`}></div>
+                    </div>
+                    <div className={styles["history-result-container-skeleton"]}>
+                        <div className={`skeleton-rect ${styles["skeleton-standard"]}`}></div>
+                    </div>
                 </div>
-                <button className={styles["button-see-more"]} onClick={increaseDisplayLimit}>Ver más...</button>
-            </>
-        );
-    } else {
-        return (
-            <>
-                <h2 className={styles["title"]}>Historial de Simulaciones</h2>
+            ) : testResults.length > 0 ? (
+                <>
+                    <div className={styles["container-simulations"]}>
+                        {testResults}
+                        <small className={styles["notation"]}>Datos de una prueba aleatoria sin valor legal</small>
+                    </div>
+                    <button className={styles["button-see-more"]} onClick={increaseDisplayLimit}>Ver más...</button>
+                </>
+            ) : (
                 <div className={styles["container-simulations"]}>
                     <div className={styles["container-no-data"]}>
-                        <img className={styles["img-no-data"]} src={noInfoImage} alt="Imagen no tenemos información" />
+                        <div className={styles["container-image"]}>
+                            <Image
+                                src={noInfoImage}
+                                alt="Imagen no tenemos información"
+                                className={styles["img-no-data"]}
+                                fill
+                            />
+                        </div>
                         <p>No tenemos información que poder mostrarte, comienza a prácticar para que puedas ver datos</p>
                     </div>
                 </div>
-            </>
-        );
-    }
+            )}
+        </div>
+    )
 };
 
 export default HistoryOfSimulations;

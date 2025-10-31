@@ -9,8 +9,10 @@ import RecoverPasswordEmailSent from "@/components/pages/settings/recover-passwo
 import ChangeEmail from "@/components/pages/settings/change-email";
 import { sendPasswordResetEmail, onAuthStateChanged, User, signInAnonymously } from "firebase/auth";
 import { doc, getDoc, setDoc, DocumentData } from 'firebase/firestore';
+import { useTheme } from "@/context/theme-context";
 
 const Settings = () => {
+    const { theme, toggleTheme } = useTheme();
 
     const [user, setUser] = useState<User | null>(null);
     const [userData, setUserData] = useState<DocumentData | null>(null);
@@ -138,10 +140,10 @@ const Settings = () => {
                         <h3>OPCIONES DE VISUALIZACIÓN</h3>
                         <div className={styles["buttons-container"]}>
                             <div className={styles["key-value-container"]}>
-                                <button className={styles["button-key-container"]}>
+                                <button className={styles["button-key-container"]} onClick={toggleTheme}>
                                     <small className={styles["key"]}>Tema</small>
                                 </button>
-                                <small className={styles["value"]}>Modo Claro</small>
+                                <small className={styles["value"]}>{theme === 'light' ? 'Modo Claro' : 'Modo Oscuro'}</small>
                             </div>
                             <div className={styles["key-value-container"]}>
                                 <button className={styles["button-key-container"]}>

@@ -10,12 +10,12 @@
 }
 
 .contenedor-texto h3 {
-    color: #CF4037;
+    color: var(--accent-color);
     max-width: 75%;
 }
 
 .contenedor-texto p {
-    color: #322B2A;
+    color: var(--text-color);
     max-width: 90%;
 }
 

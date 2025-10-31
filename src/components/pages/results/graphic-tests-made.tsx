@@ -64,7 +64,9 @@ const GraphicTestsMade = () => {
 
     if ((!user && authLoading) || loading) {
         return (
-            <h3>Cargando resultados...</h3>
+            <div className={styles["skeleton-standard-container"]}>
+                <div className={`skeleton-rect ${styles["skeleton-standard"]}`}></div>
+            </div>
         )
     }
 
