@@ -1,21 +1,4 @@
-.arrow-back {
-    position: absolute;
-    bottom: -60px;
-    left: -25px;
-}
-
-.arrow-next {
-    position: absolute;
-    bottom: -60px;
-    right: -25px;
-}
-
-.arrow-back i {
-    padding-left: 0rem;
-    color: #CF4037;
-}
-
-.arrow-next i {
+.arrow i {
     padding-left: 0rem;
     color: #CF4037;
 }
@@ -23,6 +6,7 @@
 .progress-container {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     position: absolute;
     gap: 1rem;
     bottom: -45px;
@@ -35,9 +19,9 @@
 .progress-circle {
     width: 20px;
     height: 20px;
-    border: .1rem #322B2A solid;
+    border: .1rem var(--text-primary) solid;
     border-radius: 1rem;
-    background-color: #fff;
+    background-color: var(--bg-color);
 }
 
 .progress-circle .active {

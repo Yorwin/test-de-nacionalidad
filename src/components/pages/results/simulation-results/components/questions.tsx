@@ -48,7 +48,7 @@ const SimulationResultQuestions = ({ questionData, currentModule, answers }: Sim
             let respondida: boolean = false;
             let userAnswer: number | null = null;
 
-            if (questionId in answeredQuestions) {  
+            if (questionId in answeredQuestions) {
                 respondida = true;
                 userAnswer = answeredQuestions[questionId];
             }
@@ -60,15 +60,18 @@ const SimulationResultQuestions = ({ questionData, currentModule, answers }: Sim
 
             return (
                 /* creamos un li element */
-                <li key={index} className={notAnswered ? styles["not-answered"] : ""}>
-                    <p className={styles["question-parragraph"]}>
-                        <small className={styles["question-number"]}>{index + 1}</small>
-                        {question.pregunta}
-                        {notAnswered && <span className={styles["not-answered-label"]}> (No respondida)</span>}
-                        {isCorrect && <span className={styles["correct-label"]}> (Correcta)</span>}
-                        {isIncorrect && <span className={styles["incorrect-label"]}> (Incorrecta)</span>}
-                    </p>
-
+                <li key={index}>
+                    <div className={styles["question"]}>
+                        <div className={styles["question"]}>
+                            <small className={styles["question-number"]}>{index + 1}</small>
+                            <p className={styles["question-parragraph"]}>
+                                {question.pregunta}
+                                {notAnswered && <span className={styles["response-label"]}> (No respondida)</span>}
+                                {isCorrect && <span className={styles["response-label"]}> (Correcta)</span>}
+                                {isIncorrect && <span className={styles["response-label"]}> (Incorrecta)</span>}
+                            </p>
+                        </div>
+                    </div>
                     {/* Renderizar cada opción de respuesta */}
                     {respuestas.map((respuesta: string, respIndex: number) => {
 

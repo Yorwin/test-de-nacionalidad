@@ -4,6 +4,7 @@ import { isTestValid } from "@/functions/functions";
 
 /* Context */
 import { useAuth } from "@/context/auth-context";
+import { useTheme } from "@/context/theme-context";
 
 /* Firebase */
 import { db } from "@/firebase/firebase";
@@ -12,6 +13,7 @@ import { collection, getDocs } from "firebase/firestore";
 const GraphRightTestsPercentage = () => {
 
     const { user, loading: authLoading } = useAuth();
+    const { theme } = useTheme();
 
     const [totalTests, setTestsTotal] = useState(0);
     const [correctTests, setCorrectTests] = useState(0);
@@ -64,7 +66,7 @@ const GraphRightTestsPercentage = () => {
 
                 // Always draw the percentage text
                 ctx.font = 'bold 28px Arial';
-                ctx.fillStyle = '#322B2A';
+                ctx.fillStyle = theme === 'light' ? '#322B2A' : '#FFFFFF';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText(`${Math.round(passPercentage * 100)}%`, centerX, centerY);

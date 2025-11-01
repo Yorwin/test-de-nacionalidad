@@ -8,12 +8,15 @@ interface directionArrowsAndModule {
 
 const ProgressNextBack = ({ goBack, goForward, module }: directionArrowsAndModule) => {
     return <>
-        <div className={styles["arrow-back"]}>
-            <button type="button" className={styles["arrow-results"]} onClick={goBack}>
-                <i className="bi bi-caret-left"></i>
-            </button>
-        </div>
         <div className={styles["progress-container"]}>
+            {/* Go Back */}
+            <div className={styles["arrow"]}>
+                <button type="button" className={styles["arrow-results"]} onClick={goBack}>
+                    <i className="bi bi-caret-left"></i>
+                </button>
+            </div>
+
+            {/* Dots */}
             {[0, 1, 2, 3, 4].map((index) => (
                 <div
                     key={index}
@@ -21,11 +24,13 @@ const ProgressNextBack = ({ goBack, goForward, module }: directionArrowsAndModul
                     style={{ backgroundColor: index <= module ? 'red' : '' }}
                 ></div>
             ))}
-        </div>
-        <div className={styles["arrow-next"]}>
-            <button type="button" className={styles["arrow-results"]} onClick={goForward}>
-                <i className="bi bi-caret-right"></i>
-            </button>
+
+            {/* Go Forward */}
+            <div className={styles["arrow"]}>
+                <button type="button" className={styles["arrow-results"]} onClick={goForward}>
+                    <i className="bi bi-caret-right"></i>
+                </button>
+            </div>
         </div>
     </>
 };

@@ -1,3 +1,7 @@
+@use '../../_variables/variables' as *;
+@use '../../_variables/mixins' as *;
+@use 'sass:map';
+
 .main-container-tests {
     display: flex;
     justify-content: center;
@@ -127,6 +131,7 @@
     height: 300px;
     background-color: var(--secondary-accent);
     position: relative;
+    overflow: hidden;
 }
 
 .weekly-graph-title {
@@ -152,7 +157,7 @@
 
 .candle-graph {
     width: 40px;
-    background-color: var(--text-color);
+    background-color: $dark-text;
     border-radius: .5rem .5rem 0rem 0rem;
 }
 
@@ -167,7 +172,7 @@
     position: absolute;
     width: 90%;
     height: 4px;
-    background-color: var(--text-color);
+    background-color: $dark-text;
     z-index: 1;
     bottom: 45px;
     left: 50%;
@@ -268,7 +273,6 @@
 
     .candle-graph {
         width: 70px;
-        background-color: var(--text-color);
         border-radius: .5rem .5rem 0rem 0rem;
     }
 
@@ -345,22 +349,24 @@
     border-radius: 0.9rem;
     padding: 0.5rem 0.5rem;
     margin-bottom: 1.7rem;
-}
 
-.simulation p {
-    margin-bottom: 0rem;
-    font-size: 1.2rem;
-}
+    p {
+        color: var(--text-color);
+        margin-bottom: 0rem;
+        font-size: 1.2rem;
 
-.simulation p a {
-    color: var(--accent-color);
-    font-weight: 600;
+        a {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+    }
 }
 
 .notation {
     position: absolute;
     font-weight: 650;
     bottom: -30px;
+    color: var(--secondary-accent);
 }
 
 .button-see-more {

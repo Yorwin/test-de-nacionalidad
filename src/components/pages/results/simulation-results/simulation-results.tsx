@@ -6,8 +6,8 @@ import styles from '@/styles/layout/results/results.module.scss';
 
 import TaskControl from "@/components/task-counter";
 import ProgressNextBack from "@/components/pages/results/simulation-results/components/progress-next-back-results";
-import SimulationResultQuestions from "@/components/pages/results/simulation-results/components/simulation-results-questions";
-import ControlBar from "@/components/pages/results/simulation-results/components/simulation-results-control-bar";
+import SimulationResultQuestions from "@/components/pages/results/simulation-results/components/questions";
+import ControlBar from "@/components/pages/results/simulation-results/components/control-bar";
 
 /* Firebase */
 
@@ -118,7 +118,7 @@ const SimulationResults = ({ showSimulationResult, questionId }: historyProps) =
         });
     }
 
-    return <>
+    return (
         <div className={styles["simulation-results-container"]}>
             <div className={styles["header-container"]}>
                 <div>
@@ -145,7 +145,8 @@ const SimulationResults = ({ showSimulationResult, questionId }: historyProps) =
                 <ControlBar currentModule={currentModule} answers={answersEachModule} questionData={questionEachModule} />
             )}
         </div>
-    </>
+    )
+
 };
 
 export default SimulationResults;

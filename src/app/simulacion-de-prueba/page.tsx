@@ -1,6 +1,10 @@
 "use client"
 
 import React, { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import styles from "@/styles/layout/simulacion-de-prueba/test-simulation.module.scss";
+
+/* Components */
 import ExitTestIcon from "@/components/exit-test-icon";
 import Counter from "@/components/pages/test-simulation/counter-test-simulation";
 import TaskControl from "@/components/task-counter";
@@ -8,15 +12,16 @@ import ProgressBar from "@/components/pages/test-simulation/progress-bar";
 import ArrowGoBack from "@/components/arrow-go-back";
 import QuestionGenerator from "@/components/pages/test-simulation/question-generator";
 import FinishTestMessage from "@/components/pages/test-simulation/finish-test-message";
-import { useRouter } from "next/navigation";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/firebase/firebase";
 import CheckTestSimulation from "@/components/pages/test-simulation/check-test-simulation";
 import TestResults from "@/components/pages/test-simulation/test-results";
-import { saveResultsTest } from "@/firebase/firebase";
-import styles from "@/styles/layout/simulacion-de-prueba/test-simulation.module.scss";
 import ControlSimulationButtons from "@/components/pages/test-simulation/control-simulation-buttons";
 import LoadingScreen from "@/components/loading-screen";
+
+/* Firebase */
+
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebase/firebase";
+import { saveResultsTest } from "@/firebase/firebase";
 
 /* Context */
 import { CounterProvider } from "@/context/counter-simulacion-prueba";
