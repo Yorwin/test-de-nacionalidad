@@ -378,6 +378,7 @@
 .message-recover-container {
     width: 100%;
     padding: 1.5rem;
+    color: var(--text-color);
 }
 
 .message-recover-container h2 {
@@ -399,6 +400,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 0.4rem;
     margin-top: 1.5rem;
 }
 

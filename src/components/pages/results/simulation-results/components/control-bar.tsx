@@ -64,7 +64,7 @@ const ControlBar = ({ answers, questionData, currentModule }: ControlBarProps) =
             return (
                 <div
                     key={index}
-                    className={isCorrect ? styles["right-item"] : styles["wrong-item"]}
+                    className={`${styles["control-bar-item"]} ${isCorrect ? styles["right-item"] : styles["wrong-item"]}`}
                     title={`Pregunta ${index + 1}`}
                 >
                     <i className={isCorrect ? "bi bi-check-lg" : "bi bi-x"}></i>

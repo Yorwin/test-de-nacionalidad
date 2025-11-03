@@ -37,7 +37,6 @@
 /* ESTILO FLECHA */
 
 .header-container div i {
-    color: #322B2A;
     font-size: 2.5rem;
 }
 
@@ -85,7 +84,7 @@
     gap: .3rem;
     width: 100%;
     height: 200px;
-    border: .1rem #322B2A solid;
+    border: .1rem var(--text-color) solid;
     border-radius: 1.5rem;
     padding: 2rem .5rem;
 }
@@ -103,7 +102,7 @@
     width: 80%;
     text-align: center;
     font-size: 1rem;
-    color: #000;
+    color: var(--text-color);
 }
 
 /* LINEA DIVISORA */
@@ -111,7 +110,7 @@
 .divisor-line {
     width: 80vw;
     height: 12px;
-    background-color: #322B2A;
+    background-color: var(--text-color);
 }
 
 .divisor-line-container {
@@ -162,11 +161,13 @@
 
 .text-chart {
     font-size: .8rem;
+    fill: var(--text-color);
 }
 
 .text-percentage {
     font-weight: 600;
     font-size: .9rem;
+    fill: var(--text-color);
 }
 
 @media screen and (max-width: 1500px) {

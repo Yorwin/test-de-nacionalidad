@@ -42,10 +42,10 @@ const Results = () => {
 
     return (
         <div className={styles["main-container-results"]}>
-            <div className={styles["content-container"]}>
-                {simulationResult ? <SimulationResults showSimulationResult={toggleShowSimulationResult} questionId={idResult} /> : (
-                    <>
-                        {/* Header */}
+            {simulationResult ? <SimulationResults showSimulationResult={toggleShowSimulationResult} questionId={idResult} /> : (
+                <div className={styles["content-container"]}>
+                    {/* Header */}
+                    <div className={styles["main-page-header"]}>
                         <div className={styles["title-container"]}>
                             <TituloGenerico titulo="Resultados exámenes" />
                         </div>
@@ -55,34 +55,34 @@ const Results = () => {
                                 <ArrowGoBack />
                             </Link>
                         </div>
+                    </div>
 
-                        {/* Graphs */}
-                        <AuthProvider>
-                            <div className={styles["graphics-main-container"]}>
-                                <div className="container-fluid">
-                                    <div className="row">
-                                        <div className="col-md-2 col-sm-12 mb-sm-3 d-flex justify-content-center">
-                                            <GraphRightTestsPercentage />
-                                        </div>
-                                        <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
-                                            <GraphicHoursSimulated />
-                                        </div>
-                                        <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
-                                            <GraphicTestsMade />
-                                        </div>
-                                        <div className="col-md-4 col-sm-12 mb-sm-5 d-flex justify-content-center">
-                                            <GraphicWeekSummary />
-                                        </div>
+                    {/* Graphs */}
+                    <AuthProvider>
+                        <div className={styles["graphics-main-container"]}>
+                            <div className="container-fluid">
+                                <div className="row">
+                                    <div className="col-md-2 col-sm-12 mb-sm-3 d-flex justify-content-center">
+                                        <GraphRightTestsPercentage />
+                                    </div>
+                                    <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
+                                        <GraphicHoursSimulated />
+                                    </div>
+                                    <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
+                                        <GraphicTestsMade />
+                                    </div>
+                                    <div className="col-md-4 col-sm-12 mb-sm-5 d-flex justify-content-center">
+                                        <GraphicWeekSummary />
                                     </div>
                                 </div>
-
-                                {/* History of Simulations*/}
-                                <HistoryOfSimulations showSimulationResult={toggleShowSimulationResult} />
                             </div>
-                        </AuthProvider>
-                    </>
-                )}
-            </div>
+
+                            {/* History of Simulations*/}
+                            <HistoryOfSimulations showSimulationResult={toggleShowSimulationResult} />
+                        </div>
+                    </AuthProvider>
+                </div>
+            )}
         </div>
     )
 };

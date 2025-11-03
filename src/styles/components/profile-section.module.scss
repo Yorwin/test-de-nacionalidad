@@ -45,7 +45,7 @@
     flex-direction: column;
     gap: .1rem;
     padding-left: .6rem;
-    
+
     .profile-info {
         height: 20px;
         width: 100px;
@@ -113,6 +113,7 @@
     align-items: center;
     background-color: transparent;
     border: none;
+    color: var(--text-primary);
 
     small {
         @include font-style-list-menu-bar(1rem);
@@ -120,7 +121,7 @@
 }
 
 .button-menu:hover {
-    text-decoration: underline 0.1rem #000 solid;
+    text-decoration: underline 0.1rem #fff solid;
 }
 
 .log-in-register-container {

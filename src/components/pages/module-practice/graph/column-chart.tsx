@@ -178,7 +178,7 @@ const ColumnChart = () => {
 
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [userData]);
 
     if (authLoading || !userData) {
         return (
@@ -219,7 +219,7 @@ const ColumnChart = () => {
             >
                 {/* Eje Y con etiquetas */}
                 {yAxisValues.map((value, index) => (
-                    <g key={`y-axis-${index}`}>
+                    <g key={`y-axis-${index}`} className={styles["text"]}>
                         <text
                             x={padding.left - 10}
                             y={scaleY(value)}

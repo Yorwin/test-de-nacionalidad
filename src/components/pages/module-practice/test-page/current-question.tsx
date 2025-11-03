@@ -48,7 +48,7 @@ const CurrentQuestion = ({ loading, questions, questionCounter, selectedAnswer, 
                                 checked={selectedAnswer === index}
                                 onChange={() => handleAnswerSelection(index)}
                             />
-                            <label htmlFor={`radio-question-${questionCounter}-${index}`}>{answer}</label>
+                            <label className={styles["question"]} htmlFor={`radio-question-${questionCounter}-${index}`}>{answer}</label>
 
                             {isQuestionChecked && (
                                 index === currentQuestion.correcta ? (

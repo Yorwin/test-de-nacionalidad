@@ -1,0 +1,107 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+    overflow-x: hidden;
+}
+
+.content-account-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.links-container {
+    position: relative;
+    height: 60px;
+    margin-bottom: 4rem;
+}
+
+.links-container button {
+    width: 40px;
+    height: 100%;
+}
+
+.profile-info-container {
+    width: 100%;
+    margin-bottom: 5rem;
+}
+
+.divisor-line-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 5rem;
+}
+
+.divisor-line {
+    width: 80vw;
+    border-radius: 2rem;
+    height: 8px;
+    background-color: #322B2A;
+}
+
+.stats-container {
+    color: #CF4037;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.stats-container h2 {
+    width: 50%;
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.terms-and-conditions {
+    position: fixed;
+    bottom: 20px;
+}
+
+.terms-and-conditions a {
+    text-decoration: none;
+    color: #FA3B2D;
+}
+
+.terms-and-conditions a:hover {
+    text-decoration: underline 0.2rem solid #FA3B2D;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-info-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 4rem;
+    }
+
+    .divisor-line-container {
+        margin-bottom: 3rem;
+    }
+
+    .stats-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .stats-container h2 {
+        width: 50%;
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .terms-and-conditions {
+        position: relative;
+        bottom: 0px;
+    }
+
+    .terms-and-conditions a {
+        font-size: .8rem;
+    }
+}

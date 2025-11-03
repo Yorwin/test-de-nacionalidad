@@ -63,6 +63,10 @@
     align-items: flex-start;
     gap: 0.5rem;
     width: 100%;
+
+    button {
+        color: var(--text-color);
+    }
 }
 
 .buttons-container button:hover {

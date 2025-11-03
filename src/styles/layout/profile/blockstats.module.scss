@@ -1,0 +1,52 @@
+.main-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.block-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 240px;
+    height: 120px;
+    background-color: #A55A55;
+    border-radius: 1rem;
+}
+
+.icon-container i {
+    font-size: 3.7rem;
+    cursor: default;
+    color: #fff;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    color: #322B2A;
+    line-height: 1.5rem;
+}
+
+.result {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0rem;
+}
+
+.type-of-stat {
+    margin-bottom: 0rem;
+    font-size: 1.1rem
+}
+
+@media screen and (max-width: 768px) {
+    .main-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1.7rem;
+    }
+
+    .block-container {
+        width: 210px;
+        height: 140px;
+    }
+}
