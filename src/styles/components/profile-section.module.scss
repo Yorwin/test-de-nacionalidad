@@ -113,7 +113,10 @@
     align-items: center;
     background-color: transparent;
     border: none;
-    color: var(--text-primary);
+
+    i {
+        color: #fff;
+    }
 
     small {
         @include font-style-list-menu-bar(1rem);

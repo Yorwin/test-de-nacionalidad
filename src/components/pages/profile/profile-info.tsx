@@ -1,16 +1,21 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "@/styles/layout/profile/profile-info.module.scss"
 import ProfileImg from "@/resources/profile-default.png"
 import Image from "next/image";
 
-/* Firebase */
-import { db } from "@/firebase/firebase";
-import { getDoc, doc } from "firebase/firestore";
+/* Profile Skeleton Loader */
+import ProfileInfoLoadingSkeleton from "./profile-info-loading-skeleton";
+
+/* Functions */
+import { calculateCreatedAtMs } from "@/functions/functions";
 
 /* Context */
 import { useAuth } from "@/context/auth-context";
+
+/* Firebase */
+import { uploadProfilePhoto } from "@/firebase/firebase";
 
 const ProfileInfo = () => {
 
@@ -18,53 +23,59 @@ const ProfileInfo = () => {
 
     const [userName, setUserName] = useState<string>("");
     const [accountCreationTime, setAccountCreationTime] = useState<string>("");
+    const [profilePhotoURL, setProfilePhotoURL] = useState<string>("");
+    const [uploading, setUploading] = useState<boolean>(false);
+    const [uploadError, setUploadError] = useState<string | null>(null);
 
-    const getUserData = async (userId: string) => {
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const getUserData = async () => {
+        if (!userData) {
+            return null;
+        }
+
         try {
-            const userRef = doc(db, "users", userId);
-            const userSnap = await getDoc(userRef);
-
-            let accountData;
-
-            if (userSnap.exists()) {
-
-                const userInfo = userSnap.data();
-
-                accountData = {
-                    name: userInfo.username,
-                    createdAt: userInfo.createdAt,
-                }
-            } else {
-                accountData = {
-                    name: "Undefined Undefined",
-                    createdAt: "There's no info to be shown",
-                }
-            }
-
-            const createdAt = accountData.createdAt;
-            const date = new Date(createdAt.seconds * 1000 + createdAt.nanoseconds / 1e6);
-
-            const month = date.toLocaleString("es-ES", { month: "long" });
-            const year = date.getFullYear();
-
-            const formatted = `Cuenta creada en ${month.charAt(0).toUpperCase() + month.slice(1)} del ${year}`;
-
-            setAccountCreationTime(formatted);
-            setUserName(accountData.name);
-
+            const date = calculateCreatedAtMs(userData.createdAt)
+            setAccountCreationTime(date);
+            setUserName(userData.username);
+            setProfilePhotoURL(userData.profilePhotoURL || "");
         } catch (error) {
             console.error("Se ha producido un error al intentar obtener los datos del usuario");
         }
     }
 
+    const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file || !userData?.uid) return;
+
+        setUploading(true);
+        setUploadError(null);
+
+        try {
+            const downloadURL = await uploadProfilePhoto(file, userData.uid);
+            setProfilePhotoURL(downloadURL);
+            // Refresh user data to get updated profilePhotoURL
+            if (userData) {
+                setProfilePhotoURL(userData.profilePhotoURL || downloadURL);
+            }
+        } catch (error) {
+            setUploadError(error instanceof Error ? error.message : 'Error al subir la foto');
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleButtonClick = () => {
+        fileInputRef.current?.click();
+    };
+
     useEffect(() => {
-        console.log(userData);
-        /* getUserData(user.uid); */
+        getUserData();
     }, [userData]);
 
     if (authLoading) {
         return (
-            <h3>Cargando...</h3>
+            <ProfileInfoLoadingSkeleton />
         )
     }
 
@@ -74,16 +85,41 @@ const ProfileInfo = () => {
                 <div className={styles["photo-container"]}>
                     <div className={styles["profile-img"]}>
                         <Image
-                            src={ProfileImg}
-                            alt="Imagen por defecto del perfil"
+                            src={profilePhotoURL || ProfileImg}
+                            alt="Foto de perfil"
                             className={styles["profile-image"]}
                             fill
                         />
+                        {uploading && (
+                            <div className={styles["upload-overlay"]}>
+                                <div className={styles["loading-spinner"]}>
+                                    <i className="bi bi-arrow-clockwise"></i>
+                                </div>
+                            </div>
+                        )}
                     </div>
                     <div className={styles["add-new-img"]}>
-                        <i className="bi bi-plus"></i>
+                        <button
+                            className={styles["button-add-img"]}
+                            onClick={() => alert("Por el momento este feature no esta disponible")}
+                            disabled={uploading}
+                        >
+                            <i className="bi bi-plus"></i>
+                        </button>
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleFileSelect}
+                            accept="image/jpeg,image/png"
+                            style={{ display: 'none' }}
+                        />
                     </div>
                 </div>
+                {uploadError && (
+                    <div className={styles["error-message"]}>
+                        {uploadError}
+                    </div>
+                )}
                 <div className={styles["account-info"]}>
                     <h3>{userName}</h3>
                     <p>{accountCreationTime}</p>

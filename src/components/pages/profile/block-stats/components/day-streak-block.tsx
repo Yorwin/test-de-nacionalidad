@@ -5,6 +5,9 @@ import styles from "@/styles/layout/profile/blockstats.module.scss";
 import { collection, query, getDocs, orderBy, QuerySnapshot, DocumentData } from 'firebase/firestore';
 import { db } from "@/firebase/firebase";
 
+/* Loading Skeleton */
+import LoadingSkeleton from "@/components/pages/profile/block-stats/cards-loading.skeleton";
+
 interface DayStreakProps {
     userId: string;
 }
@@ -111,7 +114,7 @@ const DayStreak = ({ userId }: DayStreakProps) => {
         }
     }, [userId]);
 
-    if (loading) return <div> Calculando tu racha...</div>;
+    if (loading) return <LoadingSkeleton />;
     if (error) return <div> Error: {error}</div>;
 
     return (

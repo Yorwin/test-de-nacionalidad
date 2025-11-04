@@ -1,4 +1,5 @@
 import styles from "@/styles/layout/homepage/homepage.module.scss";
+import Link from "next/link";
 
 /* Componentes */
 import Logo from "@/components/logo-cervantes"
@@ -22,7 +23,24 @@ const HomePage = () => {
         </div>
       </div>
       <div className={styles["footer-content"]}>
-        <TermsAndConditions />
+        <div className={styles["footer-info"]}>
+
+          {/* Terminos y Condiciones */}
+          <Link href="#" className={styles["footer-link"]}>
+            <small>Terminos y Condiciones legales</small>
+          </Link>
+
+          {/* Contacto */}
+          <a href="mailto:info@testpruebaccse.com" className={styles["footer-link"]}>
+            <small>Contacto: <strong>info@testpruebaccse.com</strong></small>
+          </a>
+
+          {/* Preguntas */}
+          <div className={styles["questions-disclaimer"]}>
+            <i className="bi bi-info-circle"></i>
+            <h3>Incorporadas las preguntas del manual 2025</h3>
+          </div>
+        </div>
         <h2>Prueba <br /> CCSE</h2>
       </div>
     </div>

@@ -8,7 +8,7 @@ const SettingsIcon = () => {
     const router = useRouter();
 
     const goToSettings = () => {
-        router.replace("/settings");
+        router.replace("/ajustes");
     };
 
     return (

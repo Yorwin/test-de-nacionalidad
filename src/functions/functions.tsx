@@ -169,3 +169,15 @@ export const isTestValid = (results: number[]) => {
 
     return correctAnswers;
 };
+
+export const calculateCreatedAtMs = (createdAt: { seconds: number, nanoseconds: number }) => {
+    const date = new Date(createdAt.seconds * 1000 + createdAt.nanoseconds / 1e6);
+
+    const month = date.toLocaleString("es-ES", { month: "long" });
+    const year = date.getFullYear();
+
+    const formatted = `Cuenta creada en ${month.charAt(0).toUpperCase() + month.slice(1)} del ${year}`;
+
+    return formatted;
+};
+

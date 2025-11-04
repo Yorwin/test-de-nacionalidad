@@ -5,6 +5,9 @@ import styles from "@/styles/layout/profile/blockstats.module.scss";
 import { collection, query, getDocs, orderBy, QuerySnapshot, DocumentData } from 'firebase/firestore';
 import { db } from "@/firebase/firebase";
 
+/* Loading Skeleton */
+import LoadingSkeleton from "../cards-loading.skeleton";
+
 interface LongestDayStreakProps {
     userId: string;
 }
@@ -97,7 +100,7 @@ const LongestDayStreak = ({ userId }: LongestDayStreakProps) => {
         }
     }, [userId]);
 
-    if (loading) return <div> Calculando tu racha más larga...</div>;
+    if (loading) return <LoadingSkeleton />;
     if (error) return <div> Error: {error}</div>;
 
     return (
