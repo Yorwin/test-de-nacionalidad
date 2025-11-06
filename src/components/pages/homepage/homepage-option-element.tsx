@@ -10,15 +10,15 @@ type HomePageProps = {
 
 const HomePageOptionElement = ({ icono, titulo, descripcion, enlace }: HomePageProps) => {
     return <>
-        <div className="col-md-6 col-sm-12 my-5">
+        <div className="col-md-6 col-sm-12 my-lg-5 my-md-4 my-sm-3">
             <div className={styles["contenedor-opcion"]}>
-                <i className={icono}></i>
-                <div className={styles["contenedor-texto"]}>
-                    <Link href={enlace}>
+                <Link className={styles["link"]} href={enlace}>
+                    <i className={icono}></i>
+                    <div className={styles["contenedor-texto"]}>
                         <h3>{titulo}</h3>
                         <p>{descripcion}</p>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
             </div>
         </div>
     </>

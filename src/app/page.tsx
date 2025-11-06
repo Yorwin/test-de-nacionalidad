@@ -5,7 +5,6 @@ import Link from "next/link";
 import Logo from "@/components/logo-cervantes"
 import ProfileSection from "@/components/profile-section/profile-section";
 import HomePageOptionElement from "@/components/pages/homepage/homepage-option-element";
-import TermsAndConditions from "@/components/terms-and-conditions";
 
 const HomePage = () => {
   return (
@@ -15,6 +14,7 @@ const HomePage = () => {
         <ProfileSection />
       </div>
       <div className="container-lg mx-0 my-5 py-md-5">
+        <h1 className={styles["homepage-title"]}>LA MEJOR HERRAMIENTA PARA APROBAR TU EXAMÉN DE NACIONALIDAD ESPAÑOLA</h1>
         <div className="row">
           <HomePageOptionElement icono="bi bi-display" titulo="Simulación de Prueba" descripcion="Reduce ansiedad, mejora tiempo, identifica fallos, refuerza aprendizaje, y aumenta confianza." enlace={"/simulacion-de-prueba"} />
           <HomePageOptionElement icono="bi bi-book" titulo="Práctica por módulo" descripcion="Permite practicar por separado, mejorar puntos débiles, y avanzar a tu ritmo." enlace={"/practica-por-modulo"} />

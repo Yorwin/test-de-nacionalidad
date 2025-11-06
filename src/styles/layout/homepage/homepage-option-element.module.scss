@@ -11,15 +11,18 @@
 
 .contenedor-texto h3 {
     color: var(--accent-color);
-    max-width: 75%;
+    width: 75%;
 }
 
 .contenedor-texto p {
     color: var(--text-color);
-    max-width: 90%;
+    width: 90%;
 }
 
-.contenedor-texto a {
+.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-decoration: none;
 }
 
@@ -27,7 +30,27 @@
 
     /* Contenedor */
     .contenedor-opcion {
-        padding-left: 2rem;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .link {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+
+    .contenedor-texto h3 {
+        width: 100%;
+    }
+
+    .contenedor-texto p {
+        width: 100%;
+    }
+
+    .contenedor-opcion i {
+        margin-right: 0rem;
     }
 }
 

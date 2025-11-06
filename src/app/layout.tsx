@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { ElmsSans, ElmsSansItalic, Montaga } from "@/lib/fonts";
 
 /* Estilos Globales */
 import "./globals.css";
@@ -11,16 +11,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 /* Context */
 import { ThemeProvider } from "@/context/theme-context";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -34,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${ElmsSans.variable} ${ElmsSansItalic.variable} ${Montaga.variable}`}>
         <ThemeProvider>
           {children}
         </ThemeProvider>
