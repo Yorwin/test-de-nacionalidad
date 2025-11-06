@@ -1,3 +1,5 @@
+@use '../../_variables/variables' as *;
+
 .main-container {
     margin: 2rem 3rem;
 }
@@ -11,9 +13,13 @@
 
 .header-container h1 {
     margin: 0 auto;
+    font-family: $main-font;
+    font-weight: 700;
 }
 
 .container-content h2 {
+    font-family: $main-font;
+    font-weight: 500;
     color: #CF4037;
     margin-bottom: 2rem;
 }
@@ -35,6 +41,7 @@
 .list-recommendations li a {
     text-decoration: none;
     color: var(--text-color);
+    font-family: $secondary-font;
 }
 
 .list-recommendations li i {
@@ -50,6 +57,7 @@
     margin-top: 3rem;
     width: 80%;
     color: var(--text-color);
+    font-family: $secondary-font;
 }
 
 .informacion-manual i {

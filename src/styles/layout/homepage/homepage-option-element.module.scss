@@ -1,3 +1,5 @@
+@use '../../_variables/_variables.scss' as *;
+
 .contenedor-opcion {
     display: flex;
     align-items: center;
@@ -10,11 +12,15 @@
 }
 
 .contenedor-texto h3 {
+    font-family: $main-font;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
     color: var(--accent-color);
     width: 75%;
 }
 
 .contenedor-texto p {
+    font-family: $secondary-font;
     color: var(--text-color);
     width: 90%;
 }

@@ -44,7 +44,7 @@ const GraphRightTestsPercentage = () => {
                 const radius = 55;
 
                 // Always draw the title
-                ctx.font = 'bold 24px Arial';
+                ctx.font = 'bold 24px ElmsSans';
                 ctx.fillStyle = '#CF4037';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
@@ -65,7 +65,7 @@ const GraphRightTestsPercentage = () => {
                 }
 
                 // Always draw the percentage text
-                ctx.font = 'bold 28px Arial';
+                ctx.font = 'bold 28px Montaga';
                 ctx.fillStyle = theme === 'light' ? '#322B2A' : '#FFFFFF';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';

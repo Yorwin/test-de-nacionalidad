@@ -1,17 +1,19 @@
-.container-exit-icon {
+@use "../_variables/variables" as *;
+
+.button-exit-simulation {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    gap: .8rem;
 }
 
 .container-exit-icon h2 {
     margin-bottom: 0rem;
-    padding-left: 1rem;
     font-size: 1.6rem;
+    font-family: $main-font;
     color: #A55A55;
 }
 
 .container-exit-icon i {
+    font-size: 1.6rem;
     color: #FA3B2D;
 }
 
@@ -32,6 +34,10 @@
 }
 
 @media screen and (max-width: 768px) {
+    .button-exit-simulation {
+        gap: .2rem;
+    }
+
     .container-exit-icon {
         h2 {
             font-size: 1.3rem;

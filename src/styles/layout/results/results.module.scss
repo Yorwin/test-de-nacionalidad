@@ -34,6 +34,8 @@ $question-options-icon-dimesions: clamp(25px, 10px + 1.5vw, 35px);
     width: 100%;
     text-align: left;
     font-size: clamp(1.1rem, .6rem + 1.5vw, 1.8rem);
+    font-family: $main-font;
+    font-weight: 600;
     margin-bottom: 0rem;
 }
 
@@ -96,6 +98,8 @@ $question-options-icon-dimesions: clamp(25px, 10px + 1.5vw, 35px);
 .title-check-answers {
     text-align: center;
     color: #FA3B2D;
+    font-family: $main-font;
+    font-weight: 600;
     font-size: clamp(1rem, .6rem + 1.3vw, 1.6rem);
     margin-bottom: 0rem;
 }
@@ -122,12 +126,14 @@ $question-options-icon-dimesions: clamp(25px, 10px + 1.5vw, 35px);
     flex-direction: column;
     margin-bottom: 2.5rem;
     color: var(--text-color);
+    font-weight: 500;
 }
 
 .question {
     @include flex-center-x-y-axis;
     flex-direction: row;
     margin-bottom: .7rem;
+    font-family: $main-font;
 }
 
 .question-number {
@@ -215,6 +221,7 @@ $question-options-icon-dimesions: clamp(25px, 10px + 1.5vw, 35px);
 }
 
 .question-option p {
+    font-family: $secondary-font;
     margin-bottom: 0rem;
 }
 

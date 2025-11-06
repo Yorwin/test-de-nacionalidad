@@ -1,3 +1,5 @@
+@use '../../_variables/variables' as *;
+
 /* TEST PAGE */
 
 /* CONTAINER TEST PAGE */
@@ -32,7 +34,8 @@
 
 .question-counter-text {
     font-size: 1.6rem;
-    font-weight: 650;
+    font-weight: 500;
+    font-family: $main-font;
     color: #A55A55;
 }
 
@@ -46,6 +49,11 @@
     top: 70px;
     transform: translateX(-50%);
     color: #CF4037;
+    font-family: $main-font;
+
+    h1 {
+        font-weight: 700;
+    }
 }
 
 /* Header Media Queries */
@@ -129,6 +137,7 @@
 
 .question-title {
     position: relative;
+    font-family: $main-font;
 }
 
 .question-title h3 {
@@ -172,6 +181,7 @@
 
 .question {
     color: var(--text-color);
+    font-family: $secondary-font;
 }
 
 /* Icono respuesta correcta */

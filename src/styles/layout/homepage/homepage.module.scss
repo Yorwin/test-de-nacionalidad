@@ -1,3 +1,5 @@
+@use '../../_variables/_variables.scss' as *;
+
 .main-container {
     width: 100vw;
     height: 100vh;
@@ -18,6 +20,7 @@
     font-size: clamp(1rem, .8rem + 1.5vw, 2rem);
     color: var(--accent-color);
     font-family: $main-font;
+    font-weight: 600;
 }
 
 .footer-content h2 {
@@ -26,14 +29,14 @@
     bottom: 0;
     padding-bottom: 4rem;
     padding-right: 4rem;
-}
-
-.footer-content h2 {
     margin-bottom: 0rem;
+
+    /* Font Style */
     text-transform: uppercase;
     font-size: 3.5rem;
+    font-family: $main-font;
+    font-weight: 800;
     color: var(--accent-color);
-    font-weight: 500;
 }
 
 /* Footer Links */
@@ -53,6 +56,7 @@
     color: #FA3B2D;
     text-decoration: none;
     font-size: 1rem;
+    font-family: $secondary-font;
 
     &:hover {
         text-decoration: underline solid #FA3B2D 2px;
@@ -64,6 +68,7 @@
     align-items: center;
     justify-content: flex-start;
     color: #FA3B2D;
+    font-family: $secondary-font;
     gap: .4rem;
 
     h3 {

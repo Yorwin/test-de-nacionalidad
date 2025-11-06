@@ -1,7 +1,11 @@
+@use "../_variables/variables" as *;
+
 .task-control-container h2 {
     text-align: center;
     color: #A55A55;
     margin-bottom: 0rem;
+    font-family: $main-font;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 768px) {

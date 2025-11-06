@@ -3,7 +3,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 type CounterPropsType = {
-    children: React.ReactNode
+    children: React.ReactNode;
+    onTimeUp?: () => void;
 }
 
 type CounterContextType = {
@@ -16,7 +17,7 @@ type CounterContextType = {
 
 const CounterContext = createContext<CounterContextType | undefined>(undefined);
 
-export const CounterProvider = ({ children }: CounterPropsType) => {
+export const CounterProvider = ({ children, onTimeUp }: CounterPropsType) => {
 
     const defaultTime = 25 * 60;
 
@@ -38,14 +39,18 @@ export const CounterProvider = ({ children }: CounterPropsType) => {
 
         } else if (timeLeft === 0) {
             if (timer) clearInterval(timer);
-            alert("¡Tiempo Terminado!");
+            if (onTimeUp) {
+                onTimeUp();
+            } else {
+                alert("¡Tiempo Terminado!");
+            }
         }
 
         return () => {
             if (timer) clearInterval(timer);
         }
 
-    }, [isActive, timeLeft]);
+    }, [isActive, timeLeft, onTimeUp]);
 
     const formatTime = (seconds: number): string => {
         const minutes = Math.floor(seconds / 60);

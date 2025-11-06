@@ -1,16 +1,23 @@
+@use "../../_variables/variables" as *;
+
 .counter-main-container {
+    display: flex;
+    justify-content: center;
     border: 0.1rem #A55A55 solid;
     padding: 1.4rem 2.6rem;
     border-radius: 1.4rem;
+    width: 150px;
 }
 
 .counter-main-container h2 {
     margin-bottom: 0rem;
     color: var(--text-color);
+    font-family: $main-font-italic;
 }
 
 @media screen and (max-width: 768px) {
     .counter-main-container {
+        width: 120px;
         padding: 1.2rem 2.2rem;
     }
 
@@ -22,6 +29,7 @@
 @media screen and (max-width: 576px) {
     .counter-main-container {
         padding: .8rem 1.8rem;
+        width: 90px;
     }
 
     .counter-main-container h2 {

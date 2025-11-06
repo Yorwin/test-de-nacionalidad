@@ -1,3 +1,5 @@
+@use '../../_variables/variables' as *;
+
 .main-container-confirm-exit {
     position: absolute;
     top: 50%;
@@ -29,9 +31,11 @@
     align-items: center;
     justify-content: center;
     margin-bottom: .5rem;
-    font-weight: 700;
 
     p {
+        font-size: 1.3rem;
+        font-weight: 700;
+        font-family: $main-font;
         padding-left: 0.4rem;
         margin-bottom: 0rem;
     }
@@ -48,6 +52,7 @@
 .second-text-part p {
     width: 100%;
     text-align: center;
+    font-family: $secondary-font;
     margin-bottom: 0.4rem;
 }
 
@@ -63,6 +68,7 @@
 .options-list li {
     display: flex;
     align-items: center;
+    font-family: $secondary-font;
 }
 
 .options-list li i {
@@ -81,9 +87,12 @@
     border: none;
     background-color: #CF4037;
     border-radius: .3rem;
+    margin: 1rem;
+
+    /* Font */
     color: #fff;
     font-weight: 600;
-    margin: 1rem;
+    font-family: $main-font;
 }
 
 .container-buttons button {

@@ -5,6 +5,7 @@
     color: #fff;
     text-decoration: none;
     font-size: $font-size;
+    font-family: $secondary-font;
 }
 
 @mixin flex-center-x-y-axis {

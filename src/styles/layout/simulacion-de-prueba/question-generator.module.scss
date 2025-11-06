@@ -1,5 +1,9 @@
+@use "../../_variables/mixins" as *;
+@use "../../_variables/variables" as *;
+@use 'sass:map';
+
 .question-generator-main-container {
-    width: 60%;
+    width: 70%;
 }
 
 .container-header {
@@ -7,6 +11,7 @@
     justify-content: start;
     align-items: center;
     margin-bottom: 1rem;
+    font-family: $main-font;
 
     i {
         padding-left: 0rem;
@@ -15,7 +20,7 @@
     }
 
     h3 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding-left: .4rem;
         margin-bottom: 0rem;
         color: var(--text-color);
@@ -23,7 +28,10 @@
 }
 
 .question-container {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 4rem;
 }
 
 .container-answers {
@@ -39,7 +47,10 @@
 
         label {
             padding-left: 30px;
+
+            /* Font Style */
             color: var(--text-color);
+            font-family: $secondary-font;
         }
     }
 }
@@ -120,5 +131,17 @@
 
     .container-answers div label {
         font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .container-header {
+        h3 {
+            font-size: .9rem;
+        }
+
+        i {
+            font-size: 1rem;
+        }
     }
 }

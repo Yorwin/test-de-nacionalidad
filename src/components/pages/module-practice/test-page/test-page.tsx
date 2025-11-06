@@ -7,9 +7,9 @@ import LeaveTest from "@/components/pages/module-practice/test-page/leave-test-c
 import TestResultsPage from "@/components/pages/module-practice/test-page/test-result-page";
 import CurrentQuestion from "@/components/pages/module-practice/test-page/current-question";
 import { saveModulePractice } from "@/firebase/firebase";
-import { auth, db } from "@/firebase/firebase";
+import { db } from "@/firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { QAEntry, questionType, saveQuestionAnswerLocally, saveAnswersInServer, saveQuestionsInServer } from "@/types/types";
+import { QAEntry, questionType, saveQuestionAnswerLocally, saveAnswersInServer, saveQuestionsInServer, verifiedAnswersBeforeResults } from "@/types/types";
 
 interface TestPageProps {
     toggleModulePractice: () => void;
@@ -17,12 +17,6 @@ interface TestPageProps {
 }
 
 const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
-
-    const user = auth.currentUser;
-
-    if (!user) {
-        throw new Error("Usuario no autenticado");
-    }
 
     //useStates
 
@@ -32,9 +26,7 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
     const [questions, setQuestions] = useState<questionType[]>([]);
     const [totalAmountOfQuestions, setTotalAmountOfQuestions] = useState(0);
     const [userWantsToLeave, setUserWantsToLeave] = useState(false)
-    const [questionCounter, setQuestionCounter] = useState<number>(
-        () => Number(sessionStorage.getItem('current_question')) || 0
-    );
+    const [questionCounter, setQuestionCounter] = useState<number>(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [showTestResults, setShowTestResults] = useState(false);
     const [arrayQuestionsAndAnswers, setArrayQuestionsAndAnswers] = useState<QAEntry[]>([]);
@@ -83,22 +75,14 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
 
     //Calcular respuestas.
     const calculateModulePracticeScore = async () => {
-        const storedAnswers = sessionStorage.getItem("respuestas");
         let score = 0;
 
-        if (!storedAnswers) {
-            console.log("No se encontraron respuestas en sessionStorage");
-            return 0;
-        }
-
-        const userAnswers = JSON.parse(storedAnswers);
-
-        userAnswers.forEach((userAnswerObj: Record<string, number>) => {
+        arrayQuestionsAndAnswers.forEach((userAnswerObj) => {
             const [questionText, selectedAnswerIndex] = Object.entries(userAnswerObj)[0];
 
             const questionMatch = questions.find(q => q.pregunta === questionText);
 
-            if (questionMatch && questionMatch.correcta === selectedAnswerIndex) {
+            if (questionMatch && typeof selectedAnswerIndex === 'number' && questionMatch.correcta === selectedAnswerIndex) {
                 score += 1;
             }
         });
@@ -108,30 +92,10 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
 
     //GUARDAR LAS PREGUNTAS EN EL SERVIDOR.
     const saveQuestionsInServer: saveQuestionsInServer = async (testId, score, answers) => {
-
-        let moduleNumber: string | null;
-
-        if (sessionStorage.getItem("module") != null) {
-            moduleNumber = sessionStorage.getItem("module");
-        } else {
-            throw new Error("No fue posible localizar el número del modulo");
-        }
-
-        const modulePractice: string = await saveModulePractice(testId, score, answers, moduleNumber);
+        const modulePractice: string = await saveModulePractice(testId, score, answers, moduleNumber.toString());
         setResultId(modulePractice);
     };
 
-    //GUARDAR LA PREGUNTA LOCALMENTE.
-
-    //Función para guardar array en memoria.
-    const saveQuestionInMemory = (value: any) => {
-        sessionStorage.setItem("respuestas", `${JSON.stringify(value)}`);
-    };
-
-    //Función para guardar en caso de recarga.
-    const saveQuestionInCaseOfReload = (questions: any) => {
-        sessionStorage.setItem("questions", JSON.stringify(questions));
-    };
 
     //Guardar la pregunta en formato de Array en Session Storage.
     const saveQuestionAnswer: saveQuestionAnswerLocally = (key, value) => {
@@ -149,32 +113,11 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
 
         if (questionCounter + 1 !== totalAmountOfQuestions) {
 
-            setQuestionCounter((e: number) => {
-                const currentQuestion = e + 1;
-                sessionStorage.setItem("current_question", `${currentQuestion}`);
-                return e + 1;
-            })
+            setQuestionCounter((e: number) => e + 1);
 
             checkQuestion();
             setSelectedAnswer(null);
         }
-
-        saveQuestionInMemory(updatedArray);
-    };
-
-    //OBTENER PREGUNTAS RESPONDIDAS LOCALMENTE.
-
-    const getAnsweredQuestions = () => {
-        const storedAnswers = sessionStorage.getItem("respuestas");
-        let answers;
-
-        if (storedAnswers !== null) {
-            answers = JSON.parse(storedAnswers);
-        } else {
-            console.warn("No se encontraron respuestas en sessionStorage");
-        }
-
-        return answers;
     };
 
     //FINALIZAR PRÁCTICA DEL MODULO Y GUARDAR EN EL SERVIDOR LAS RESPUESTAS.
@@ -183,9 +126,8 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
             saveQuestionAnswer(lastQuestion, lastAnswer);
 
             const score = await calculateModulePracticeScore();
-            const answers = getAnsweredQuestions();
 
-            saveQuestionsInServer("module-practice", score, answers);
+            saveQuestionsInServer("module-practice", score, arrayQuestionsAndAnswers as verifiedAnswersBeforeResults[]);
 
             setShowTestResults(true);
         } catch (error) {
@@ -197,15 +139,6 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
     const getModuleQuestions = async () => {
         try {
             setIsLoading(true);
-            const savedQuestionsStr = sessionStorage.getItem("questions");
-
-            if (savedQuestionsStr) {
-                const savedQuestions = JSON.parse(savedQuestionsStr);
-                setQuestions(savedQuestions);
-                setTotalAmountOfQuestions(savedQuestions.length);
-                setIsLoading(false);
-                return;
-            }
 
             const moduleQuestions: questionType[] = [];
 
@@ -225,7 +158,6 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
             });
 
             setQuestions(moduleQuestions);
-            saveQuestionInCaseOfReload(moduleQuestions);
             setTotalAmountOfQuestions(moduleQuestions.length);
         } catch (error) {
             console.error(`Error al intentar obtener las preguntas: ${error}`);

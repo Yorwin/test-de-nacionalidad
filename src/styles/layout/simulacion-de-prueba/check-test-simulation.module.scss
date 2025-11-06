@@ -1,3 +1,5 @@
+@use '../../_variables/variables' as *;
+
 .main-container-check-test {
     position: absolute;
     top: 50%;
@@ -22,15 +24,18 @@
 
 .container-text-info {
     text-align: center;
-}
 
-.container-text-info h2 {
-    margin-bottom: 1.3rem;
-}
+    h2 {
+        font-size: 1.6rem;
+        font-family: $main-font;
+        margin-bottom: 1.3rem;
+    }
 
-.container-text-info p {
-    font-size: 1.1rem;
-    margin-bottom: 1.1rem;
+    p {
+        font-family: $secondary-font;
+        font-size: 1.1rem;
+        margin-bottom: 1.1rem;
+    }
 }
 
 .container-buttons {
@@ -45,9 +50,11 @@
     padding: 0.6rem 1.3rem;
     background-color: #CF4037;
     border-radius: 0.3rem;
-    font-weight: 600;
-    color: #fff;
     border: none;
+    /* Font */
+    font-weight: 700;
+    font-family: $main-font;
+    color: #fff;
 }
 
 .container-buttons button:hover {

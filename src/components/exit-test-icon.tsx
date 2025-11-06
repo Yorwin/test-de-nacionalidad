@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "@/styles/components/exit-test-icon.module.scss";
 
 const ExitTestIcon = ({ showConfirmMessage }: { showConfirmMessage: () => void }) => {

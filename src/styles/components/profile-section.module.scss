@@ -53,12 +53,14 @@
 }
 
 .username {
+    font-family: $main-font;
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-primary);
 }
 
 .e-mail {
+    font-family: $secondary-font;
     color: #A55A55;
 }
 
@@ -69,7 +71,7 @@
 
     i {
         font-size: 2rem;
-        color: #000;
+        color: var(--text-primary);
         padding-left: .7rem;
         cursor: pointer;
     }
@@ -94,7 +96,6 @@
     padding: 1rem 1rem;
     list-style-type: none;
 }
-
 
 .menu-link {
     display: flex;
