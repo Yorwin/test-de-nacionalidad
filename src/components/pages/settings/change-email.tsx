@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from "@/styles/layout/settings/change-email.module.scss";
 import { getAuth, updateEmail, EmailAuthProvider, reauthenticateWithCredential } from 'firebase/auth';
 
@@ -12,10 +12,6 @@ const ChangeEmail = ({ toggleShowUpdateEmailInterface }: { toggleShowUpdateEmail
     const [loading, setLoading] = useState(false);
 
     const auth = getAuth();
-
-    useEffect(() => {
-        console.log(auth);
-    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 

@@ -1,3 +1,5 @@
+@use '../../_variables/_variables.scss' as *;
+
 .profile-loader-container {
     display: flex;
     justify-content: flex-start;
@@ -42,12 +44,18 @@
 
 .account-info {
     margin-left: 1.2rem;
-}
 
-.account-info h3 {
-    font-size: 1.4rem;
-    color: #FA3B2D;
-    margin-bottom: 0rem;
+    h3 {
+        font-family: $main-font;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #FA3B2D;
+        margin-bottom: 0rem;
+    }
+
+    p {
+        font-family: $secondary-font;
+    }
 }
 
 .profile-info-loader {
@@ -113,8 +121,13 @@
 }
 
 @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .error-message {

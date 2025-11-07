@@ -62,11 +62,11 @@ const RegisterPage = () => {
 
     return <>
         <div className={styles["register-page-container"]}>
-            <div className={styles["register-header"]}>
-                <h2>Unete!</h2>
+            <div className={styles["header"]}>
+                <h1>Unete!</h1>
                 <p>Crea una cuenta</p>
             </div>
-            <form className={styles["formulario-register"]} onSubmit={(e) => {
+            <form className={styles["formulario"]} onSubmit={(e) => {
                 e.preventDefault();
                 handleSubmit(handleRegister);
             }}>
@@ -75,7 +75,7 @@ const RegisterPage = () => {
                     <div className={styles["container-input-login-register"]}>
 
                         <div className={styles["container-input"]}>
-                            <label htmlFor="name-register" className={styles["label-register"]}>Nombre</label>
+                            {/* <label htmlFor="name-register" className={styles["label"]}>Nombre</label> */}
                             <input id="name-register"
                                 type="text"
                                 value={values.name_register}
@@ -96,7 +96,7 @@ const RegisterPage = () => {
 
                         <div className={styles["container-input"]}>
 
-                            <label htmlFor="e-mail-register" className={styles["label-register"]}>E-mail</label>
+                            {/* <label htmlFor="e-mail-register" className={styles["label"]}>E-mail</label> */}
                             <input id="e-mail-register"
                                 type="e-mail"
                                 placeholder="E-mail"
@@ -117,8 +117,7 @@ const RegisterPage = () => {
 
                         <div className={styles["container-input"]}>
 
-                            <label htmlFor="password-register" className={styles["label-register"]}>Contraseña</label>
-
+                            {/* <label htmlFor="password-register" className={styles["label"]}>Contraseña</label> */}
                             <div className={styles["password-input-container"]}>
                                 <input id="password-register"
                                     type={showPassword}

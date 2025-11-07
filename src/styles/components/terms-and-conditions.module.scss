@@ -1,3 +1,5 @@
+@use '../_variables/_variables.scss' as *;
+
 .terms-and-conditions-container {
     position: absolute;
     left: 0;
@@ -8,6 +10,7 @@
 
 .terms-and-conditions {
     color: #FA3B2D;
+    font-family: $secondary-font;
     text-decoration: none;
 }
 

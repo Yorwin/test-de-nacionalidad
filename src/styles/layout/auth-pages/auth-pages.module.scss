@@ -1,3 +1,5 @@
+@use '../../_variables/_variables.scss' as *;
+
 /* Contenedor Principal */
 
 .authorization-pages-container {
@@ -39,28 +41,49 @@
 
 /* Titulo */
 
-.login-header {
+.header {
     text-align: center;
-}
 
-.login-header h2 {
-    color: var(--accent-color);
-    font-size: 3.5rem;
-}
+    h1 {
+        color: var(--accent-color);
+        font-size: 3.5rem;
+        font-weight: 600;
+        font-family: $main-font;
+    }
 
-.login-header p {
-    color: var(--text-primary);
+    p {
+        font-family: $secondary-font;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
 }
 
 /* Formulario */
 
 /* Contenedor Formulario */
 
-.formulario-login {
+.formulario {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
+
+    a {
+        text-align: end;
+        margin-bottom: 0.6rem;
+        color: var(--accent-color);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: var(--accent-color) 0.1rem solid underline;
+        }
+    }
+
+    p {
+        text-align: center;
+        font-family: $secondary-font;
+        color: var(--text-primary);
+    }
 }
 
 /* Contenedor Inputs */
@@ -81,6 +104,10 @@
 .inputs input {
     border-radius: .7rem;
     padding: 0.4rem;
+
+    &::placeholder {
+        font-family: $main-font;
+    }
 }
 
 .container-button-submit button {
@@ -129,19 +156,6 @@
     font-weight: 600;
 }
 
-/* Boton ¿Has olvidado tu contraseña? */
-
-.formulario-login a {
-    text-align: end;
-    margin-bottom: 0.6rem;
-    color: var(--accent-color);
-    text-decoration: none;
-}
-
-.formulario-login a:hover {
-    text-decoration: var(--accent-color) 0.1rem solid underline;
-}
-
 /* Boton Iniciar sesión y Crear Cuenta */
 
 .button {
@@ -157,6 +171,7 @@
     transition: background-color 0.2s ease-in;
     border-radius: 1rem;
     padding: 0.6rem 1rem;
+    font-family: $main-font;
 }
 
 .button:hover {
@@ -165,13 +180,6 @@
 
 .button:disabled {
     background-color: var(--secondary-accent);
-}
-
-/* Nota Final */
-
-.formulario-login p {
-    text-align: center;
-    color: var(--text-primary);
 }
 
 /* Password Input Specific Styles */
@@ -233,31 +241,7 @@
     position: relative;
 }
 
-/* Titulo */
-
-.register-header {
-    text-align: center;
-}
-
-.register-header h2 {
-    color: var(--accent-color);
-    font-size: 3.5rem;
-}
-
-.register-header p {
-    color: var(--text-primary);
-}
-
 /* Formulario */
-
-/* Contenedor Formulario */
-
-.formulario-register {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-}
 
 /* Contenedor Inputs */
 
@@ -268,22 +252,11 @@
     width: 100%;
 }
 
-/* Nota Final */
+/* Label */
 
-.formulario-register p {
-    text-align: center;
-    color: var(--text-primary);
-}
-
-.formulario-register a {
-    text-align: end;
-    margin-bottom: 0.6rem;
+.label {
     color: var(--accent-color);
-    text-decoration: none;
-}
-
-.label-register {
-    color: var(--accent-color);
+    font-family: $main-font;
     margin-bottom: 0.3rem;
 }
 
@@ -301,6 +274,7 @@
     border: none;
     text-decoration: none;
     color: var(--accent-color);
+    font-family: $secondary-font;
     padding: 0rem;
     white-space: nowrap;
 }

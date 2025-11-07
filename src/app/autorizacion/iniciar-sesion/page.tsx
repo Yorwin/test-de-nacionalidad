@@ -52,13 +52,13 @@ const LoginPage = () => {
         <div className={styles["login-page-container"]}>
 
             {/* Titulo */}
-            <div className={styles["login-header"]}>
-                <h2>Hola!</h2>
+            <div className={styles["header"]}>
+                <h1>Hola!</h1>
                 <p>Bienvenido al Instituto Cervantes</p>
             </div>
 
             {error && <p className={styles["mensaje-error-login"]}>{error}</p>}
-            <form className={styles["formulario-login"]} onSubmit={handleLogin}>
+            <form className={styles["formulario"]} onSubmit={handleLogin}>
 
                 <div className={styles["inputs"]}>
                     <div className={styles["container-input-login-register"]}>

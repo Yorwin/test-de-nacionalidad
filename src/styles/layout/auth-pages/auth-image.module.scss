@@ -1,3 +1,5 @@
+@use '../../_variables/_variables.scss' as *;
+
 .image-container {
     position: relative;
     height: 100vh;
@@ -31,6 +33,7 @@
 }
 
 .link-image {
+    font-family: $main-font;
     margin-right: 1rem;
     margin-top: 1rem;
 }
@@ -41,7 +44,9 @@
     background-color: #322B2A;
     width: 80%;
     color: #FA3B2D;
+    font-size: 1.2rem;
     border-radius: 0rem 0.6rem 0.6rem 0rem;
+    font-family: $secondary-font;
     padding: .4rem;
 }
 

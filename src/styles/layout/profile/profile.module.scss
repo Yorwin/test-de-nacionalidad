@@ -1,3 +1,5 @@
+@use '../../_variables/_variables.scss' as *;
+
 .main-container {
     display: flex;
     flex-direction: column;
@@ -47,12 +49,14 @@
     color: #CF4037;
     width: 100%;
     margin-bottom: 3rem;
-}
 
-.stats-container h2 {
-    width: 50%;
-    font-size: 1.8rem;
-    margin-bottom: 2.5rem;
+    h2 {
+        width: 50%;
+        font-size: 1.8rem;
+        font-family: $main-font;
+        font-weight: 600;
+        margin-bottom: 2.5rem;
+    }
 }
 
 .terms-and-conditions {
@@ -62,6 +66,7 @@
 
 .terms-and-conditions a {
     text-decoration: none;
+    font-family: $secondary-font;
     color: #FA3B2D;
 }
 
