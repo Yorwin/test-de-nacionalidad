@@ -1,4 +1,5 @@
 import styles from "@/styles/layout/profile/profile.module.scss";
+import Link from "next/link";
 
 /* Components */
 import HomeLink from "@/components/pages/profile/home-link";
@@ -33,7 +34,7 @@ const ProfilePage = () => {
                     </div>
                 </AuthProvider>
                 <div className={styles["terms-and-conditions"]}>
-                    <a href="#">Terminos y condiciones legales</a>
+                    <Link href="/terminos-y-condiciones">Terminos y condiciones legales</Link>
                 </div>
             </div>
         </div>

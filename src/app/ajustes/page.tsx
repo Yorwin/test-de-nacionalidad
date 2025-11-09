@@ -1,14 +1,21 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import ArrowGoBack from "../../components/arrow-go-back";
-import { useRouter } from "next/navigation";
-import { db, auth } from "@/firebase/firebase";
 import styles from "@/styles/layout/settings/settings.module.scss"
-import RecoverPasswordEmailSent from "@/components/pages/settings/recover-password-email-sent";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+/* Components */
 import ChangeEmail from "@/components/pages/settings/change-email";
+import ArrowGoBack from "../../components/arrow-go-back";
+import RecoverPasswordEmailSent from "@/components/pages/settings/recover-password-email-sent";
+
+/* Firebase */
+import { db, auth } from "@/firebase/firebase";
 import { sendPasswordResetEmail, onAuthStateChanged, User, signInAnonymously } from "firebase/auth";
 import { doc, getDoc, setDoc, DocumentData } from 'firebase/firestore';
+
+/* Context */
 import { useTheme } from "@/context/theme-context";
 
 const Settings = () => {
@@ -170,9 +177,9 @@ const Settings = () => {
 
                 <div className={styles["footer"]}>
                     <div className={styles["terms-and-conditions-container"]}>
-                        <a href="#" className={styles["terms-and-conditions"]}>
+                        <Link href="/terminos-y-condiciones" className={styles["terms-and-conditions"]}>
                             <small>Terminos y Condiciones legales</small>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

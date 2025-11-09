@@ -1,0 +1,23 @@
+@use '../../_variables/variables' as *;
+@use "../../_variables/mixins" as *;
+@use 'sass:map';
+
+.terms-and-conditions-container {
+    position: relative;
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+.header {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 80px;
+}
+
+.content {
+    margin-top: 110px;
+}

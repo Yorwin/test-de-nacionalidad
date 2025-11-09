@@ -26,7 +26,7 @@ const HomePage = () => {
         <div className={styles["footer-info"]}>
 
           {/* Terminos y Condiciones */}
-          <Link href="#" className={styles["footer-link"]}>
+          <Link href="/terminos-y-condiciones" className={styles["footer-link"]}>
             <small>Terminos y Condiciones legales</small>
           </Link>
 
