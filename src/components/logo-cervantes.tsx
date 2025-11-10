@@ -1,11 +1,11 @@
-import LogoImg from "@/resources/logo-instituto-cervantes.png"
-import styles from "@/styles/components/logo.module.scss"
+import LogoImg from "@/resources/logo.webp";
+import styles from "@/styles/components/logo.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 
 const Logo = () => {
     return (
-        <Link href="https://cervantes.org" target="_blank" className={styles["logo-container"]}>
+        <Link href="/" className={styles["logo-container"]}>
             <Image
                 alt="Logo"
                 src={LogoImg}

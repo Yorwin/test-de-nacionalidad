@@ -120,7 +120,7 @@ const Settings = () => {
         setUpdateEmail(e => !e)
     };
 
-    return <>
+    return (
         <div className={styles["main-container-settings"]}>
             {passwordChangeMessage ? <RecoverPasswordEmailSent toggleConfirmationPasswordMesage={toggleConfirmationPasswordMesage} loadingState={submit} /> : null}
             {updateEmail ? <ChangeEmail toggleShowUpdateEmailInterface={toggleShowUpdateEmailInterface} /> : null}
@@ -183,8 +183,8 @@ const Settings = () => {
                     </div>
                 </div>
             </div>
-        </div >
-    </>
+        </div>
+    )
 };
 
 export default Settings;

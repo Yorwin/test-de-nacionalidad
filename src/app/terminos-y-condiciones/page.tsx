@@ -1,10 +1,33 @@
 import styles from "@/styles/layout/terminos-y-condiciones/terminos-y-condiciones.module.scss";
 import Link from "next/link";
+import { Metadata } from "next";
 
 /* Components */
 import Logo from "@/components/logo-cervantes";
 import ProfileSection from "@/components/profile-section/profile-section";
 import TextBlockItem from "@/components/pages/terms-and-conditions/text-block-item";
+
+export const metadata: Metadata = {
+    title: 'Términos y Política | Prepárate CCSE',
+    description: 'Consulta los Términos y Condiciones de Prepárate CCSE. Conoce las normas de uso de nuestra app, políticas de privacidad y cómo protegemos tus datos mientras preparas el examen de nacionalidad española.',
+    alternates: {
+        canonical: 'https://preparateccse.com/terminos-y-condiciones',
+    },
+    robots: {
+        index: false,
+        follow: true,
+    },
+    openGraph: {
+        title: 'Términos y Política | Prepárate CCSE',
+        description: 'Consulta los Términos y Condiciones y nuestra Política de Privacidad para el uso seguro de la app Prepárate CCSE.',
+        url: 'https://preparateccse.com/terminos-y-condiciones',
+    },
+    twitter: {
+        card: 'summary',
+        title: 'Términos y Política | Prepárate CCSE',
+        description: 'Consulta los Términos y Condiciones y nuestra Política de Privacidad para el uso seguro de la app Prepárate CCSE.',
+    }
+};
 
 const TermsAndConditions = () => {
 

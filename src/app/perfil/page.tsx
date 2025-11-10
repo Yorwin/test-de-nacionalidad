@@ -1,5 +1,6 @@
 import styles from "@/styles/layout/profile/profile.module.scss";
 import Link from "next/link";
+import { Metadata } from "next";
 
 /* Components */
 import HomeLink from "@/components/pages/profile/home-link";
@@ -10,8 +11,29 @@ import BlocksStats from "@/components/pages/profile/block-stats/block-stats";
 /* Context */
 import { AuthProvider } from "@/context/auth-context";
 
-const ProfilePage = () => {
+export const metadata: Metadata = {
+    title: 'Perfil | Prepárate CCSE',
+    description: 'Gestiona tu perfil en Prepárate CCSE: consulta tu progreso en los test, ajusta tus preferencias y personaliza tu experiencia para preparar el examen de nacionalidad española de forma más efectiva.',
+    alternates: {
+        canonical: 'https://preparateccse.com/perfil',
+    },
+    robots: {
+        index: false,
+        follow: true,
+    },
+    openGraph: {
+        title: 'Perfil | Prepárate CCSE',
+        description: 'Consulta tu progreso en los test y personaliza tu experiencia.',
+        url: 'https://preparateccse.com/perfil',
+    },
+    twitter: {
+        card: 'summary',
+        title: 'Perfil | Prepárate CCSE',
+        description: 'Consulta tu progreso en los test y personaliza tu experiencia.',
+    }
+};
 
+const ProfilePage = () => {
     return <>
         <div className={styles["main-container"]}>
             <div className={styles["content-account-container"]}>

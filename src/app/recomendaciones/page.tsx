@@ -1,7 +1,20 @@
 import styles from "@/styles/layout/recomendaciones/recomendaciones.module.scss";
+import { Metadata } from "next";
 import TituloGenerico from "@/components/generic-title";
 import ArrowGoBack from "@/components/arrow-go-back";
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+    title: "Recomendaciones | Prepárate CCSE",
+    description: 'Recomendaciones y recursos clave para el examen CCSE: enlaces oficiales, test de práctica, información valiosa para estudiar y estrategias para sacar el máximo provecho de la app Prepárate CCSE',
+    alternates: {
+        canonical: 'https://preparateccse.com/recomendaciones',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
+}
 
 const Recommendations = () => {
     return <>
