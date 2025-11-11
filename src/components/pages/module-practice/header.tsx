@@ -9,7 +9,7 @@ const Header = () => {
     const router = useRouter();
 
     const GoBack = () => {
-        router.back();
+        router.push("/");
     };
 
     return (

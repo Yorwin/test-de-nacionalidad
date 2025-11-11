@@ -1,6 +1,7 @@
 "use client"
 
 import React, { ReactNode, useEffect, useState } from "react";
+import Link from "next/link";
 import noInfoImage from "@/resources/undraw_page-eaten_b2rt.svg"
 import { getFullDate } from "@/functions/functions";
 import styles from "@/styles/layout/results/graphic-test-made.module.scss";
@@ -13,18 +14,13 @@ import { db } from "@/firebase/firebase";
 /* Context */
 import { useAuth } from "@/context/auth-context";
 
-interface historyProps {
-    showSimulationResult: (e: any) => void;
-}
-
-const HistoryOfSimulations = ({ showSimulationResult }: historyProps) => {
+const HistoryOfSimulations = () => {
 
     const { user, loading: authLoading } = useAuth();
 
     const [testResults, setTestResults] = useState<ReactNode[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [displayLimit, setDisplayLimit] = useState(5);
-
 
     const getResults = async () => {
 
@@ -134,9 +130,9 @@ const HistoryOfSimulations = ({ showSimulationResult }: historyProps) => {
                         <p>{e.approved}</p>
                         <p className={styles["optional-value"]}>{`${e.percentage}%`}</p>
                         <p>
-                            <button type="button" className={styles["button-simulation-result"]} onClick={() => { showSimulationResult(e.id) }}>
+                            <Link href={`/resultados/respuestas/${e.id}`} className={styles["button-simulation-result"]}>
                                 Respuestas
-                            </button>
+                            </Link>
                         </p>
                     </div>
                 )

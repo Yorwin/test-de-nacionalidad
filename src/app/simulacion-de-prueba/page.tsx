@@ -13,7 +13,6 @@ import ArrowGoBack from "@/components/arrow-go-back";
 import QuestionGenerator from "@/components/pages/test-simulation/question-generator";
 import FinishTestMessage from "@/components/pages/test-simulation/finish-test-message";
 import CheckTestSimulation from "@/components/pages/test-simulation/check-test-simulation";
-import TestResults from "@/components/pages/test-simulation/test-results";
 import ControlSimulationButtons from "@/components/pages/test-simulation/control-simulation-buttons";
 import LoadingScreen from "@/components/loading-screen";
 
@@ -21,67 +20,71 @@ import LoadingScreen from "@/components/loading-screen";
 import { useTestCompletion } from "@/functions/hooks/useTestCompletion";
 
 /* Context */
-import { CounterProvider } from "@/context/counter-simulacion-prueba";
+import { CounterProvider, useCounter } from "@/context/counter-simulacion-prueba";
+import { AuthProvider } from "@/context/auth-context";
+import { TestProvider, useTest } from "@/context/test-context";
 
-type Pregunta = {
-    id: string;
-    pregunta: string;
-    respuestas: string[];
-    correcta: number;
+const TestSimulationWithCounter = () => {
+    const [clickedOnSave, setClickedOnSave] = useState(false);
+    const { completeTest } = useTestCompletion();
+    const { timeLeft } = useCounter();
+
+    const showResults = () => {
+        setClickedOnSave(true);
+        // Calcular duración: tiempo total menos tiempo restante
+        const totalTime = 25 * 60; // 25 minutos en segundos
+        const duration = totalTime - timeLeft;
+        completeTest(duration);
+    };
+
+    return (
+        <TestSimulationContent clickedOnSave={clickedOnSave} setClickedOnSave={setClickedOnSave} showResults={showResults} />
+    );
 };
 
-type UserAnswerType = {
-    [key: string]: number;
-}
+const TestSimulationContent = ({ clickedOnSave, showResults }: {
+    clickedOnSave: boolean,
+    setClickedOnSave: React.Dispatch<React.SetStateAction<boolean>>,
+    showResults: () => void
+}) => {
 
-type ModuleQuestionState = {
-    module: string;
-    quantity: number;
-    questions: Pregunta[];
-    userAnswers: UserAnswerType;
-}
-
-const TestSimulation = () => {
-    const { saving, results, totalQuestions, completeTest } = useTestCompletion();
+    const router = useRouter();
+    const { moduleQuestionStates,
+        moduleToBeShown,
+        setModuleToBeShown,
+        answeredQuestionsByModule,
+        updateModuleQuestions,
+        updateModuleAnswers,
+        resetTest
+    } = useTest();
 
     //Evaluar Simulación.
 
-    const [showTestSimulation, setShowTestSimulation] = useState(true);
-    const [showResultsTest, setShowResultsTest] = useState(false);
     const [showCheckTestMessage, setShowCheckTestMessage] = useState(false);
 
     const handleShowCheckTestMessage = () => {
         setShowCheckTestMessage(current => !current)
     }
 
-    const showResults = () => {
-        completeTest(() => {
-            setShowResultsTest(true);
-        }, () => {
-            setShowCheckTestMessage(false);
-            setShowTestSimulation(false);
-        }
-        );
-    };
+    // showResults se pasa como prop desde TestSimulationWithCounter
 
     //Salir de Simulacion.
 
     const [showConfirmMessage, setShowConfirmMessage] = useState(false);
     const [displayContenedorSimulacion, setDisplayContenedorSimulacion] = useState("visible");
-    const router = useRouter();
 
     const handleConfirmMessage = () => {
         setShowConfirmMessage(current => !current);
     }
 
     const handleExitSimulation = () => {
-        sessionStorage.clear();
+        resetTest();
         router.push("/")
     }
 
     useEffect(() => {
-        setDisplayContenedorSimulacion(showConfirmMessage || showCheckTestMessage || showResultsTest === true ? "hidden" : "visible");
-    }, [showConfirmMessage, showCheckTestMessage, showResultsTest])
+        setDisplayContenedorSimulacion(showConfirmMessage || showCheckTestMessage === true ? "hidden" : "visible");
+    }, [showConfirmMessage, showCheckTestMessage])
 
     //Preguntas
 
@@ -93,54 +96,8 @@ const TestSimulation = () => {
         { module: "Modulo_5", quantity: 7 },
     ];
 
-    const [moduleQuestionStates, setModuleQuestionStates] = useState<ModuleQuestionState[]>(
-        modulosData.map(({ module, quantity }) => ({
-            module,
-            quantity,
-            questions: [],
-            userAnswers: {}
-        }))
-    )
-
-    const [moduleToBeShown, setModuleToBeShown] = useState(0);
-
-    useEffect(() => {
-        const savedCurrentModule = sessionStorage.getItem("currentModule");
-        if (savedCurrentModule) {
-            setModuleToBeShown(Number(savedCurrentModule));
-        }
-    }, []);
-
     const [buttonState, setButtonState] = useState(false);
     const [goBackArrowState, setGoBackArrowState] = useState(true);
-    const [answeredQuestionsByModule, setAnsweredQuestionsByModule] = useState(
-        modulosData.map(() => 0)
-    );
-
-    const updateModuleQuestions = useCallback((moduleIndex: number, questions: Pregunta[]) => {
-        setModuleQuestionStates(prev =>
-            prev.map((moduleState, index) =>
-                index === moduleIndex ? { ...moduleState, questions }
-                    : moduleState
-            )
-        )
-    }, []);
-
-    const updateModuleAnswers = useCallback((moduleIndex: number, userAnswers: UserAnswerType) => {
-        setModuleQuestionStates((prev) => {
-            return prev.map((moduleState, index) =>
-                index === moduleIndex ? { ...moduleState, userAnswers }
-                    : moduleState
-            )
-        }
-        )
-
-        setAnsweredQuestionsByModule(prev => {
-            const newState = [...prev];
-            newState[moduleIndex] = Object.keys(userAnswers).length;
-            return newState
-        });
-    }, []);
 
     const handleNextModule = () => {
         if (moduleToBeShown < 4) {
@@ -172,7 +129,6 @@ const TestSimulation = () => {
 
     const renderQuestionGenerator = useCallback(() => {
         const currentModuleState = moduleQuestionStates[moduleToBeShown];
-        sessionStorage.setItem('currentModule', `${moduleToBeShown}`);
 
         return (
             <QuestionGenerator
@@ -186,17 +142,13 @@ const TestSimulation = () => {
         );
     }, [moduleToBeShown, moduleQuestionStates, updateModuleQuestions, updateModuleAnswers]);
 
-    const savedAnswers = sessionStorage.getItem(`answers-module-${modulosData[moduleToBeShown].module}`);
     const totalQuestionsInModule = modulosData[moduleToBeShown].quantity;
-    const answeredInCurrentModule = savedAnswers ? Object.keys(JSON.parse(savedAnswers)).length : answeredQuestionsByModule[moduleToBeShown];
+    const answeredInCurrentModule = answeredQuestionsByModule[moduleToBeShown];
     const progressPercentage = (answeredInCurrentModule / totalQuestionsInModule) * 100;
 
-    return <>
-        <CounterProvider onTimeUp={showResults}>
-            {saving ? <LoadingScreen /> : null}
-            {showResultsTest ? <TestResults results={results} total={totalQuestions} /> : null}
-
-            {showTestSimulation ? <div className={styles["main-container-test-simulation"]} style={{ overflow: `${displayContenedorSimulacion}` }}>
+    return (
+        <>
+            {clickedOnSave ? <LoadingScreen /> : <div className={styles["main-container-test-simulation"]} style={{ overflow: `${displayContenedorSimulacion}` }}>
 
                 {showConfirmMessage ? <FinishTestMessage cancelExitSimulation={handleConfirmMessage} continueExitSimulation={handleExitSimulation} /> : null}
                 {showCheckTestMessage ? <CheckTestSimulation cancelShowCheckTestMessage={handleShowCheckTestMessage} showResults={showResults} /> : null}
@@ -222,11 +174,21 @@ const TestSimulation = () => {
                 <div className={styles["control-simulation-buttons-container"]}>
                     <ControlSimulationButtons nextModule={handleNextModule} showCheckTest={handleShowCheckTestMessage} buttonState={buttonState} />
                 </div>
-            </div> : null}
+            </div>}
+        </>
+    )
+};
 
-
-        </CounterProvider>
-    </>
+const TestSimulation = () => {
+    return (
+        <TestProvider>
+            <CounterProvider>
+                <AuthProvider>
+                    <TestSimulationWithCounter />
+                </AuthProvider>
+            </CounterProvider >
+        </TestProvider>
+    );
 };
 
 export default TestSimulation;

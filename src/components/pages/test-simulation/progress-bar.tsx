@@ -1,6 +1,3 @@
-"use client"
-
-import React from "react";
 import styles from "@/styles/layout/simulacion-de-prueba/progress-bar.module.scss";
 
 const ProgressBar = ({ progress }: { progress: string }) => {
@@ -12,4 +9,4 @@ const ProgressBar = ({ progress }: { progress: string }) => {
     </>
 };
 
-export default React.memo(ProgressBar);
+export default ProgressBar;

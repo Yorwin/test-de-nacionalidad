@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react";
 import Link from "next/link";
 import styles from '@/styles/layout/results/results.module.scss';
 
@@ -16,73 +15,51 @@ import GraphicHoursSimulated from "@/components/pages/results/graphic-hours-simu
 import GraphRightTestsPercentage from "@/components/pages/results/graphic-percentage-right-answers";
 import GraphicWeekSummary from "@/components/pages/results/graphic-week-summary";
 import HistoryOfSimulations from "@/components/pages/results/history-of-simulations";
-import SimulationResults from "@/components/pages/results/simulation-results/simulation-results";
 
 /* Context */
 import { AuthProvider } from "@/context/auth-context";
 
 const Results = () => {
-
-    const [simulationResult, setSimulationResult] = useState(false);
-    const [idResult, setIdResult] = useState("");
-
-    const toggleShowSimulationResult = (element: any) => {
-
-        setSimulationResult(e => !e);
-
-        let questionId;
-
-        if (!simulationResult) {
-            questionId = element;
-            setIdResult(questionId);
-        }
-
-        return questionId;
-    }
-
     return (
         <div className={styles["main-container-results"]}>
-            {simulationResult ? <SimulationResults showSimulationResult={toggleShowSimulationResult} questionId={idResult} /> : (
-                <div className={styles["content-container"]}>
-                    {/* Header */}
-                    <div className={styles["main-page-header"]}>
-                        <div className={styles["title-container"]}>
-                            <TituloGenerico titulo="Resultados exámenes" />
-                        </div>
-
-                        <div className={styles["container-arrow-go-back"]}>
-                            <Link href={"/"}>
-                                <ArrowGoBack />
-                            </Link>
-                        </div>
+            <div className={styles["content-container"]}>
+                {/* Header */}
+                <div className={styles["main-page-header"]}>
+                    <div className={styles["title-container"]}>
+                        <TituloGenerico titulo="Resultados exámenes" />
                     </div>
 
-                    {/* Graphs */}
-                    <AuthProvider>
-                        <div className={styles["graphics-main-container"]}>
-                            <div className="container-fluid">
-                                <div className="row">
-                                    <div className="col-md-2 col-sm-12 mb-sm-3 d-flex justify-content-center">
-                                        <GraphRightTestsPercentage />
-                                    </div>
-                                    <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
-                                        <GraphicHoursSimulated />
-                                    </div>
-                                    <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
-                                        <GraphicTestsMade />
-                                    </div>
-                                    <div className="col-md-4 col-sm-12 mb-sm-5 d-flex justify-content-center">
-                                        <GraphicWeekSummary />
-                                    </div>
+                    <div className={styles["container-arrow-go-back"]}>
+                        <Link href={"/"}>
+                            <ArrowGoBack />
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Graphs */}
+                <AuthProvider>
+                    <div className={styles["graphics-main-container"]}>
+                        <div className="container-fluid">
+                            <div className="row">
+                                <div className="col-md-2 col-sm-12 mb-sm-3 d-flex justify-content-center">
+                                    <GraphRightTestsPercentage />
+                                </div>
+                                <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
+                                    <GraphicHoursSimulated />
+                                </div>
+                                <div className="col-md-3 col-sm-6 mb-sm-5 d-flex justify-content-center">
+                                    <GraphicTestsMade />
+                                </div>
+                                <div className="col-md-4 col-sm-12 mb-sm-5 d-flex justify-content-center">
+                                    <GraphicWeekSummary />
                                 </div>
                             </div>
-
-                            {/* History of Simulations*/}
-                            <HistoryOfSimulations showSimulationResult={toggleShowSimulationResult} />
                         </div>
-                    </AuthProvider>
-                </div>
-            )}
+
+                        <HistoryOfSimulations />
+                    </div>
+                </AuthProvider>
+            </div>
         </div>
     )
 };

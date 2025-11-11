@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from '@/styles/layout/results/results.module.scss';
 
 /* Components */
@@ -12,10 +13,12 @@ import ControlBar from "@/components/pages/results/simulation-results/components
 /* Firebase */
 
 import { doc, getDoc } from "firebase/firestore";
-import { db, auth } from "@/firebase/firebase";
+import { db } from "@/firebase/firebase";
+
+/* Context */
+import { useAuth } from "@/context/auth-context";
 
 interface historyProps {
-    showSimulationResult: (e: any) => void;
     questionId: string;
 }
 
@@ -28,13 +31,9 @@ interface ModulesMap {
     [key: string]: Questions[]; // Cada módulo contiene un array de preguntas
 }
 
-const SimulationResults = ({ showSimulationResult, questionId }: historyProps) => {
+const SimulationResults = ({ questionId }: historyProps) => {
 
-    const user = auth.currentUser;
-
-    if (!user) {
-        throw new Error("Usuario no autenticado");
-    }
+    const { user } = useAuth();
 
     const [questionEachModule, setQuestionEachModule] = useState<ModulesMap>({});
     const [answersEachModule, setAnswersEachModule] = useState<any>([]);
@@ -44,8 +43,12 @@ const SimulationResults = ({ showSimulationResult, questionId }: historyProps) =
     const [currentModule, setCurrentModule] = useState<number>(0);
 
     useEffect(() => {
+        if (!user) {
+            return;
+        }
 
         const getQuestions = async () => {
+
             try {
                 setIsLoading(true);
                 const questionRef = doc(db, "users", user.uid, "resultados", questionId);
@@ -96,7 +99,7 @@ const SimulationResults = ({ showSimulationResult, questionId }: historyProps) =
         // Ejecutar la función
         getQuestions();
         getAnswers();
-    }, [questionId, user.uid]); // Solo dependencias necesarias
+    }, [questionId, user]); // Solo dependencias necesarias
 
     const goBack = () => {
         setCurrentModule((e: number) => {
@@ -122,9 +125,9 @@ const SimulationResults = ({ showSimulationResult, questionId }: historyProps) =
         <div className={styles["simulation-results-container"]}>
             <div className={styles["header-container"]}>
                 <div>
-                    <button onClick={showSimulationResult} className={styles["exit-test-icon"]}>
+                    <Link href="/resultados" className={styles["exit-test-icon"]}>
                         <i className="bi bi-x-circle-fill"></i>
-                    </button>
+                    </Link>
                 </div>
                 <div className={styles["check-answers-container"]}>
                     <h1 className={styles["title-check-answers"]}>Revisar respuestas</h1>

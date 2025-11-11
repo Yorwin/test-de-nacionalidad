@@ -29,7 +29,6 @@ const GraphicWeekSummary = () => {
     const processWeekArray = (array: any) => {
 
         const processedWeekArray = array.map((e: any, index: number) => {
-
             let weekDay = calculateWeekDay(index);
 
             /*Preparamos dos casos, el día de la semana no tiene datos, entregando un objeto, con una duración de cero, o el día de la sema si tiene datos, 
@@ -44,7 +43,7 @@ const GraphicWeekSummary = () => {
             } else {
                 return e.map((item: any) => ({
                     weekDay: weekDay,
-                    duration: 1500 - (item.duration ?? 0),
+                    duration: (item.duration ?? 0),
                 }));
             }
         });

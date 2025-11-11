@@ -1,6 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useTestCompletion } from "@/functions/hooks/useTestCompletion";
 
 type CounterPropsType = {
     children: React.ReactNode;
@@ -17,15 +18,12 @@ type CounterContextType = {
 
 const CounterContext = createContext<CounterContextType | undefined>(undefined);
 
-export const CounterProvider = ({ children, onTimeUp }: CounterPropsType) => {
+export const CounterProvider = ({ children }: CounterPropsType) => {
 
     const defaultTime = 25 * 60;
 
-    const [timeLeft, setTimeLeft] = useState(() => {
-        const savedTime = sessionStorage.getItem("cronometro");
-        return savedTime ? Number(savedTime) : defaultTime;
-    });
-
+    const { completeTest } = useTestCompletion();
+    const [timeLeft, setTimeLeft] = useState(defaultTime);;
     const [isActive, setIsActive] = useState(true);
 
     useEffect(() => {
@@ -34,23 +32,21 @@ export const CounterProvider = ({ children, onTimeUp }: CounterPropsType) => {
         if (isActive && timeLeft > 0) {
             timer = setInterval(() => {
                 setTimeLeft((prevTime) => prevTime - 1);
-                sessionStorage.setItem("cronometro", `${timeLeft}`);
             }, 1000);
 
         } else if (timeLeft === 0) {
             if (timer) clearInterval(timer);
-            if (onTimeUp) {
-                onTimeUp();
-            } else {
-                alert("¡Tiempo Terminado!");
-            }
+            // Calcular duración: tiempo total menos tiempo restante (que es 0)
+            const totalTime = 25 * 60; // 25 minutos en segundos
+            const duration = totalTime - timeLeft;
+            completeTest(duration);
         }
 
         return () => {
             if (timer) clearInterval(timer);
         }
 
-    }, [isActive, timeLeft, onTimeUp]);
+    }, [isActive, timeLeft]);
 
     const formatTime = (seconds: number): string => {
         const minutes = Math.floor(seconds / 60);
@@ -68,22 +64,6 @@ export const CounterProvider = ({ children, onTimeUp }: CounterPropsType) => {
     const pauseTimer = () => {
         setIsActive(false);
     }
-
-    /*
-    
-    Funciones para controlar el contador (A Guardar por si fuese necesario usarlas en otro componente)
-    
-    const resetTimer = () => {
-        if (intervalId) {
-            clearInterval(intervalId)
-        }
-    
-        setTimeLeft(25 * 60);
-        setIsActive(false);
-        setIntervalId(null);
-    };
-    
-    */
 
     const value = {
         timeLeft,

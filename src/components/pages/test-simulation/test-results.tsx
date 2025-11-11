@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "@/styles/layout/simulacion-de-prueba/check-test-simulation.module.scss";
 import { doc, getDoc, setDoc, updateDoc, collection, getDocs, query, orderBy, DocumentData, QuerySnapshot } from 'firebase/firestore';
-import { auth, db } from "@/firebase/firebase";
+import { db } from "@/firebase/firebase";
+import { useAuth } from "@/context/auth-context";
 import { useRouter } from "next/navigation";
 
 const TestResults = ({ results, total }: { results: number, total: number }) => {
 
-    const user = auth.currentUser;
+    const { user } = useAuth();
 
     if (!user) {
         throw new Error("No se ha logrado encontrar al usuario autenticado");
     }
+
+    const [loading, setLoading] = useState(true);
 
     const router = useRouter();
 
@@ -19,7 +22,7 @@ const TestResults = ({ results, total }: { results: number, total: number }) => 
         router.push("/");
     };
 
-    useState(() => {
+    useEffect(() => {
         const calculateAndStoreExperience = async (): Promise<void> => {
             try {
                 // Paso 1: Obtener todos los resultados
@@ -53,13 +56,23 @@ const TestResults = ({ results, total }: { results: number, total: number }) => 
 
             } catch (err) {
                 console.error("Error al calcular o guardar experiencia:", err);
+            } finally {
+                setLoading(false);
             }
         };
 
         calculateAndStoreExperience();
-    });
+    }, [user]);
 
-    return <>
+    if (loading) {
+        return (
+            <div className={styles["test-results-main-container"]}>
+                <h2>Cargando resultados...</h2>
+            </div>
+        )
+    }
+
+    return (
         <div className={styles["test-results-main-container"]}>
             <h2>Resultados Test</h2>
             <div className={styles["results-data-container"]}>
@@ -73,7 +86,7 @@ const TestResults = ({ results, total }: { results: number, total: number }) => 
                 </button>
             </div>
         </div>
-    </>
+    )
 };
 
 export default TestResults;

@@ -34,8 +34,7 @@ const GraphicHoursSimulated = () => {
 
                     if (data.testId === "test_simulation") {
                         const duration = data.duration;
-                        const timeUsed = testTime - duration;
-                        hoursSimulated.push(timeUsed);
+                        hoursSimulated.push(duration);
                     }
                 })
 

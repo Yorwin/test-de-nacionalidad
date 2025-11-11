@@ -89,7 +89,7 @@ const SimulationResultQuestions = ({ questionData, currentModule, answers }: Sim
                                 iconClassName = "bi bi-check-lg";
                             } else if (isCorrectOption) {
                                 // Es la opción correcta pero NO fue seleccionada
-                                optionClassName = `${optionClassName} ${styles["question-option-right-but-not-selected"]}`;
+                                optionClassName = `${optionClassName} ${styles["question-option-right-not-selected"]}`;
                                 iconClassName = "bi bi-check-lg";
                             } else if (isSelectedOption) {
                                 // No es la correcta pero fue seleccionada (respuesta incorrecta)
@@ -110,6 +110,8 @@ const SimulationResultQuestions = ({ questionData, currentModule, answers }: Sim
                                 optionClassName = `${optionClassName} ${styles["question-option-right-not-selected"]}`;
                                 iconClassName = "bi bi-check-lg";
                             } else {
+                            
+                                // No es correcta ni fue seleccionada
                                 optionClassName = `${optionClassName} ${styles["question-option-not-selected"]}`;
                                 iconClassName = styles["not-selected-option"];
                             }

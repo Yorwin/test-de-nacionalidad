@@ -56,7 +56,11 @@ export const saveResultsTest = async ({ testId, score, answers, duration, questi
 
     //Guardar en FireStore
     const docRef = await addDoc(collection(db, 'users', user.uid, 'resultados'), result);
-    return docRef.id;
+
+    return {
+      userId: user.uid,
+      docRef: docRef.id,
+    }
 
   } catch (error) {
     console.error('Error al guardar resultado:', error)
