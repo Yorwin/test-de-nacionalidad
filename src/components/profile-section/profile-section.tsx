@@ -153,7 +153,7 @@ const ProfileSection = () => {
                 onClick={toggleMenu}
                 className={`${styles["menu-button"]}`}
             >
-                <i className="bi bi-chevron-down"></i>
+                <i className={`bi bi-chevron-down ${styles["arrow"]}`}></i>
             </button>
             {isButtonPressed && menuBar}
         </div>

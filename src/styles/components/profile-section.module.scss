@@ -156,6 +156,12 @@
 
     /* Menu Desplegable */
 
+    .menu-button {
+        i {
+            padding-left: .2rem;
+        }
+    }
+
     .menu-bar ul {
         display: flex;
         flex-direction: column;

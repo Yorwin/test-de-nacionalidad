@@ -9,11 +9,12 @@ import HomePageOptionElement from "@/components/pages/homepage/homepage-option-e
 const HomePage = () => {
   return (
     <div className={styles["main-container"]}>
+      <div></div>
       <div className={styles["header-content"]}>
         <Logo />
         <ProfileSection />
       </div>
-      <div className="container-lg mx-0 my-5 py-md-5">
+      <div className="container-lg mx-0 mb-5">
         <h1 className={styles["homepage-title"]}>LA MEJOR HERRAMIENTA PARA APROBAR TU EXAMÉN DE NACIONALIDAD ESPAÑOLA</h1>
         <div className="row">
           <HomePageOptionElement icono="bi bi-display" titulo="Simulación de Prueba" descripcion="Reduce ansiedad, mejora tiempo, identifica fallos, refuerza aprendizaje, y aumenta confianza." enlace={"/simulacion-de-prueba"} />

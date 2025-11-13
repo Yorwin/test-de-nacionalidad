@@ -2,7 +2,7 @@
 
 .main-container {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     padding: 2rem 4rem;
     overflow-x: hidden;
     position: relative;
@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 62px;
 }
 
 .homepage-title {
@@ -85,6 +86,11 @@
 }
 
 @media screen and (max-width: 768px) {
+
+    .header-content {
+        margin-bottom: 42px;
+    }
+
     .terms-and-conditions-container {
         padding-bottom: 0rem;
     }
@@ -97,7 +103,7 @@
 
 @media screen and (max-width: 768px) {
     .main-container {
-        padding: 2.3rem 1rem;
+        padding: 1.7rem 3rem;
     }
 
     .header-content {
