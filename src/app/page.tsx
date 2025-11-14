@@ -14,8 +14,9 @@ const HomePage = () => {
         <Logo />
         <ProfileSection />
       </div>
-      <div className="container-lg mx-0 mb-5">
+      <div className="container-lg mx-0 my-3">
         <h1 className={styles["homepage-title"]}>LA MEJOR HERRAMIENTA PARA APROBAR TU EXAMÉN DE NACIONALIDAD ESPAÑOLA</h1>
+        <p className={styles["parrafo"]}>Prepárate fácilmente para el examen de nacionalidad española (CCSE) del Instituto Cervantes. Accede a tests de nacionalidad, simulacros y preguntas del examen para estudiar. Nuestra plataforma te ayuda a comprender los contenidos oficiales y practicar con ejercicios reales para acercarte a tu objetivo de obtener la nacionalidad española.</p>
         <div className="row">
           <HomePageOptionElement icono="bi bi-display" titulo="Simulación de Prueba" descripcion="Reduce ansiedad, mejora tiempo, identifica fallos, refuerza aprendizaje, y aumenta confianza." enlace={"/simulacion-de-prueba"} />
           <HomePageOptionElement icono="bi bi-book" titulo="Práctica por módulo" descripcion="Permite practicar por separado, mejorar puntos débiles, y avanzar a tu ritmo." enlace={"/practica-por-modulo"} />

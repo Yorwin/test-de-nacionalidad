@@ -1,12 +1,8 @@
 import React from "react";
+import Link from "next/link";
 import styles from "@/styles/layout/practica-por-modulo/practica-por-modulo.module.scss";
 
-interface ModuleContentProps {
-    setModuleToBePracticed: (param: number) => void;
-    toggleModulePractice: () => void;
-}
-
-const ModuleContent = ({ toggleModulePractice, setModuleToBePracticed }: ModuleContentProps) => {
+const ModuleContent = () => {
 
     const arrayModulePractice = [{
         desc: "Gobierno, legislación y participación ciudadana.",
@@ -34,22 +30,17 @@ const ModuleContent = ({ toggleModulePractice, setModuleToBePracticed }: ModuleC
         module: 5,
     }]
 
-    const startPractice = (e: number) => {
-        setModuleToBePracticed(e)
-        toggleModulePractice();
-    };
-
     const contentArray = arrayModulePractice.map((e, index) => {
         return (
             <div className={styles["module-clickable-content"]} key={index}>
-                <button onClick={() => startPractice(e.module)} className={styles["button-module"]}>
+                <Link href={`practica-por-modulo/simulacion/${index + 1}`} className={styles["button-module"]}>
                     <div className={styles["module-practice"]}>
                         <div className={styles["icon-container"]}>
                             <i className={e.icon}></i>
                         </div>
                         <p className={styles["module-desc"]}>{e.desc}</p>
                     </div>
-                </button>
+                </Link>
             </div>
         )
     })

@@ -1,25 +1,32 @@
 "use client"
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
+import { useRouter } from "next/navigation";
 import styles from "@/styles/layout/practica-por-modulo/test-page.module.scss";
-import Header from "@/components/pages/module-practice/test-page/header-test";
-import LeaveTest from "@/components/pages/module-practice/test-page/leave-test-confirmation"
-import TestResultsPage from "@/components/pages/module-practice/test-page/test-result-page";
-import CurrentQuestion from "@/components/pages/module-practice/test-page/current-question";
+
+/* Firebase */
 import { saveModulePractice } from "@/firebase/firebase";
 import { db } from "@/firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { QAEntry, questionType, saveQuestionAnswerLocally, saveAnswersInServer, saveQuestionsInServer, verifiedAnswersBeforeResults } from "@/types/types";
 
-interface TestPageProps {
-    toggleModulePractice: () => void;
-    moduleNumber: number;
+/* Components */
+import Header from "@/components/pages/module-practice/test-page/header-test";
+import LeaveTest from "@/components/pages/module-practice/test-page/leave-test-confirmation";
+import TestResultsPage from "@/components/pages/module-practice/test-page/test-result-page";
+import CurrentQuestion from "@/components/pages/module-practice/test-page/current-question";
+
+type TestPageProps = {
+    params: Promise<{
+        moduleNumber: string,
+    }>
 }
 
-const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
+const TestPage = ({ params }: TestPageProps) => {
+
+    const { moduleNumber } = use(params);
 
     //useStates
-
     const [isQuestionChecked, setIsQuestionChecked] = useState(false);
     const [loading, setIsLoading] = useState(true);
 
@@ -31,6 +38,10 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
     const [showTestResults, setShowTestResults] = useState(false);
     const [arrayQuestionsAndAnswers, setArrayQuestionsAndAnswers] = useState<QAEntry[]>([]);
 
+    /* useRouter */
+
+    const router = useRouter();
+
     //Results Id
     const [resultId, setResultId] = useState<string | null>(null);
 
@@ -41,22 +52,7 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
     };
 
     const goBackToHome = () => {
-
-        const keys = [];
-
-        for (let i = 0; i < sessionStorage.length; i++) {
-            const key = sessionStorage.key(i);
-            if (key) { // Verificamos que key no sea null
-                keys.push(key);
-            }
-        }
-
-        // Ahora elimina los items usando las keys guardadas
-        keys.forEach(key => {
-            sessionStorage.removeItem(key);
-        });
-
-        toggleModulePractice();
+        router.push("/practica-por-modulo");
     };
 
     //REVISAR PREGUNTA.
@@ -171,39 +167,41 @@ const TestPage = ({ toggleModulePractice, moduleNumber }: TestPageProps) => {
     }, [moduleNumber]);
 
     return (
-        <div className={styles["main-container-test"]}>
-            {showTestResults && resultId != null ? (
-                <TestResultsPage goBackToHome={goBackToHome} resultId={resultId} />
-            ) : (
-                <>
-                    {userWantsToLeave && (
-                        <LeaveTest
-                            leaveTest={goBackToHome}
-                            toggleLeaveTestMessage={toggleLeaveTestMessage}
-                        />
-                    )}
+        <div className={styles["main-container-module-practice"]}>
+            <div className={styles["main-container-test"]}>
+                {showTestResults && resultId != null ? (
+                    <TestResultsPage goBackToHome={goBackToHome} resultId={resultId} />
+                ) : (
+                    <>
+                        {userWantsToLeave && (
+                            <LeaveTest
+                                leaveTest={goBackToHome}
+                                toggleLeaveTestMessage={toggleLeaveTestMessage}
+                            />
+                        )}
 
-                    <div className={styles["header-container"]}>
-                        <Header
-                            totalAmountOfQuestions={totalAmountOfQuestions}
-                            moduleSelected={moduleNumber}
-                            toggleLeaveTestMessage={toggleLeaveTestMessage}
-                            currentQuestion={questionCounter}
-                        />
-                    </div>
+                        <div className={styles["header-container"]}>
+                            <Header
+                                totalAmountOfQuestions={totalAmountOfQuestions}
+                                moduleSelected={Number(moduleNumber)}
+                                toggleLeaveTestMessage={toggleLeaveTestMessage}
+                                currentQuestion={questionCounter}
+                            />
+                        </div>
 
-                    <CurrentQuestion
-                        loading={loading}
-                        questions={questions}
-                        questionCounter={questionCounter}
-                        selectedAnswer={selectedAnswer}
-                        handleAnswerSelection={handleAnswerSelection}
-                        finishModulePractice={finishModulePractice}
-                        saveQuestionAnswer={saveQuestionAnswer}
-                        isQuestionChecked={isQuestionChecked}
-                        checkQuestion={checkQuestion} />
-                </>
-            )}
+                        <CurrentQuestion
+                            loading={loading}
+                            questions={questions}
+                            questionCounter={questionCounter}
+                            selectedAnswer={selectedAnswer}
+                            handleAnswerSelection={handleAnswerSelection}
+                            finishModulePractice={finishModulePractice}
+                            saveQuestionAnswer={saveQuestionAnswer}
+                            isQuestionChecked={isQuestionChecked}
+                            checkQuestion={checkQuestion} />
+                    </>
+                )}
+            </div>
         </div>
     );
 

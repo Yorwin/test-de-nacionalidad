@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from "react";
 import styles from "@/styles/layout/practica-por-modulo/practica-por-modulo.module.scss";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -23,8 +25,9 @@ interface totalQuestions {
 
 const ColumnChart = () => {
 
-    const { userData, loading: authLoading } = useAuth();
+    const { user } = useAuth();
 
+    const [contentLoading, setContentLoading] = useState<boolean>(true);
     const [chartData, setChartData] = useState<number[]>([0, 0, 0, 0, 0]);
     const [svgHeight, setSvgHeight] = useState(450);
 
@@ -58,12 +61,12 @@ const ColumnChart = () => {
         };
 
         const getModulePracticesByNumber = async (moduleNumber: number) => {
-            if (!userData || !userData.uid) {
+            if (!user) {
                 return [];
             }
 
             const q = query(
-                collection(db, "users", userData.uid, "resultados"),
+                collection(db, "users", user.uid, "resultados"),
                 where("module_number", "==", `${moduleNumber}`) // O asegúrate de que en Firestore es tipo número
             );
 
@@ -170,6 +173,8 @@ const ColumnChart = () => {
                 updateModulePreparationPercentage(preparationData);
             } catch (error) {
                 console.error("Error al intentar obtener los datos de los módulos:", error);
+            } finally {
+                setContentLoading(false);
             }
         };
 
@@ -178,9 +183,9 @@ const ColumnChart = () => {
 
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, [userData]);
+    }, [user]);
 
-    if (authLoading || !userData) {
+    if (contentLoading) {
         return (
             <SkeletonColumnChart />
         );
@@ -199,7 +204,6 @@ const ColumnChart = () => {
     const scaleY = (value: number) => {
         return chartHeight - (value / 100) * chartHeight + padding.top;
     };
-
 
     return (
         <div className={styles["column-chart"]}>

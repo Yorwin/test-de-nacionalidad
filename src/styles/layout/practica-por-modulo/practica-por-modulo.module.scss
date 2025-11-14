@@ -2,22 +2,6 @@
 
 /* MAIN CONTAINERS */
 
-.main-container-module-practice {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 100vh;
-    padding: 2rem 2rem 0rem 2rem;
-    overflow: hidden;
-}
-
-@media screen and (max-width:568px) {
-    .main-container-module-practice {
-        padding: 2rem 0.5rem 0rem 0.5rem;
-    }
-}
-
 .main-container-module-practice-home {
     display: flex;
     flex-direction: column;
@@ -76,8 +60,13 @@
     display: flex;
     justify-content: center;
     background-color: transparent;
+    text-decoration: none;
     border: none;
     width: 100%;
+
+    &:hover {
+        text-decoration: 1px var(--text-color) underline solid;
+    }
 }
 
 .module-practice {

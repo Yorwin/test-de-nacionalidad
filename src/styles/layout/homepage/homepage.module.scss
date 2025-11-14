@@ -24,12 +24,22 @@
     font-weight: 600;
 }
 
+.parrafo {
+    color: var(--text-color);
+    font-size: clamp(.8rem, .4rem + 1.2vw, 1.2rem);
+    font-family: $secondary-font;
+}
+
+.footer-content {
+    position: relative;
+    height: 150px;
+    width: 100%;
+}
+
 .footer-content h2 {
     position: absolute;
     right: 0;
     bottom: 0;
-    padding-bottom: 4rem;
-    padding-right: 4rem;
     margin-bottom: 0rem;
 
     /* Font Style */
@@ -46,8 +56,6 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    padding-bottom: 4rem;
-    padding-left: 4rem;
     display: flex;
     justify-content: flex-start;
     gap: 1rem;
@@ -86,9 +94,12 @@
 }
 
 @media screen and (max-width: 768px) {
-
     .header-content {
         margin-bottom: 42px;
+    }
+
+    .parrafo {
+        text-align: center;
     }
 
     .terms-and-conditions-container {
@@ -99,9 +110,7 @@
         width: 100%;
         text-align: center;
     }
-}
 
-@media screen and (max-width: 768px) {
     .main-container {
         padding: 1.7rem 3rem;
     }
@@ -146,6 +155,6 @@
     }
 
     .homepage-title {
-        margin-bottom: 2rem;
+        margin-bottom: .7rem;
     }
 }
