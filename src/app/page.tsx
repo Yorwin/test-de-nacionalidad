@@ -18,10 +18,10 @@ const HomePage = () => {
         <h1 className={styles["homepage-title"]}>LA MEJOR HERRAMIENTA PARA APROBAR TU EXAMÉN DE NACIONALIDAD ESPAÑOLA</h1>
         <p className={styles["parrafo"]}>Prepárate fácilmente para el examen de nacionalidad española (CCSE) del Instituto Cervantes. Accede a tests de nacionalidad, simulacros y preguntas del examen para estudiar. Nuestra plataforma te ayuda a comprender los contenidos oficiales y practicar con ejercicios reales para acercarte a tu objetivo de obtener la nacionalidad española.</p>
         <div className="row">
-          <HomePageOptionElement icono="bi bi-display" titulo="Simulación de Prueba" descripcion="Reduce ansiedad, mejora tiempo, identifica fallos, refuerza aprendizaje, y aumenta confianza." enlace={"/simulacion-de-prueba"} />
-          <HomePageOptionElement icono="bi bi-book" titulo="Práctica por módulo" descripcion="Permite practicar por separado, mejorar puntos débiles, y avanzar a tu ritmo." enlace={"/practica-por-modulo"} />
-          <HomePageOptionElement icono="bi bi-bar-chart-line-fill" titulo="Resultados" descripcion="Identifica fortalezas y debilidades, mide progreso, optimiza estudio, y enfoca mejoras." enlace={"/resultados"} />
-          <HomePageOptionElement icono="bi bi-info-circle" titulo="Recomendaciones" descripcion="Reduce ansiedad, mejora tiempo, identifica fallos, refuerza aprendizaje y aumenta confianza." enlace={"/recomendaciones"} />
+          <HomePageOptionElement icono="bi bi-display" titulo="Simulación de Prueba" descripcion="Simula el examen de nacionalidad española (CCSE) con un test de 25 minutos y preguntas actualizadas para evaluar tu preparación real." enlace={"/simulacion-de-prueba"} />
+          <HomePageOptionElement icono="bi bi-book" titulo="Práctica por módulo" descripcion="Muestra tu porcentaje de preparación por módulo, ofreciéndote una visión de lo que ya dominas y lo que necesitas revisar." enlace={"/practica-por-modulo"} />
+          <HomePageOptionElement icono="bi bi-bar-chart-line-fill" titulo="Resultados" descripcion="Ve tus resultados del test de nacionalidad española (CCSE). Revisa tu porcentaje de aciertos, tu rendimiento y tus respuestas correctas e incorrectas para analizar tu progreso." enlace={"/resultados"} />
+          <HomePageOptionElement icono="bi bi-info-circle" titulo="Recomendaciones" descripcion="Mejora tu preparación para el examen de nacionalidad española (CCSE) con recomendaciones prácticas que hacen tu estudio más cómodo, organizado y adaptado a tu ritmo." enlace={"/recomendaciones"} />
         </div>
       </div>
       <div className={styles["footer-content"]}>

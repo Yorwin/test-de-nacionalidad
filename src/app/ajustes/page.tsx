@@ -7,6 +7,7 @@ import Link from "next/link";
 
 /* Components */
 import ChangeEmail from "@/components/pages/settings/change-email";
+import DeleteAccount from "@/components/pages/settings/delete-account";
 import ArrowGoBack from "../../components/arrow-go-back";
 import RecoverPasswordEmailSent from "@/components/pages/settings/recover-password-email-sent";
 
@@ -120,10 +121,19 @@ const Settings = () => {
         setUpdateEmail(e => !e)
     };
 
+    /* Delete Account Logic */
+
+    const [deleteAccount, setDeleteAccount] = useState(false);
+
+    const toggleShowDeleteInterface = () => {
+        setDeleteAccount(e => !e);
+    };
+
     return (
         <div className={styles["main-container-settings"]}>
             {passwordChangeMessage ? <RecoverPasswordEmailSent toggleConfirmationPasswordMesage={toggleConfirmationPasswordMesage} loadingState={submit} /> : null}
             {updateEmail ? <ChangeEmail toggleShowUpdateEmailInterface={toggleShowUpdateEmailInterface} /> : null}
+            {deleteAccount ? <DeleteAccount toggleShowDeleteInterface={toggleShowDeleteInterface} /> : null}
             <div className={styles["main-content"]}>
                 <div className={styles["header-container"]}>
                     <button onClick={goBack}>
@@ -139,6 +149,7 @@ const Settings = () => {
                         <div className={styles["buttons-container"]}>
                             <button onClick={toggleConfirmationPasswordMesage}>Cambiar contraseña</button>
                             <button onClick={toggleShowUpdateEmailInterface}>Cambiar correo</button>
+                            <button onClick={toggleShowDeleteInterface}>Eliminar cuenta</button>
                         </div>
                     </div>) : <h3>Cargando...</h3>}
 
@@ -165,7 +176,7 @@ const Settings = () => {
                     <div className={styles["block"]}>
                         <h3>ACERCA DE</h3>
                         <div className={styles["buttons-container"]}>
-                            <button className={styles["button-key-container"]}>Terminos y condiciones</button>
+                            <button onClick={() => router.push("terminos-y-condiciones")} className={styles["button-key-container"]}>Terminos y condiciones</button>
                             <div className={styles["key-value-container"]}>
                                 <small className={styles["key"]}>Versión de la App</small>
                                 <small className={styles["value"]}>1.0.0</small>

@@ -11,7 +11,7 @@ const Experience = ({ experience, loading }: { experience: number, loading: bool
                 <i className="bi bi-stars"></i>
             </div>
             <div className={styles["info-container"]}>
-                <p className={styles["result"]}>{experience}</p>
+                <p className={styles["result"]}>{experience ? experience : 0}</p>
                 <p className={styles["type-of-stat"]}>EXP Totales</p>
             </div>
         </div>

@@ -1,0 +1,188 @@
+@use '../../_variables/_variables.scss' as *;
+
+.main-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.delete-account-container {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    p {
+        font-family: $secondary-font;
+    }
+}
+
+/* Container Media Queries */
+
+@media screen and (max-width: 768px) {
+
+    /* Container */
+
+    .delete-account-container {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Title */
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    /* Labels */
+
+    .label-style {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    /* Title */
+
+    .title {
+        font-size: 1.2rem;
+    }
+
+    /* Labels */
+
+    .label-style {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+}
+
+.title {
+    margin-bottom: 20px;
+    color: #333;
+    font-family: $main-font;
+    font-weight: 600;
+    text-align: center;
+}
+
+.anonymous-account-title {
+    text-align: center;
+    color: #FA3B2D;
+    margin-bottom: 0;
+    font-size: 1.4rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+
+    .label-style {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-family: $secondary-font;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+}
+
+.btn-delete {
+    width: 100%;
+    padding: 12px;
+    background-color: #A55A55;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: $main-font;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+
+    &:hover {
+        background-color: #FA3B2D;
+    }
+
+    &:disabled {
+        background-color: #a8c7fa;
+        cursor: not-allowed;
+    }
+}
+
+.btn-cancel {
+    width: 100%;
+    padding: 12px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: $main-font;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.close-icon-container {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 0.5rem 1rem;
+}
+
+.close-icon-container i {
+    cursor: pointer;
+    font-size: 3.2rem;
+    color: #322B2A;
+    transition: color .3s;
+}
+
+.close-icon-container button {
+    background-color: transparent;
+    border: none;
+}
+
+.close-icon-container i:hover {
+    color: #FA3B2D;
+}
