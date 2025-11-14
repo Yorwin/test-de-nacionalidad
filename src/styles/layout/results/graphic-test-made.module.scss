@@ -429,11 +429,13 @@
     display: flex;
     justify-content: start;
     align-items: center;
-}
 
-.container-no-data p {
-    padding-left: 1rem;
-    width: 50%;
+    p {
+        color: var(--text-color);
+        font-family: $secondary-font;
+        padding-left: 1rem;
+        width: 50%;
+    }
 }
 
 .container-image {

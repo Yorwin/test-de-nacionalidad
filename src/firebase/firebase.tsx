@@ -6,7 +6,8 @@ import {
   collection,
   addDoc,
   doc,
-  updateDoc
+  updateDoc,
+  setDoc
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getFullDate, getCurrentSecondsSinceMidNight } from "@/functions/functions";
@@ -17,13 +18,13 @@ import { SaveResults, SaveResultsModulePractice } from "@/types/types";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC3OK-TRXupo1qTjPnsEHhUkz0uqZ0PSwg",
-  authDomain: "web-prueba-ccse.firebaseapp.com",
-  projectId: "web-prueba-ccse",
-  storageBucket: "web-prueba-ccse.firebasestorage.app",
-  messagingSenderId: "180029201868",
-  appId: "1:180029201868:web:3161c5fda5116f22f51169",
-  measurementId: "G-PG7N58VQCQ"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -64,6 +65,33 @@ export const saveResultsTest = async ({ testId, score, answers, duration, questi
 
   } catch (error) {
     console.error('Error al guardar resultado:', error)
+    throw error;
+  }
+};
+
+// Función para subir preguntas desde JSON
+export const uploadQuestions = async (module: number, questions: any[]) => {
+  try {
+    const user = auth.currentUser;
+    if (!user) {
+      throw new Error('Usuario no autenticado');
+    }
+
+    // Assuming userData has isAdmin, but check in component
+    // For now, proceed
+
+    const collectionName = `Modulo_${module}`;
+    const promises = questions.map(async (question) => {
+      const { questionNumber, ...questionData } = question;
+      const docId = `pregunta_${questionNumber}_${module}`;
+      const questionRef = doc(db, collectionName, docId);
+      await setDoc(questionRef, questionData);
+    });
+
+    await Promise.all(promises);
+    console.log('Todas las preguntas subidas exitosamente');
+  } catch (error) {
+    console.error('Error al subir preguntas:', error);
     throw error;
   }
 };

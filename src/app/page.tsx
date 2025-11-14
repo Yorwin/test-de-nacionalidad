@@ -5,6 +5,7 @@ import Link from "next/link";
 import Logo from "@/components/logo-cervantes"
 import ProfileSection from "@/components/profile-section/profile-section";
 import HomePageOptionElement from "@/components/pages/homepage/homepage-option-element";
+import AdminUploadQuestions from "@/components/pages/homepage/admin-upload-questions";
 
 const HomePage = () => {
   return (
@@ -23,6 +24,7 @@ const HomePage = () => {
           <HomePageOptionElement icono="bi bi-bar-chart-line-fill" titulo="Resultados" descripcion="Ve tus resultados del test de nacionalidad española (CCSE). Revisa tu porcentaje de aciertos, tu rendimiento y tus respuestas correctas e incorrectas para analizar tu progreso." enlace={"/resultados"} />
           <HomePageOptionElement icono="bi bi-info-circle" titulo="Recomendaciones" descripcion="Mejora tu preparación para el examen de nacionalidad española (CCSE) con recomendaciones prácticas que hacen tu estudio más cómodo, organizado y adaptado a tu ritmo." enlace={"/recomendaciones"} />
         </div>
+        <AdminUploadQuestions />
       </div>
       <div className={styles["footer-content"]}>
         <div className={styles["footer-info"]}>
