@@ -1,6 +1,9 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
+
+// Prevent prerendering to avoid ThemeProvider issues
+export const dynamic = 'force-dynamic';
 import styles from "@/styles/layout/settings/settings.module.scss"
 import { useRouter } from "next/navigation";
 import Link from "next/link";
