@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ElmsSans, ElmsSansItalic, Montaga } from "@/lib/fonts";
 import Script from "next/script";
 
@@ -84,7 +85,9 @@ export default function RootLayout({
         </Script>
 
         <ThemeProvider>
-          <Analytics />
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
           {children}
         </ThemeProvider>
       </body>
