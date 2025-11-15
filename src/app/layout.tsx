@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ElmsSans, ElmsSansItalic, Montaga } from "@/lib/fonts";
+import Script from "next/script";
 
 /* Estilos Globales */
 import "./globals.css";
@@ -11,6 +12,9 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 /* Context */
 import { ThemeProvider } from "@/context/theme-context";
+
+/* Analytics */
+import Analytics from "./analytics";
 
 export const metadata: Metadata = {
   title: "Prepárate CCSE | Practica el examen de nacionalidad española",
@@ -63,7 +67,24 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${ElmsSans.variable} ${ElmsSansItalic.variable} ${Montaga.variable}`}>
+        {/* Carga de gtag.js */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-XNSFCLMNH6`}
+          strategy="afterInteractive"
+        />
+
+        {/* Inicializar GA */}
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XNSFCLMNH6');
+          `}
+        </Script>
+
         <ThemeProvider>
+          <Analytics />
           {children}
         </ThemeProvider>
       </body>
