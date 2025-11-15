@@ -12,6 +12,7 @@ import {
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getFullDate, getCurrentSecondsSinceMidNight } from "@/functions/functions";
 import { SaveResults, SaveResultsModulePractice } from "@/types/types";
+import { use } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -73,6 +74,7 @@ export const saveResultsTest = async ({ testId, score, answers, duration, questi
 export const uploadQuestions = async (module: number, questions: any[]) => {
   try {
     const user = auth.currentUser;
+
     if (!user) {
       throw new Error('Usuario no autenticado');
     }
@@ -80,11 +82,12 @@ export const uploadQuestions = async (module: number, questions: any[]) => {
     // Assuming userData has isAdmin, but check in component
     // For now, proceed
 
-    const collectionName = `Modulo_${module}`;
-    const promises = questions.map(async (question) => {
-      const { questionNumber, ...questionData } = question;
+    const preguntasRef = collection(db, 'preguntas', `Modulo_${module}`, 'preguntas');
+    const promises = questions.map(async (question, index) => {
+      const questionNumber = index + 1;
+      const { ...questionData } = question;
       const docId = `pregunta_${questionNumber}_${module}`;
-      const questionRef = doc(db, collectionName, docId);
+      const questionRef = doc(preguntasRef, docId);
       await setDoc(questionRef, questionData);
     });
 

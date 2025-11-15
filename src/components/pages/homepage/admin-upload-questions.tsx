@@ -2,14 +2,51 @@
 
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth-context";
-import { uploadQuestions } from "@/firebase/firebase";
+import { uploadQuestions, db } from "@/firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const AdminUploadQuestions = () => {
-  const { userData } = useAuth();
+  const { user } = useAuth();
   const [jsonText, setJsonText] = useState("");
   const [selectedModule, setSelectedModule] = useState(1);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      const checkAdmin = async () => {
+        try {
+          const userRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(userRef);
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setIsAdmin(data.isAdmin === true);
+          } else {
+            setIsAdmin(false);
+          }
+        } catch (error) {
+          console.error("Error checking admin:", error);
+          setIsAdmin(false);
+        } finally {
+          setChecking(false);
+        }
+      };
+      checkAdmin();
+    } else {
+      setIsAdmin(false);
+      setChecking(false);
+    }
+  }, [user]);
+
+  if (checking) {
+    return null;
+  }
+
+  if (!isAdmin) {
+    return null;
+  }
 
   const handleUpload = async () => {
     if (!jsonText.trim()) {
