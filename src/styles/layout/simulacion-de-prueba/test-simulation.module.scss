@@ -24,11 +24,17 @@
     padding: 2rem;
 }
 
+/* Controller elements */
+
 .container-control-elements {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+
+    div {
+        position: relative;
+    }
 }
 
 .questions-container {
