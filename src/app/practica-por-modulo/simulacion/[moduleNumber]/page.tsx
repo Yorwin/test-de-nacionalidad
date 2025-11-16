@@ -179,26 +179,28 @@ const TestPage = ({ params }: TestPageProps) => {
                                 toggleLeaveTestMessage={toggleLeaveTestMessage}
                             />
                         )}
+                        
+                        <div className={styles["header-and-questions-container"]}>
+                            <div className={styles["header-container"]}>
+                                <Header
+                                    totalAmountOfQuestions={totalAmountOfQuestions}
+                                    moduleSelected={Number(moduleNumber)}
+                                    toggleLeaveTestMessage={toggleLeaveTestMessage}
+                                    currentQuestion={questionCounter}
+                                />
+                            </div>
 
-                        <div className={styles["header-container"]}>
-                            <Header
-                                totalAmountOfQuestions={totalAmountOfQuestions}
-                                moduleSelected={Number(moduleNumber)}
-                                toggleLeaveTestMessage={toggleLeaveTestMessage}
-                                currentQuestion={questionCounter}
-                            />
+                            <CurrentQuestion
+                                loading={loading}
+                                questions={questions}
+                                questionCounter={questionCounter}
+                                selectedAnswer={selectedAnswer}
+                                handleAnswerSelection={handleAnswerSelection}
+                                finishModulePractice={finishModulePractice}
+                                saveQuestionAnswer={saveQuestionAnswer}
+                                isQuestionChecked={isQuestionChecked}
+                                checkQuestion={checkQuestion} />
                         </div>
-
-                        <CurrentQuestion
-                            loading={loading}
-                            questions={questions}
-                            questionCounter={questionCounter}
-                            selectedAnswer={selectedAnswer}
-                            handleAnswerSelection={handleAnswerSelection}
-                            finishModulePractice={finishModulePractice}
-                            saveQuestionAnswer={saveQuestionAnswer}
-                            isQuestionChecked={isQuestionChecked}
-                            checkQuestion={checkQuestion} />
                     </>
                 )}
             </div>

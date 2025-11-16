@@ -19,8 +19,15 @@
     color: #FA3B2D;
 }
 
+@media screen and (max-width: 992px) {
+    .terms-and-conditions-container {
+        padding-bottom: 2.5rem;
+        padding-left: 2.5rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .terms-and-conditions-container {
-        padding-bottom: 0rem;
+        padding: 0rem;
     }
 }
