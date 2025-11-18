@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://preparateccse.com'
+  const baseUrl = 'https://prepárateccse.com'
 
     const routes = [
         { route: '', priority: 1.0, changeFrequency: 'weekly' as const },

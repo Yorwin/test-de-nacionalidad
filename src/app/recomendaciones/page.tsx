@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "Recomendaciones | Prepárate CCSE",
     description: 'Recomendaciones y recursos clave para el examen CCSE: enlaces oficiales, test de práctica, información valiosa para estudiar y estrategias para sacar el máximo provecho de la app Prepárate CCSE',
     alternates: {
-        canonical: 'https://preparateccse.com/recomendaciones',
+        canonical: 'https://prepárateccse.com/recomendaciones',
     },
     robots: {
         index: true,

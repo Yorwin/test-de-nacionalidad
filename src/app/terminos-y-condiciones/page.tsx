@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: 'Términos y Política | Prepárate CCSE',
     description: 'Consulta los Términos y Condiciones de Prepárate CCSE. Conoce las normas de uso de nuestra app, políticas de privacidad y cómo protegemos tus datos mientras preparas el examen de nacionalidad española.',
     alternates: {
-        canonical: 'https://preparateccse.com/terminos-y-condiciones',
+        canonical: 'https://prepárateccse.com/terminos-y-condiciones',
     },
     robots: {
         index: false,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Términos y Política | Prepárate CCSE',
         description: 'Consulta los Términos y Condiciones y nuestra Política de Privacidad para el uso seguro de la app Prepárate CCSE.',
-        url: 'https://preparateccse.com/terminos-y-condiciones',
+        url: 'https://prepárateccse.com/terminos-y-condiciones',
     },
     twitter: {
         card: 'summary',

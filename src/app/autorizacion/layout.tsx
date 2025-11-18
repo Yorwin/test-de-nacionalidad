@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: 'Identificación | Prepárate CCSE',
     description: 'Accede a tu cuenta de Prepárate CCSE o crea una nueva. Guarda tu progreso, realiza test, y aprovecha al máximo nuestra app para preparar el examen de nacionalidad española.',
     alternates: {
-        canonical: 'https://preparateccse.com/autorizacion',
+        canonical: 'https://prepárateccse.com/autorizacion',
     },
     robots: {
         index: true,
