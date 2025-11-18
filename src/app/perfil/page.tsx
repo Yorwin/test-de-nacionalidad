@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Perfil | Prepárate CCSE',
     description: 'Gestiona tu perfil en Prepárate CCSE: consulta tu progreso en los test, ajusta tus preferencias y personaliza tu experiencia para preparar el examen de nacionalidad española de forma más efectiva.',
     alternates: {
-        canonical: 'https://prepárateccse.com/perfil',
+        canonical: 'https://xn--preprateccse-fbb.com/perfil',
     },
     robots: {
         index: false,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Perfil | Prepárate CCSE',
         description: 'Consulta tu progreso en los test y personaliza tu experiencia.',
-        url: 'https://prepárateccse.com/perfil',
+        url: 'https://xn--preprateccse-fbb.com/perfil',
     },
     twitter: {
         card: 'summary',

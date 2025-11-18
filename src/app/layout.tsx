@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Realiza test y ejercicios prácticos para el examen CCSE del Instituto Cervantes. Mejora tus resultados y obtén tu nacionalidad española con nuestra ayuda.",
   robots: { index: true, follow: true },
   alternates: {
-    canonical: "https://prepárateccse.com/",
+    canonical: "https://xn--preprateccse-fbb.com/",
   },
   icons: {
     icon: [
@@ -38,11 +38,11 @@ export const metadata: Metadata = {
     title: "Prepárate CCSE | Examen de nacionalidad española",
     description:
       "Practica con preguntas reales del examen CCSE y obtén tu nacionalidad española. Simulacros, resultados y consejos actualizados.",
-    url: "https://prepárateccse.com/",
+    url: "https://xn--preprateccse-fbb.com/",
     siteName: "Prepárate CCSE",
     images: [
       {
-        url: "https://prepárateccse.com/og-image.jpg",
+        url: "https://xn--preprateccse-fbb.com/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Practica el examen de nacionalidad española CCSE",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Prepárate CCSE | Examen de nacionalidad española",
     description:
       "Practica el examen CCSE del Instituto Cervantes y mejora tus resultados con nuestra app.",
-    images: ["https://prepárateccse.com/og-image.jpg"],
+    images: ["https://xn--preprateccse-fbb.com/og-image.jpg"],
   },
 };
 

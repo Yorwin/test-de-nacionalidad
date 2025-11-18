@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Ajustes | Prepárate CCSE',
     description: 'Configura tu experiencia en Prepárate CCSE: ajusta tus preferencias de usuario, notificaciones y opciones de práctica para sacar el máximo provecho a tu preparación del examen de nacionalidad española.',
     alternates: {
-        canonical: 'https://prepárateccse.com/ajustes',
+        canonical: 'https://xn--preprateccse-fbb.com/ajustes',
     },
     robots: {
         index: false,

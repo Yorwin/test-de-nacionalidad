@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: 'Recuperar Contraseña | Prepárate CCSE',
     description: 'Restablece tu contraseña de forma segura en Prepárate CCSE.',
     alternates: {
-        canonical: 'https://prepárateccse.com/recover-password',
+        canonical: 'https://xn--preprateccse-fbb.com/recover-password',
     },
     robots: {
         index: false,
