@@ -128,7 +128,7 @@
         color: var(--text-color);
         padding-left: 0.4rem;
 
-        &:placeholder {
+        &::placeholder {
             color: var(--text-muted);
         }
 
